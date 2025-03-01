@@ -113,7 +113,10 @@ const ProductCard = ({ data }) => {
           {/* Product Name */}
           <Link to={`/product/${product_name}`}>
             <h4 className="font-semibold text-start text-gray-900 text-[1rem]">
-              {product_name.length > 35 ? product_name.slice(0, 35) + "..." : product_name}
+              {product_name.replace(/[-]+/g, " ").trim().length > 35
+                  ? product_name.replace(/[-]+/g, " ").trim().slice(0, 35) + "..."
+                  : product_name.replace(/[-]+/g, " ").trim()}
+
             </h4>
           </Link>
 

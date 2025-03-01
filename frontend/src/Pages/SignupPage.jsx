@@ -6,14 +6,16 @@ import Header from "../Components/Layout/Header.jsx";
 import Footer from "../Components/Layout/Footer.jsx";
 
 const SignupPage = () => {
-  // const navigate = useNavigate();
-  // const { isAuthenticated } = useSelector((state) => state.user);
-  //
-  // useEffect(() => {
-  //   if (isAuthenticated === true) {
-  //     navigate("/");
-  //   }
-  // }, []);
+    const navigate = useNavigate();
+    const { isAuthenticated } = useSelector((state) => state.user);
+
+    useEffect(() => {
+        if (isAuthenticated === true) {
+            navigate(`/`);
+        }
+    });
+
+
   return (
     <div>
         <Header activeHeading={0} />

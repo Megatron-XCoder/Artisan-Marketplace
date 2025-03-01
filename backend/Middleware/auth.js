@@ -4,18 +4,42 @@ const jwt = require("jsonwebtoken");
 const User = require("../Model/user");
 // const Shop = require("../model/shop");
 
-exports.isAuthenticated = catchAsyncErrors(async(req,res,next) => {
-    const {token} = req.cookies;
 
-    if(!token){
-        return next(new ErrorHandler("Please login to continue", 401));
+exports.isAuthenticated = catchAsyncErrors(async (req, res, next) => {
+    const { token } = req.cookies;
+    // console.log(`Token is: ${token}`);
+
+    if (!token) {
+        return res.status(401).json({ message: "Please login to continue" });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
-    req.user = await User.findById(decoded.id);
+        // Check if the user exists
+        const user = await User.findById(decoded.id);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
 
-    next();
+        req.user = user;
+        next();
+    } catch (error) {
+        // Handle JWT errors
+        if (error.name === "JsonWebTokenError") {
+            return res
+                .status(401)
+                .json({ message: "Invalid token, please login again" });
+        } else if (error.name === "TokenExpiredError") {
+            return res
+                .status(401)
+                .json({ message: "Token has expired, please login again" });
+        }
+
+        // Handle other errors
+        console.error(error);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
 });
 
 

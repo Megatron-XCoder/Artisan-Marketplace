@@ -8,7 +8,7 @@ const catchAsyncErrors = require("../Middleware/catchAsyncErrors");
 const jwt = require("jsonwebtoken");
 const sendMail = require("../Utils/sendMail");
 const sendToken = require("../Utils/sendToken");
-// const { isAuthenticated, isAdmin } = require("../Middleware/auth");
+const { isAuthenticated, isAdmin } = require("../Middleware/auth");
 
 // Create and activate user
 router.post("/create-user", upload.single("avatar"), async (req, res, next) => {
@@ -145,26 +145,23 @@ router.post(
 );
 
 // load user
-router.get(
-  "/getUser",
-  // isAuthenticated,
-  catchAsyncErrors(async (req, res, next) => {
-    try {
-      const user = await User.findById(req.user.id);
-
-      if (!user) {
-        return next(new ErrorHandler("User doesn't exists", 400));
-      }
-
-      res.status(200).json({
-        success: true,
-        user,
-      });
-    } catch (error) {
-      return next(new ErrorHandler(error.message, 500));
+router.get(`/getUser`,
+    isAuthenticated,
+    async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return next(new ErrorHandler(`User doesn't exists!`));
     }
-  })
-);
+
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+});
 
 module.exports = router;
 

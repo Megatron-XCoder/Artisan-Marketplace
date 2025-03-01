@@ -32,6 +32,8 @@ const Login = () => {
             });
     };
 
+    window.scrollTo(0, 0);
+
     return (
         <section className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-bl from-violet-600 to-fuchsia-400 dark:from-violet-700 dark:to-fuchsia-500 px-4">
             <h1 className="text-5xl font-bold text-white mb-8 text-center">

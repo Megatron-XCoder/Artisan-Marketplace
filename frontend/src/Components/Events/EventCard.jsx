@@ -10,8 +10,8 @@ const EventCard = ({active}) => {
           {/* Image Section */}
           <div className="lg:w-[45%] relative h-full">
             <img
-                src="https://scontent.fixc1-5.fna.fbcdn.net/o1/v/t0/f2/m340/AQMxAUHpFeMkd6CRNU6-Dqs75tRbOoxdHiTPP4IAIv43ZrHVjkQVRK2Hg0xk-jEhdj1_XmFLWElMMC65Ub79bT5hXWhAzLtlArtqgRc-cNgyWxJX5E7O0O02QU6tQBw83qLux8TIN3bghKPnz6pTMb_NQJwp.jpeg?_nc_ht=scontent.fixc1-5.fna.fbcdn.net&_nc_cat=109&ccb=9-4&oh=00_AYBkt42MSy7BFjv0OcNlD9NdP9-cSG34iOc2QFIeoq3Pkw&oe=67BFF738&_nc_sid=5b3566"
-                alt="Event"
+                src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt={"Events"}
                 className="w-full h-full hover:shadow-2xl object-cover"
             />
             <div className="absolute top-4 left-4 bg-teal-600 text-white px-4 py-1 rounded-full text-sm font-medium">
