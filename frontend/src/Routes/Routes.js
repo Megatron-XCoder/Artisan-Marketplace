@@ -2,21 +2,21 @@ import LoginPage from "../Pages/Login.jsx";
 import SignupPage from "../Pages/SignupPage.jsx";
 import ActivationPage from "../Pages/ActivationPage";
 import HomePage from "../Pages/HomePage";
-import ProductsPage from "../pages/ProductsPage";
-import BestSellingPage from "../pages/BestSellingPage";
-import EventsPage from "../pages/EventsPage";
-import FAQPage from "../pages/FAQPage";
+import ProductsPage from "../Pages/ProductsPage";
+import BestSellingPage from "../Pages/BestSellingPage";
+import EventsPage from "../Pages/EventsPage";
+import FAQPage from "../Pages/FAQPage";
 import CheckoutPage from "../Pages/CheckoutPage";
-import PaymentPage from "../pages/PaymentPage";
-import OrderSuccessPage from "../pages/OrderSuccessPage";
-import ProductDetailsPage from "../pages/ProductDetailsPage";
-// import ProfilePage from "../pages/ProfilePage";
-// import ShopCreatePage from "../pages/ShopCreate";
-// import SellerActivationPage from "../pages/SellerActivationPage";
-// import ShopLoginPage from "../pages/ShopLoginPage";
-// import OrderDetailsPage from "../pages/OrderDetailsPage";
-// import TrackOrderPage from "../pages/TrackOrderPage";
-// import UserInbox from "../pages/UserInbox.jsx";
+import PaymentPage from "../Pages/PaymentPage";
+import OrderSuccessPage from "../Pages/OrderSuccessPage";
+import ProductDetailsPage from "../Pages/ProductDetailsPage.jsx";
+import ProfilePage from "../pages/ProfilePage";
+// import ShopCreatePage from "../Pages/ShopCreate";
+// import SellerActivationPage from "../Pages/SellerActivationPage";
+// import ShopLoginPage from "../Pages/ShopLoginPage";
+// import OrderDetailsPage from "../Pages/OrderDetailsPage";
+// import TrackOrderPage from "../Pages/TrackOrderPage";
+// import UserInbox from "../Pages/UserInbox.jsx";
 
 export { 
     LoginPage,
@@ -31,7 +31,7 @@ export {
     PaymentPage,
     OrderSuccessPage,
     ProductDetailsPage,
-    // ProfilePage,
+    ProfilePage,
     // ShopCreatePage,
     // SellerActivationPage,
     // ShopLoginPage,

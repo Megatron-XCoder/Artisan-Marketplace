@@ -20,8 +20,13 @@ const Login = () => {
                 { withCredentials: true }
             )
             .then((res) => {
-                sessionStorage.setItem("loginSuccess", "true");
-                navigate("/", { replace: true });
+                toast.success("Login successful!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                });
+
+                // Set authentication state here if using a global state (like Redux or Context API)
+                navigate("/profile", { replace: true });
                 window.location.reload(true);
             })
             .catch((err) => {
