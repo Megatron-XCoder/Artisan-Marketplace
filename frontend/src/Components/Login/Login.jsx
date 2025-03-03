@@ -4,36 +4,90 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { server } from "../../server.jsx";
 import { toast } from "react-toastify";
+import {useDispatch} from "react-redux";
+import {loadUser} from "../../redux/Actions/user.js";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [visible, setVisible] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios
+        // Check if email is empty or doesn't match the expected format
+
+        // setLoading(true);
+        axios
             .post(
                 `${server}/user/login-user`,
-                { email, password },
+                {
+                    email,
+                    password,
+                },
                 { withCredentials: true }
             )
             .then((res) => {
-                toast.success("Login successful!", {
-                    position: "top-right",
-                    autoClose: 3000,
-                });
-
-                // Set authentication state here if using a global state (like Redux or Context API)
-                navigate("/profile", { replace: true });
-                window.location.reload(true);
+                if (res.data.success === true) {
+                    navigate("/profile");
+                    toast.success("Login successful!", {
+                        position: "top-right",
+                        autoClose: 3000,
+                    });
+                    dispatch(loadUser());
+                    // setLoading(false);
+                    // window.location.reload(true);
+                } else {
+                    toast.error(res.data.message, {
+                        position: "top-right",
+                        autoClose: 3000,
+                    });
+                    // setLoading(false);
+                }
             })
-            .catch((err) => {
-                toast.error(err.response.data.message, {
-                    position: "top-right",
-                    delay: 3000,
-                });
+            .catch((error) => {
+                if (error.response) {
+                    // if (error.response.data.errorCode === 600) {
+                    //   setOpen(true);
+                    // }
+                    // The request was made and the server responded with a non-2xx status code
+                    if (error.response.status === 404) {
+                        toast.error(error.response.data.message,{
+                            position: "top-right",
+                            autoClose: 3000,
+                        });
+                    } else if (error.response.status === 401) {
+                        toast.error(error.response.data.message, {
+                            position: "top-right",
+                            autoClose: 3000,
+                        });
+                    } else if (error.response.status === 400) {
+                        toast.error(error.response.data.message, {
+                            position: "top-right",
+                            autoClose: 3000,
+                        });
+                    } else {
+                        toast.error(`Server error: ${error.response.data.message}`, {
+                            position: "top-right",
+                            autoClose: 3000,
+                        });
+                    }
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    toast.error("Network error. Please check your internet connection.", {
+                        position: "top-right",
+                        autoClose: 3000,
+                    });
+                } else {
+                    // Something happened in setting up the request that triggered an error
+                    toast.error("Request failed. Please try again later.", {
+                        position: "top-right",
+                        autoClose: 3000,
+                    });
+                }
+                // setLoading(false);
             });
     };
 

@@ -1,17 +1,24 @@
-import {Navigate} from "react-router";
-import {useEffect, useState} from "react";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const ProtectedRoute = ({ isAuthenticated, children }) => {
-    const [redirect, setRedirect] = useState(false);
-
-    useEffect(() => {
+const ProtectedRoute = ({ children }) => {
+    const { loading, isAuthenticated } = useSelector((state) => state.user);
+    if (loading === false) {
         if (!isAuthenticated) {
-            setRedirect(true);
+            toast.info(`Please login to Continue`,{
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return <Navigate to="/login" replace />;
         }
-    }, [isAuthenticated]);
-
-    return redirect ? <Navigate to="/login" replace /> : children;
+        return children;
+    }
 };
-
 
 export default ProtectedRoute;

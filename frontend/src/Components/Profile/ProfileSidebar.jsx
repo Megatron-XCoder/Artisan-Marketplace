@@ -13,23 +13,25 @@ const ProfileSidebar = ({ setActive, active }) => {
     // const {user} = useSelector((state) => state.user);
 
 
+
     const logoutHandler = () => {
         axios
             .get(`${server}/user/logout`, { withCredentials: true })
             .then((res) => {
                 toast.success("Log Out successful!", {
                     position: "top-right",
-                    autoClose: 3000,
+                    autoClose: 5000,
                 });
-
-                // Ensure session storage or state is cleared (if using any global state)
-                navigate("/login", { replace: true });
-                window.location.reload();  // Force a reload to clear authentication state
+                // clearLocalStorage();
+                navigate(`/login`);
+                window.location.reload(true);
             })
             .catch((error) => {
-                console.log(error.response.data.message);
+                toast.error(error.response.data.message);
             });
     };
+
+
 
 
     return (

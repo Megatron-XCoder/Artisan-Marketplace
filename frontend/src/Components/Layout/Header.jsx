@@ -129,11 +129,11 @@ import Wishlist from "../Wishlist/Wishlist.jsx";
                   <IoMenu color={"purple"} size={30} />
                 </button>
 
-                <div className="text-lg lg:text-xl font-bold bg-gradient-to-br from-purple-600 to-blue-500 inline-block text-transparent bg-clip-text">
+                <div className="text-lg ml-3 sm:ml-0 lg:text-xl font-bold bg-gradient-to-br from-purple-600 to-blue-500 inline-block text-transparent bg-clip-text">
                   <Link to="/">Artisan MarketPlace</Link>
                 </div>
 
-                <div className="flex items-center gap-x-2">
+                <div className="flex items-center gap-x-3 sm:gap-x-2">
                   <div
                       className="relative"
                       onClick={() => setOpenWishList(true)}
