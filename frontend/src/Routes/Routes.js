@@ -11,11 +11,11 @@ import PaymentPage from "../Pages/PaymentPage";
 import OrderSuccessPage from "../Pages/OrderSuccessPage";
 import ProductDetailsPage from "../Pages/ProductDetailsPage.jsx";
 import ProfilePage from "../pages/ProfilePage";
-// import ShopCreatePage from "../Pages/ShopCreate";
-// import SellerActivationPage from "../Pages/SellerActivationPage";
-// import ShopLoginPage from "../Pages/ShopLoginPage";
-// import OrderDetailsPage from "../Pages/OrderDetailsPage";
-// import TrackOrderPage from "../Pages/TrackOrderPage";
+import ShopCreatePage from "../Pages/ShopCreatePage.jsx";
+import SellerActivationPage from "../Pages/SellerActivationPage";
+import ShopLoginPage from "../Pages/ShopLoginPage.jsx";
+// import OrderDetailsPage from "../Pages/OrderDetailsPage.jsx";
+// import TrackOrderPage from "../Pages/TrackOrderPage.jsx";
 // import UserInbox from "../Pages/UserInbox.jsx";
 
 export { 
@@ -32,9 +32,9 @@ export {
     OrderSuccessPage,
     ProductDetailsPage,
     ProfilePage,
-    // ShopCreatePage,
-    // SellerActivationPage,
-    // ShopLoginPage,
+    ShopCreatePage,
+    SellerActivationPage,
+    ShopLoginPage,
     // OrderDetailsPage,
     // TrackOrderPage,
     // UserInbox

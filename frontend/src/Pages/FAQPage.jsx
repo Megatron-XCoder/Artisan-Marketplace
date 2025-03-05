@@ -248,7 +248,7 @@ const AboutUs = () => {
 
         {/* FAQ Section */}
         <section className="">
-          <div className="py-8 px-4 mx-auto rounded-2xl bg-white sm:py-16 lg:px-6">
+          <div className="py-8 px-8 mx-auto rounded-2xl bg-white sm:py-16 lg:px-10">
             <h2 className="mb-8 text-4xl lg:text-5xl tracking-tight font-extrabold text-black ">Frequently asked questions</h2>
             <div className="grid pt-8 text-left border-t border-gray-200 md:gap-16 dark:border-gray-700 md:grid-cols-2">
               {faqData.map((faq, index) => (

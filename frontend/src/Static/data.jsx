@@ -880,16 +880,7 @@ export const productData = [
     },
     {
       name: "About Us",
-      link: "/about-us"
-    },{
-      name: "Checkout",
-      link: "/checkout"
-    },{
-      name: "Admin",
-      link: "/admin/dashboard"
-    },{
-      name: "Seller",
-      link: "/dashboard"
+      link: "/faq"
     },
   ];
   

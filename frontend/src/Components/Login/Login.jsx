@@ -17,9 +17,6 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Check if email is empty or doesn't match the expected format
-
-        // setLoading(true);
         axios
             .post(
                 `${server}/user/login-user`,
@@ -95,7 +92,7 @@ const Login = () => {
 
     return (
         <section className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-bl from-violet-600 to-fuchsia-400 dark:from-violet-700 dark:to-fuchsia-500 px-4">
-            <h1 className="text-5xl font-bold text-white mb-8 text-center">
+            <h1 className="text-5xl font-bold text-white drop-shadow-md mb-8 text-center">
                 Artisan Marketplace
             </h1>
             <div className="w-full max-w-md bg-white rounded-lg shadow-lg dark:bg-gray-800 p-8">

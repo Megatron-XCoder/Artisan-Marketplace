@@ -22,27 +22,31 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
-// // load seller
-// export const loadSeller = () => async (dispatch) => {
-//   try {
-//     dispatch({
-//       type: "LoadSellerRequest",
-//     });
-//     const { data } = await axios.get(`${server}/shop/getSeller`, {
-//       withCredentials: true,
-//     });
-//     dispatch({
-//       type: "LoadSellerSuccess",
-//       payload: data.seller,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: "LoadSellerFail",
-//       payload: error.response.data.message,
-//     });
-//   }
-// };
-//
+// Redux action
+export const loadShop = () => async (dispatch) => {
+  try {
+    dispatch({ type: "LoadShopRequest" });
+
+    const { data } = await axios.get(`${server}/shop/getShop`, {
+      withCredentials: true,
+    });
+
+    dispatch({
+      type: "LoadShopSuccess",
+      payload: data.shop,
+    });
+
+    console.log(data.shop);
+
+  } catch (error) {
+    dispatch({
+      type: "LoadShopFail",
+      payload: error.response?.data?.message || "Failed to load shop",
+    });
+  }
+};
+
+
 // // user update information
 // export const updateUserInformation =
 //   (name, email, phoneNumber, password) => async (dispatch) => {

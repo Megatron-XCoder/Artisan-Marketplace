@@ -29,7 +29,7 @@ app.use(cors({
 
 // import routes
 const user = require("./Controller/user");
-// const shop = require("./controller/shop");
+const shop = require("./controller/shop");
 // const product = require("./controller/product");
 // const event = require("./controller/event");
 // const coupon = require("./controller/coupounCode");
@@ -40,10 +40,10 @@ const user = require("./Controller/user");
 // const withdraw = require("./controller/withdraw");
 //
 app.use("/user", user);
+app.use("/shop", shop);
 // app.use("/conversation", conversation);
 // app.use("/message", message);
 // app.use("/order", order);
-// app.use("/shop", shop);
 // app.use("/product", product);
 // app.use("/event", event);
 // app.use("/coupon", coupon);

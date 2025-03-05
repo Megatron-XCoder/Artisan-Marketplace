@@ -108,7 +108,7 @@ import Wishlist from "../Wishlist/Wishlist.jsx";
 
             {/* Become a Seller Button - Mobile Hidden */}
             <div className="hidden md:flex bg-gradient-to-r from-purple-500 to-pink-500 h-[40px] items-center justify-center px-4 rounded-md cursor-pointer">
-              <Link to="/seller">
+              <Link to="/shop-create">
                 <h1 className="text-white flex items-center text-sm">
                   Become a Seller <IoIosArrowForward className="ml-1" />
                 </h1>
@@ -314,7 +314,7 @@ import Wishlist from "../Wishlist/Wishlist.jsx";
                   {/* Mobile Auth Links */}
                   <div className="border-t pt-4">
                     <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-[40px] flex items-center justify-center px-4 rounded-md mb-4">
-                      <Link to="/seller" className="w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Link to="/shop-create" className="w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>
                         <span className="text-white flex items-center justify-center text-sm">
                           Become a Seller <IoIosArrowForward className="ml-1" />
                         </span>

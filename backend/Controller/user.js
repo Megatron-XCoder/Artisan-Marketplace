@@ -55,11 +55,57 @@ router.post("/create-user", upload.single("avatar"), async (req, res, next) => {
     const activationUrl = `${process.env.FRONTEND_URL}/activation/${activationToken}`;
 
     try {
-      await sendMail({
-        email: user.email,
-        subject: "Activate your account",
-        message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
-      });
+      // ... (previous code remains the same)
+        await sendMail({
+          email: user.email,
+          subject: "Activate Your Account",
+          html: `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                <title> Email for Activation </title>
+            </head>
+            <body style="margin: 0; padding: 0; background-color: #f7f9fc;">
+                <table style="max-width: 600px; margin: 40px auto;">
+                    <tr>
+                        <td style="padding: 40px 30px; background: #ffffff; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="text-align: center; padding-bottom: 30px;">
+                                        <img src="https://cdn.shopify.com/s/files/1/0412/5117/6615/files/The_Artisan_Marketplace_-_Logo_1caa2512-2a37-417f-948e-bb571f16e582.jpg" alt="Company Logo" width="150" style="max-width: 150px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; color: #1a1a1a;">
+                                        <h1 style="font-size: 24px; margin: 0 0 25px; color: #2d3436; text-align: center;">Welcome to Artisan Marketplace!</h1>
+                                        <p style="font-size: 16px; line-height: 1.6; margin: 0 0 20px;">Hi ${user.name},</p>
+                                        <p style="font-size: 16px; line-height: 1.6; margin: 0 0 30px;">Thank you for creating an account. Please click the button below to verify your email address and activate your account.</p>
+                                        <div style="text-align: center; margin: 40px 0;">
+                                            <a href="${activationUrl}" style="background-color: #4361ee; color: #ffffff; padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; box-shadow: 0 4px 12px rgba(67,97,238,0.25);">Activate Account</a>
+                                        </div>
+                                        <p style="font-size: 14px; line-height: 1.6; margin: 30px 0 0; color: #666;">
+                                            If you didn't create this account, you can safely ignore this email.
+                                            <br>Need help? Contact our <a href="mailto:support@artisanmarket.com" style="color: #4361ee; text-decoration: none;">support team</a>.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 25px 30px; text-align: center;">
+                            <p style="font-size: 12px; color: #666; margin: 0;">
+                                © ${new Date().getFullYear()} Artisan Marketplace. All rights reserved.
+                                <br>123 Market Street, Suite 456, Creative City, CC 7890
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </body>
+            </html>
+            `,
+                });
 
       console.log("📧 Activation email sent to:", user.email);
 
@@ -149,7 +195,7 @@ router.get(`/getUser`,
     isAuthenticated,
     async (req, res, next) => {
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user._id);
     if (!user) {
       return next(new ErrorHandler(`User doesn't exists!`));
     }

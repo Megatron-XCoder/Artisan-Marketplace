@@ -86,7 +86,7 @@ const ProfileContent = ({ active }) => {
                                     <label className="block text-sm sm:text-base text-gray-700 font-medium">Phone
                                         Number</label>
                                     <input
-                                        type="text"
+                                        type="number"
                                         className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
                                         required
                                         value={phoneNumber}
@@ -98,7 +98,7 @@ const ProfileContent = ({ active }) => {
                                     <label className="block text-sm sm:text-base text-gray-700 font-medium">Zip
                                         Code</label>
                                     <input
-                                        type="text"
+                                        type="number"
                                         className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
                                         required
                                         value={zipCode}
@@ -239,11 +239,10 @@ const AllOrders = () => {
             flex: 0.8,
             cellClassName: (params) => {
                 return params.value === "Delivered"
-                    ? "greenColor"
-                    : "redColor";
+                    ? "greenColor text-xs sm:text-sm"
+                    : "redColor text-xs sm:text-sm";
             },
             headerClassName: 'sm:text-sm',
-            cellClassName: 'text-xs sm:text-sm'
         },
         {
             field: "itemsQty",
@@ -383,11 +382,10 @@ const AllRefundOrders = () => {
             flex: 0.8,
             cellClassName: (params) => {
                 return params.value === "Delivered"
-                    ? "greenColor"
-                    : "redColor";
+                    ? "greenColor text-xs sm:text-sm"
+                    : "redColor text-xs sm:text-sm";
             },
             headerClassName: 'sm:text-sm',
-            cellClassName: 'text-xs sm:text-sm'
         },
         {
             field: "itemsQty",
@@ -523,11 +521,10 @@ const TrackOrders = () => {
             flex: 0.8,
             cellClassName: (params) => {
                 return params.value === "Delivered"
-                    ? "greenColor"
-                    : "redColor";
+                    ? "greenColor text-xs sm:text-sm"
+                    : "redColor text-xs sm:text-sm";
             },
             headerClassName: 'sm:text-sm',
-            cellClassName: 'text-xs sm:text-sm'
         },
         {
             field: "itemsQty",

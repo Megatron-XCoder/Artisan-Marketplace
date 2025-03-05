@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 const Checkout = () => {
     return (
         <>
-            <section className=" min-h-screen bg-gray-100 antialiased 0 md:py-8">
+            <section className=" min-h-screen bg-gray-100 antialiased 0 mt-10 md:py-8">
                 <form action="#" className="mx-auto max-w-screen-xl px-4 2xl:px-0">
                     <div className="mt-6 sm:mt-0 lg:flex lg:items-start lg:gap-12 xl:gap-16">
                         <div className="min-w-0 flex-1 space-y-8">

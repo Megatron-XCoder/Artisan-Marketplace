@@ -1,7 +1,7 @@
 const CheckoutSteps = ({ active }) => {
     return (
         <>
-            <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
+            <div className="mx-auto max-w-screen-xl mt-4 md:mt-12 px-4 2xl:px-0">
                 <div className="flex w-full max-w-2xl items-center text-center text-sm font-medium text-gray-500 sm:text-base">
                     <div className={`relative flex flex-1 items-center after:mx-6 after:hidden after:h-1 after:w-full ${
                         active >= 1
