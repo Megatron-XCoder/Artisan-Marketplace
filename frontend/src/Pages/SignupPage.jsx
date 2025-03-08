@@ -11,7 +11,7 @@ const SignupPage = () => {
 
     useEffect(() => {
         if (isAuthenticated === true) {
-            navigate(`/`);
+            navigate(`/profile`);
         }
     });
 

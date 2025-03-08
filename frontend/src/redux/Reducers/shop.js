@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
-  isShop: false,
+  isLoading: true,
   // loading: false,
   // user: null,
   // error: null,

@@ -194,70 +194,70 @@ export const categoriesData = [
     title: "Handmade Jewellery",
     subTitle: "Unique and handcrafted rings, necklaces, and bracelets.",
     image_Url:
-        "https://scontent.fixc1-5.fna.fbcdn.net/o1/v/t0/f2/m340/AQP8ZtpwfLqt3ZNeV68d92IGUBX2LQ2yWZ4kgx83-VRmxWdXboi-FGLgf8Ikd_XDPAIAMGYwcCsBfS5MCfzobMrEss-Yr6Olzl9dmz14YCw0uKebgIraJ0bgFXof4uvgffg2uxVLibyd9RQie6eR8RcJpFODkA.jpeg?_nc_ht=scontent.fixc1-5.fna.fbcdn.net&_nc_cat=110&ccb=9-4&oh=00_AYDD3g-_WliTiAeuv7whx88grV3xXtZeRmp6HhOifdnzjA&oe=67C05805&_nc_sid=5b3566",
+        "https://images.unsplash.com/photo-1736323284848-3bf344e43a5d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fEhhbmRtYWRlJTIwSmV3ZWxsZXJ5fGVufDB8fDB8fHww"
   },
   {
     id: 2,
     title: "Home Decor",
     subTitle: "Handcrafted furniture, candles, pottery, and wall art.",
     image_Url:
-        "https://scontent.fixc1-5.fna.fbcdn.net/o1/v/t0/f2/m340/AQNaMQLd2u7YIo1xZiakcx0sMMJlm5OLn3xBlf6sArDZRSCS0IjPMfkXgCBWXEYfy9y-HFeH4LLnfrFJgCjD0iGgjRh5xvcuuVLTPO0eUmLOgE0FjOfSQR_CINKBIykKFOhV8ERlEauqU8c2LR3kwuxOZ3U3EQ.jpeg?_nc_ht=scontent.fixc1-5.fna.fbcdn.net&_nc_cat=101&ccb=9-4&oh=00_AYAH_bBqFJrEPymd5LjnQZzZxTXSS4wDDsyuo7nVxA82Ew&oe=67C04D4C&_nc_sid=5b3566",
+        "https://plus.unsplash.com/premium_photo-1670360414946-e33a828d1d52?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SG9tZSUyMERlY29yfGVufDB8fDB8fHww"
   },
   {
     id: 3,
     title: "Fashion and Accessories",
     subTitle: "Handmade clothing, scarves, bags, and leather goods.",
     image_Url:
-        "https://scontent.fixc1-5.fna.fbcdn.net/o1/v/t0/f2/m340/AQOgWOfsWqPgQzWkIpqkXeOhZopcn6DPARfVPzadSMYlIWP-dhMTHM-OY92Ce6sQzg6YigSwzz0WyF-nzSUhkd0fkP1csLihQJO8PDyYr_ITi6hi_n52Io1-2kiROU_ZouWxt8qelaXzppHUM5YaxixwVBY.jpeg?_nc_ht=scontent.fixc1-5.fna.fbcdn.net&_nc_cat=105&ccb=9-4&oh=00_AYAXjKe-KeFI6ZWQMLnaPadUMR7hO_MCKoRlnaJ-2TR4XQ&oe=67C052E2&_nc_sid=5b3566",
+        "https://images.unsplash.com/photo-1717201395289-03e4700ca8b6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fEZhc2hpb24lMjBhbmQlMjBBY2Nlc3Nvcmllc3xlbnwwfHwwfHx8MA%3D%3D"
   },
   {
     id: 4,
     title: "Art and Prints",
     subTitle: "Paintings, digital prints, illustrations, and photography.",
     image_Url:
-        "https://scontent.fixc1-5.fna.fbcdn.net/o1/v/t0/f2/m340/AQOY8Mi8fBpzQtEIcFm2FPWgzG5CnGUhjqhcV6eqn1by8w7PaHPccBns8yBuJwCaw5nUEWo9V9C0Mj0Honb2hU_kp8Lc5WdlYn91kOKv3g5syAVU7hOPZNUCXzo0MD6i4SWrjloXvvLiN-d9dZiq4f8xTqBJyQ.jpeg?_nc_ht=scontent.fixc1-5.fna.fbcdn.net&_nc_cat=108&ccb=9-4&oh=00_AYDYj_Zvd0fPXVvukZMozznrUyVimkZciFxImeW_S3eYTw&oe=67C05CAB&_nc_sid=5b3566",
+        "https://plus.unsplash.com/premium_photo-1673624400364-bd84a5ec1f99?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fEFydCUyMGFuZCUyMFByaW50c3xlbnwwfHwwfHx8MA%3D%3D"
   },
   {
     id: 5,
     title: "Wellness and Beauty",
     subTitle: "Organic soaps, skincare, essential oils, and bath products.",
     image_Url:
-        "https://scontent.fixc1-5.fna.fbcdn.net/o1/v/t0/f2/m340/AQM0qpiBxW7CndZlAkx1HDpGK_o48eLZk-628UOccvNIVgQEai78HI51YMPNwTvLce0iES9FjIhSRapgpdlmGnOD0NLseW5lR2ZUyJeAUdAbBjWE23Ou-B5gi7uRnSC2c04QNTI6xBSEWD2j-sMqa4YvFeJaZg.jpeg?_nc_ht=scontent.fixc1-5.fna.fbcdn.net&_nc_cat=111&ccb=9-4&oh=00_AYCS22CNIwx0dJLL68JTpR084ivlA8WksB4VtG0kt5CbMw&oe=67C0566A&_nc_sid=5b3566",
+        "https://images.unsplash.com/photo-1507829688508-f27bcd5f0aa2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fFdlbGxuZXNzJTIwYW5kJTIwQmVhdXR5fGVufDB8fDB8fHww"
   },
   {
     id: 6,
     title: "Kitchenware and Dining",
     subTitle: "Handmade ceramics, wooden utensils, and personalized mugs.",
     image_Url:
-        "https://scontent.fixc1-5.fna.fbcdn.net/o1/v/t0/f2/m340/AQMo9p8EseG6ImEo8_old43wnNjsNEDCrbj7ZDUOGYFt62hGBcq6AYz3n9UI5818J56qhmLa7TRMmpvbqAn1WxawgANCowxdhAoN8W2o0sFRZd-Fvg0eDr1CYz1kj_-PTd-qZhhdXnhAkPs0cuEdONfj3Hbshg.jpeg?_nc_ht=scontent.fixc1-5.fna.fbcdn.net&_nc_cat=109&ccb=9-4&oh=00_AYC57VxMxoZI9ccN2J-IlU03D58PFwe28f7TBovkEoTeLQ&oe=67C050F0&_nc_sid=5b3566",
+        "https://images.unsplash.com/photo-1629119882639-d2d5860b2411?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8S2l0Y2hlbndhcmUlMjBhbmQlMjBEaW5pbmd8ZW58MHx8MHx8fDA%3D"
   },
   {
     id: 7,
     title: "Stationery and Paper Goods",
     subTitle: "Notebooks, greeting cards, planners, and invitations.",
     image_Url:
-        "https://scontent.fixc1-5.fna.fbcdn.net/o1/v/t0/f2/m340/AQM2UpHomq6fqO9ADIqyOBS1XFxmFS2vzw49p9_QQuBwjPjXkdZDxKdeeCUReMND5wTE2XvgBw5aPnGe6ij-PzWjkxp9geGoJYZQ_5LRLDzz95A01FIeLFjBB7WGBEU6M6vWjULUkdyjnlaaVI8qnggRGSbFIQ.jpeg?_nc_ht=scontent.fixc1-5.fna.fbcdn.net&_nc_cat=110&ccb=9-4&oh=00_AYCiV4Ydwf2ZpY6SdJSd75d0bxQtHM1ZgqheassIpxHLDA&oe=67C04875&_nc_sid=5b3566g",
+        "https://images.unsplash.com/photo-1739009896410-5d807ad0b998?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8U3RhdGlvbmVyeSUyMGFuZCUyMFBhcGVyJTIwR29vZHN8ZW58MHx8MHx8fDA%3D"
   },
   {
     id: 8,
     title: "Toys and Kids Items",
     subTitle: "Wooden toys, crochet dolls, and handmade baby clothes.",
     image_Url:
-        "https://scontent.fixc1-5.fna.fbcdn.net/o1/v/t0/f2/m340/AQOarwWAnXZhh0Mtd8noKoZKwbp2138Kvbrt4srFJNqbqx0pwfmh-qgJNLqlxAepN_iH9h0bwZoAmvQoBAOut9Ce79XSnLCY__lVTtUrL-4QedzJSc3vOU07978hcoXxzT9t_ZstnFg-7Ikrsw-nZ6GqjKH4_w.jpeg?_nc_ht=scontent.fixc1-5.fna.fbcdn.net&_nc_cat=100&ccb=9-4&oh=00_AYDoHE3E3sZ5utAPABxR7uReYkrIdpYyP-Z5712tNnekXA&oe=67C0583B&_nc_sid=5b3566",
+        "https://images.unsplash.com/photo-1681369737391-2677155af090?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8VG95cyUyMGFuZCUyMEtpZHMlMjBJdGVtc3xlbnwwfHwwfHx8MA%3D%3D"
   },
   {
     id: 9,
     title: "Sustainable and EcoFriendly",
     subTitle: "Reusable bags, bamboo cutlery, and zero-waste essentials.",
     image_Url:
-        "https://scontent.fixc1-5.fna.fbcdn.net/o1/v/t0/f2/m340/AQOP7jhOKb1cDW6aVeRY8cVDkiN0kva6QI0UZ49TRXF2ZueOMhNLsRt4JLrGbTKTJOcfbqrLyLM-XXQVcrju4_Wd3-5VjIouSVOUGCx9zvD_eaDXRMBAzX-qif5IwmIGZKK7AM3aGJBtBw4UN_4SfR5oIIrlGQ.jpeg?_nc_ht=scontent.fixc1-5.fna.fbcdn.net&_nc_cat=105&ccb=9-4&oh=00_AYAhMLYaht7kULTPXImg_Ot7uedOT7vTdcqZMSMFgRG8ww&oe=67C03AE0&_nc_sid=5b3566",
+        "https://images.unsplash.com/photo-1675395576105-204d3d248430?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fFN1c3RhaW5hYmxlJTIwYW5kJTIwRWNvRnJpZW5kbHl8ZW58MHx8MHx8fDA%3D"
   },
   {
     id: 10,
     title: "Seasonal and Festive Items",
     subTitle: "Handcrafted Christmas ornaments, Diwali decor, and gifts.",
     image_Url:
-        "https://scontent.fixc1-5.fna.fbcdn.net/o1/v/t0/f2/m340/AQO0D319DzS4bZpm9ajc1gMdt_-W9K-RNYVJAr0YYhgHBcj2AgYBxnE8J449twnRKI6B60NT8tBTeEfFrwEzk5-HKoyCTMc2L7x7CTPadKCeXHPjIiscWGOpSBT5b5yHbHsFFyJFJIk8yM7CHphlCXf8WI31HQ.jpeg?_nc_ht=scontent.fixc1-5.fna.fbcdn.net&_nc_cat=104&ccb=9-4&oh=00_AYDxvVLGNlkEHjN-aoj5i2lnmnpGePynDkH_mzXSn4QeBg&oe=67C05E9B&_nc_sid=5b3566",
+        "https://images.unsplash.com/photo-1639255024820-a30ba6092d62?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fFNlYXNvbmFsJTIwYW5kJTIwRmVzdGl2ZSUyMEl0ZW1zfGVufDB8fDB8fHww"
   },
 ];
 
@@ -273,18 +273,21 @@ export const productData = [
     image_Url: [
       {
         public_id: "test",
-        url: "https://scontent.fixc1-5.fna.fbcdn.net/o1/v/t0/f2/m340/AQMAhjsf_Puu-JDNnOkJp4DHJIt5b_4nkp9Bp01QL39hVZaIvo91x9IOZOzC6np3vCDJ1NTr2xc4iXOaRYziMTtdbf016I2fP2uOF9HYizOFhaiSQqh8ROAXggVOtyIprjxgr8hhxYcjNqHdG0VpIgO88YE5Vg.jpeg?_nc_ht=scontent.fixc1-5.fna.fbcdn.net&_nc_cat=108&ccb=9-4&oh=00_AYC59U8Hdq173EhtJdx3HTjb0MCFhvfG4poQhiN_mCmypQ&oe=67C04A8B&_nc_sid=5b3566",
+        url: "https://plus.unsplash.com/premium_photo-1681276170281-cf50a487a1b7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8SGFuZG1hZGUlMjBTaWx2ZXIlMjBQZW5kYW50JTIwTmVja2xhY2UlMjB3aXRoJTIwR2Vtc3RvbmV8ZW58MHx8MHx8fDA%3D"
       },
       {
         public_id: "test",
-        url: "https://scontent.fixc1-5.fna.fbcdn.net/o1/v/t0/f2/m340/AQOBS49So5TgQLIRIv7jThKWUt16Dr9NWmMzOvJyGTcHQ7UfCnnfMUjiMwqnmADabQ1fUzuPrtAWuGnCDPYF0qoHyLGMYatNaQVA7FXDTf9ohCZ47yHhbohki4EY59DbK43tGO1qNSDXtuVhLC0weaVBqeeClA.jpeg?_nc_ht=scontent.fixc1-5.fna.fbcdn.net&_nc_cat=108&ccb=9-4&oh=00_AYCbp7_IeNKyWLHlMLYwJz_59b_5EPF58XhuMGmjvjSXOA&oe=67C0426F&_nc_sid=5b3566",
+        url: "https://plus.unsplash.com/premium_photo-1661645473770-90d750452fa0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTN8fEhhbmRtYWRlJTIwU2lsdmVyJTIwUGVuZGFudCUyME5lY2tsYWNlJTIwd2l0aCUyMEdlbXN0b25lfGVufDB8fDB8fHww"
+      },{
+        public_id: "test",
+        url: "https://images.unsplash.com/photo-1724937721130-c9a9a4ee477e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fEhhbmRtYWRlJTIwU2lsdmVyJTIwUGVuZGFudCUyME5lY2tsYWNlJTIwd2l0aCUyMEdlbXN0b25lfGVufDB8fDB8fHww"
       },
     ],
     shop: {
       name: "Artisan Jewelry Co.",
       shop_avatar: {
         public_id: "test",
-        url: "https://scontent.fixc1-5.fna.fbcdn.net/o1/v/t0/f2/m340/AQNzmFljFuX4LY_QrmUWc34RDX8zgIfS4sh-h8-YQn0BDgKQsj1-tEXEg1ojlFhaBDXzE0c2T7kIN9xghyLhbfgE4hRq7Wn2rw4J__8_FZh637FlDUCgHw-HduJqEYTkRHYql7jAA4NZMHrAwkmglVGtNXE.jpeg?_nc_ht=scontent.fixc1-5.fna.fbcdn.net&_nc_cat=100&ccb=9-4&oh=00_AYBcTyPjZIWkTISFVbaQo7hVeHFj7crKygrfhfDvfC8D0w&oe=67C04351&_nc_sid=5b3566",
+        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSad-stH6pfc5GAToG0_bbRZmL-8ckfY1Su7A&s"
       },
       ratings: 4.8,
     },

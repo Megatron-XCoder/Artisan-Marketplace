@@ -1,10 +1,14 @@
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Loader from "../Components/Layout/Loader.jsx";
 
 const ShopProtectedRoute = ({ children }) => {
   const { isLoading, isShop } = useSelector((state) => state.shop);
-  if (isLoading === false) {
+  if (isLoading === true) {
+    return (
+        <Loader/>
+    )} else {
     if (!isShop) {
       toast.info(`Please login to Continue`,{
         position: "top-right",
