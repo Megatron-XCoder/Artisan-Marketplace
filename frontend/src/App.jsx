@@ -24,6 +24,7 @@ import {useEffect} from "react";
 import {loadShop, loadUser} from "./redux/Actions/user.js";
 import Store from "./redux/store.js";
 import {
+    ShopCreateProduct,
     ShopDashboardPage,
     ShopHomePage,
 
@@ -74,16 +75,23 @@ function App() {
                         <ShopHomePage />
                     </ShopProtectedRoute>
                 } />
+
                 <Route path="/dashboard" element={
                     <ShopProtectedRoute>
                         <ShopDashboardPage />
                     </ShopProtectedRoute>
                 } />
 
+                <Route path="/dashboard-create-product" element={
+                    <ShopProtectedRoute>
+                        <ShopCreateProduct />
+                    </ShopProtectedRoute>
+                } />
+
 
             </Routes>
             <ToastContainer
-                position="bottom-center"
+                position="top-right"
                 autoClose={5000}
                 hideProgressBar={false}
                 newestOnTop={false}

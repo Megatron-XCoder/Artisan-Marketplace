@@ -1,7 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { userReducer } from "./Reducers/user";
-import { shopReducer } from "./Reducers/shop.js";
-// import { productReducer } from "./Reducers/product";
+import {configureStore} from "@reduxjs/toolkit";
+import {userReducer} from "./Reducers/user";
+import {shopReducer} from "./Reducers/shop.js";
+import {productReducer} from "./Reducers/product";
 // import { eventReducer } from "./Reducers/event";
 // import { cartReducer } from "./Reducers/cart";
 // import { wishlistReducer } from "./Reducers/wishlist";
@@ -9,15 +9,15 @@ import { shopReducer } from "./Reducers/shop.js";
 
 
 const Store = configureStore({
-  reducer: {
-    user: userReducer,
-    shop: shopReducer,
-    // products: productReducer,
-    // events: eventReducer,
-    // cart: cartReducer,
-    // wishlist: wishlistReducer,
-    // order: orderReducer,
-  },
+    reducer: {
+        user: userReducer,
+        shop: shopReducer,
+        products: productReducer,
+        // events: eventReducer,
+        // cart: cartReducer,
+        // wishlist: wishlistReducer,
+        // order: orderReducer,
+    },
 });
 
 export default Store;

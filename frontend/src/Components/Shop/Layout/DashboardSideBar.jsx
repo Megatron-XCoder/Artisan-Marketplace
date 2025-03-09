@@ -13,7 +13,7 @@ import {TbMessageChatbotFilled} from "react-icons/tb";
 
 const DashboardSideBar = ({ active }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true);
+    const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(false);
 
     return (
         <div className="relative">
