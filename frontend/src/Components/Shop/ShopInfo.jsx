@@ -1,14 +1,17 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import {useEffect, useState} from "react";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {backend_url, server} from "../../server";
 import styles from "../../styles/styles";
 import Loader from "../Layout/Loader";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {toast} from "react-toastify";
 // import { getAllProductsShop } from "../../redux/actions/product";
 
-const ShopInfo = ({ isOwner }) => {
-    const { shop } = useSelector((state) => state.shop);
+const ShopInfo = ({isOwner}) => {
+    const {shop} = useSelector((state) => state.shop);
+    const navigate = useNavigate();
+
 
     // const [data,setData] = useState({});
     // const {products} = useSelector((state) => state.products);
@@ -30,10 +33,21 @@ const ShopInfo = ({ isOwner }) => {
     //
     //
     const logoutHandler = async () => {
-        // axios.get(`${server}/shop/logout`,{
-        //     withCredentials: true,
-        // });
-        // window.location.reload();
+        axios
+            .get(`${server}/shop/logout`, {withCredentials: true,})
+            .then((res) => {
+                toast.success("Log Out successful!", {
+                    position: "top-right",
+                    autoClose: 5000,
+                });
+                // clearLocalStorage();
+                navigate(`/shop-login`);
+                window.location.reload(true);
+            })
+            .catch((error) => {
+                toast.error(error.response.data.message);
+            });
+        window.location.reload();
     };
     //
     // const totalReviewsLength =
@@ -73,7 +87,8 @@ const ShopInfo = ({ isOwner }) => {
                 <div className="space-y-2">
                     <div className="flex items-center gap-2 text-gray-500">
                         <svg className="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 0a10 10 0 110 20 10 10 0 010-20zm0 1.875a8.125 8.125 0 100 16.25 8.125 8.125 0 000-16.25zM10 15a5 5 0 110-10 5 5 0 010 10zm0-1.875a3.125 3.125 0 100-6.25 3.125 3.125 0 000 6.25z"/>
+                            <path
+                                d="M10 0a10 10 0 110 20 10 10 0 010-20zm0 1.875a8.125 8.125 0 100 16.25 8.125 8.125 0 000-16.25zM10 15a5 5 0 110-10 5 5 0 010 10zm0-1.875a3.125 3.125 0 100-6.25 3.125 3.125 0 000 6.25z"/>
                         </svg>
                         <span className="font-medium text-gray-700">Address</span>
                     </div>
@@ -83,7 +98,8 @@ const ShopInfo = ({ isOwner }) => {
                 <div className="space-y-2">
                     <div className="flex items-center gap-2 text-gray-500">
                         <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                            <path
+                                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
                         </svg>
                         <span className="font-medium text-gray-700">Phone</span>
                     </div>

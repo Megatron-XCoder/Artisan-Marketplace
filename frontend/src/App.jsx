@@ -24,6 +24,7 @@ import {useEffect} from "react";
 import {loadShop, loadUser} from "./redux/Actions/user.js";
 import Store from "./redux/store.js";
 import {
+    ShopAllProducts,
     ShopCreateProduct,
     ShopDashboardPage,
     ShopHomePage,
@@ -85,6 +86,12 @@ function App() {
                 <Route path="/dashboard-create-product" element={
                     <ShopProtectedRoute>
                         <ShopCreateProduct />
+                    </ShopProtectedRoute>
+                } />
+
+                <Route path="/dashboard-products" element={
+                    <ShopProtectedRoute>
+                        <ShopAllProducts/>
                     </ShopProtectedRoute>
                 } />
 

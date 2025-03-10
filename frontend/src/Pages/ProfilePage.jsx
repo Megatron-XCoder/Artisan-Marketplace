@@ -19,7 +19,7 @@ const ProfilePage = () => {
           <div className="w-11/12 mx-auto bg-[#f5f5f5] sm:py-5">
               <div className="flex flex-col 800px:grid 800px:grid-cols-[335px_1fr] gap-3">
                   {/* Sidebar on top in mobile view */}
-                  <div className="sticky top-[100px] h-fit z-10 sm:mb-0">
+                  <div className="sticky top-[70px] h-fit z-10 sm:mb-0">
                       <ProfileSideBar active={active} setActive={setActive} />
                   </div>
 

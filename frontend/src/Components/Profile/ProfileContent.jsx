@@ -1,4 +1,4 @@
-import {AiOutlineArrowRight, AiOutlineCamera, AiOutlineDelete} from "react-icons/ai";
+import {AiOutlineArrowRight, AiOutlineCamera, AiOutlineDelete, AiOutlinePlusCircle} from "react-icons/ai";
 import {backend_url} from "../../server.jsx";
 import {useSelector} from "react-redux";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import {useState} from "react";
 import styles from "../../Styles/Styles.jsx";
 import { DataGrid } from '@mui/x-data-grid';
 import {IconButton} from "@material-tailwind/react/dist";
+import {HiHome, HiOfficeBuilding} from "react-icons/hi";
 
 
 const handleSubmit = async (e) => {
@@ -149,35 +150,35 @@ const ProfileContent = ({ active }) => {
 
                 {/* order page */}
                 {active === 2 && (
-                    <div className="px-4 sm:pl-8 pt-1 w-full overflow-x-auto">
+                    <div>
                         <AllOrders/>
                     </div>
                 )}
 
                 {/* refund page */}
                 {active === 3 && (
-                    <div className="px-4 sm:pl-8 pt-1 w-full overflow-x-auto">
+                    <div>
                         <AllRefundOrders/>
                     </div>
                 )}
 
                 {/* Track order page */}
                 {active === 5 && (
-                    <div className="px-4 sm:pl-8 pt-1 w-full overflow-x-auto">
+                    <div>
                         <TrackOrders/>
                     </div>
                 )}
 
                 {/* Track order page */}
                 {active === 6 && (
-                    <div className="px-4 sm:pl-8 pt-1 w-full overflow-x-auto">
+                    <div>
                         <PaymentMethod/>
                     </div>
                 )}
 
                 {/* Address page */}
                 {active === 7 && (
-                    <div className="px-4 sm:pl-8 pt-1 w-full overflow-x-auto">
+                    <div>
                         <Address/>
                     </div>
                 )}
@@ -189,9 +190,8 @@ const ProfileContent = ({ active }) => {
 
 
 const AllOrders = () => {
-    // ... existing orders data and columns definition
-
     const orders = [
+        // ... your orders data
         {
             _id: "184265416511ddd263",
             orderItems: [
@@ -220,121 +220,101 @@ const AllOrders = () => {
             totalPrice: 200,
             orderStatus: "Delivered",
         },
-    ]
-
-    // Responsive columns configuration
-    const columns = [
-        {
-            field: "id",
-            headerName: "Order ID",
-            minWidth: 100,
-            flex: 1,
-            headerClassName: 'sm:text-sm',
-            cellClassName: 'text-xs sm:text-sm'
-        },
-        {
-            field: "status",
-            headerName: "Status",
-            minWidth: 90,
-            flex: 0.8,
-            cellClassName: (params) => {
-                return params.value === "Delivered"
-                    ? "greenColor text-xs sm:text-sm"
-                    : "redColor text-xs sm:text-sm";
-            },
-            headerClassName: 'sm:text-sm',
-        },
-        {
-            field: "itemsQty",
-            headerName: "Items",
-            type: "number",
-            minWidth: 60,
-            flex: 0.5,
-            headerClassName: 'sm:text-sm',
-            cellClassName: 'text-xs sm:text-sm',
-            hide: { md: false, sm: true } // Hide on small screens
-        },
-        {
-            field: "total",
-            headerName: "Total",
-            type: "number",
-            minWidth: 90,
-            flex: 0.8,
-            headerClassName: 'sm:text-sm',
-            cellClassName: 'text-xs sm:text-sm'
-        },
-        {
-            field: "DownloadReceipt",
-            flex: 0.5,
-            minWidth: 50,
-            headerName: " Download Receipt ",
-            sortable: false,
-            cellClassName: '',
-            renderCell: (params) => (
-                <Link to={`/order/${params.id}`}>
-                    <IconButton size="small">
-                        <AiOutlineArrowRight className="text-sm sm:text-base" />
-                    </IconButton>
-                </Link>
-            ),
-            disableColumnMenu: true
-        },
     ];
 
-    const row = [];
-
-    orders && orders.forEach((item) => {
-        row.push({
-            id: item._id,
-            itemsQty: item.orderItems.length,
-            total: "US$ " + item.totalPrice,
-            status: item.orderStatus,
-        })
-    });
-
     return (
-        <div className=" sm:pl-8 mt-8 sm:mt-0 w-full overflow-x-auto">
-            <DataGrid
-                rows={row}
-                columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5, 10, 20]}
-                disableSelectionOnClick
-                componentsProps={{
-                    pagination: {
-                        labelRowsPerPage: 'Rows:',
-                        classes: {
-                            root: 'text-xs sm:text-sm',
-                            selectIcon: 'text-xs sm:text-sm'
-                        }
-                    }
-                }}
-                sx={{
-                    '& .MuiDataGrid-columnHeaders': {
-                        backgroundColor: '#f5f5f5',
-                    },
-                    '& .MuiDataGrid-cell': {
-                        padding: '8px',
-                        '@media (max-width: 600px)': {
-                            padding: '4px'
-                        }
-                    },
-                    '& .MuiDataGrid-columnHeaderTitle': {
-                        fontWeight: '600',
-                        '@media (max-width: 600px)': {
-                            fontSize: '0.75rem'
-                        }
-                    }
-                }}
-            />
+        <div className="w-full sm:mx-8 pt-1 sm:mt-4">
+            {/* Desktop Header */}
+            <div className="hidden sm:grid sm:grid-cols-5 gap-4 bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b font-medium text-sm text-gray-600 rounded-t-xl">
+                <div className="min-w-[120px]">Order ID</div>
+                <div className="min-w-[90px]">Status</div>
+                <div className="min-w-[60px]">Items</div>
+                <div className="min-w-[90px]">Total</div>
+                <div className="min-w-[50px]">Receipt</div>
+            </div>
+
+            {/* Orders List */}
+            <div className="space-y-4 sm:space-y-0">
+                {orders.map((order) => (
+                    <div
+                        key={order._id}
+                        className="flex flex-col sm:grid sm:grid-cols-5 gap-4 p-6 sm:p-4 text-sm group hover:bg-gray-50 transition-all rounded-2xl sm:rounded-none bg-white shadow-xl sm:shadow-none border border-gray-100 sm:border-none mb-4 sm:mb-0"
+                    >
+                        {/* Mobile Header */}
+                        <div className="sm:hidden flex justify-between items-start mb-2">
+                            <h3 className="font-bold text-gray-900 text-lg truncate pr-4">
+                                Order #{order._id.slice(-6)}
+                            </h3>
+                            <span className={`px-3 py-1 rounded-full text-xs ${
+                                order.orderStatus === "Delivered"
+                                    ? 'bg-green-100 text-green-700'
+                                    : 'bg-yellow-100 text-yellow-700'
+                            }`}>
+                                {order.orderStatus}
+                            </span>
+                        </div>
+
+                        {/* Order ID */}
+                        <div className="sm:min-w-[120px] text-gray-500 text-sm">
+                            <span className="sm:hidden mr-2 text-gray-600">Order ID:</span>
+                            <span className="font-mono text-xs sm:text-sm">{order._id}</span>
+                        </div>
+
+                        {/* Status */}
+                        <div className="sm:min-w-[90px]">
+                            <span className="sm:hidden mr-2 text-gray-600">Status:</span>
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                                order.orderStatus === "Delivered"
+                                    ? 'bg-green-100 text-green-700'
+                                    : 'bg-yellow-100 text-yellow-700'
+                            }`}>
+                                {order.orderStatus}
+                            </span>
+                        </div>
+
+                        {/* Items (hidden on mobile) */}
+                        <div className="sm:min-w-[60px] hidden sm:block">
+                            {order.orderItems.length}
+                        </div>
+
+                        {/* Total */}
+                        <div className="sm:min-w-[90px] text-green-600 font-semibold">
+                            <span className="sm:hidden mr-2 text-gray-600">Total:</span>
+                            US$ {order.totalPrice}
+                        </div>
+
+                        {/* Download Receipt */}
+                        <div className="sm:min-w-[50px] flex justify-end sm:justify-start">
+                            <Link
+                                to={`/order/${order._id}`}
+                                className="inline-flex items-center text-blue-500 hover:text-blue-600 transition-colors"
+                            >
+                                <span className="sm:hidden mr-2">Download</span>
+                                <AiOutlineArrowRight className="text-lg" />
+                            </Link>
+                        </div>
+
+                        {/* Mobile Items Display */}
+                        <div className="sm:hidden grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-gray-100">
+                            <div className="text-gray-600">Items:</div>
+                            <div className="text-right">
+                                {order.orderItems.length} items
+                            </div>
+                            <div className="text-gray-600">Products:</div>
+                            <div className="text-right truncate">
+                                {order.orderItems.map(item => item.name).join(', ')}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
 
 const AllRefundOrders = () => {
-    // ... existing orders data and columns definition
-
     const orders = [
+        // ... your orders data
         {
             _id: "184265416511ddd263",
             orderItems: [
@@ -363,118 +343,101 @@ const AllRefundOrders = () => {
             totalPrice: 200,
             orderStatus: "Delivered",
         },
-    ]
-
-    // Responsive columns configuration
-    const columns = [
-        {
-            field: "id",
-            headerName: "Order ID",
-            minWidth: 100,
-            flex: 1,
-            headerClassName: 'sm:text-sm',
-            cellClassName: 'text-xs sm:text-sm'
-        },
-        {
-            field: "status",
-            headerName: "Status",
-            minWidth: 90,
-            flex: 0.8,
-            cellClassName: (params) => {
-                return params.value === "Delivered"
-                    ? "greenColor text-xs sm:text-sm"
-                    : "redColor text-xs sm:text-sm";
-            },
-            headerClassName: 'sm:text-sm',
-        },
-        {
-            field: "itemsQty",
-            headerName: "Items",
-            type: "number",
-            minWidth: 60,
-            flex: 0.5,
-            headerClassName: 'sm:text-sm',
-            cellClassName: 'text-xs sm:text-sm',
-            hide: { md: false, sm: true } // Hide on small screens
-        },
-        {
-            field: "total",
-            headerName: "Total",
-            type: "number",
-            minWidth: 90,
-            flex: 0.8,
-            headerClassName: 'sm:text-sm',
-            cellClassName: 'text-xs sm:text-sm'
-        },
-        {
-            field: " Download Receipt ",
-            flex: 0.5,
-            minWidth: 50,
-            headerName: "Download Receipt",
-            sortable: false,
-            renderCell: (params) => (
-                <Link to={`/order/${params.id}`}>
-                    <IconButton size="small">
-                        <AiOutlineArrowRight className="text-sm sm:text-base" />
-                    </IconButton>
-                </Link>
-            ),
-            disableColumnMenu: true
-        },
     ];
 
-    const row = [];
-
-    orders && orders.forEach((item) => {
-        row.push({
-            id: item._id,
-            itemsQty: item.orderItems.length,
-            total: "US$ " + item.totalPrice,
-            status: item.orderStatus,
-        })
-    });
-
     return (
-        <div className=" sm:pl-8 mt-8 sm:mt-0 w-full overflow-x-auto">
-            <DataGrid
-                rows={row}
-                columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5, 10, 20]}
-                disableSelectionOnClick
-                componentsProps={{
-                    pagination: {
-                        labelRowsPerPage: 'Rows:',
-                        classes: {
-                            root: 'text-xs sm:text-sm',
-                            selectIcon: 'text-xs sm:text-sm'
-                        }
-                    }
-                }}
-                sx={{
-                    '& .MuiDataGrid-columnHeaders': {
-                        backgroundColor: '#f5f5f5',
-                    },
-                    '& .MuiDataGrid-cell': {
-                        padding: '8px',
-                        '@media (max-width: 600px)': {
-                            padding: '4px'
-                        }
-                    },
-                    '& .MuiDataGrid-columnHeaderTitle': {
-                        fontWeight: '600',
-                        '@media (max-width: 600px)': {
-                            fontSize: '0.75rem'
-                        }
-                    }
-                }}
-            />
+        <div className="w-full sm:mx-8 pt-1 sm:mt-4">
+            {/* Desktop Header */}
+            <div className="hidden sm:grid sm:grid-cols-5 gap-4 bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b font-medium text-sm text-gray-600 rounded-t-xl">
+                <div className="min-w-[120px]">Order ID</div>
+                <div className="min-w-[90px]">Status</div>
+                <div className="min-w-[60px]">Items</div>
+                <div className="min-w-[90px]">Total</div>
+                <div className="min-w-[50px]">Receipt</div>
+            </div>
+
+            {/* Orders List */}
+            <div className="space-y-4 sm:space-y-0">
+                {orders.map((order) => (
+                    <div
+                        key={order._id}
+                        className="flex flex-col sm:grid sm:grid-cols-5 gap-4 p-6 sm:p-4 text-sm group hover:bg-gray-50 transition-all rounded-2xl sm:rounded-none bg-white shadow-xl sm:shadow-none border border-gray-100 sm:border-none mb-4 sm:mb-0"
+                    >
+                        {/* Mobile Header */}
+                        <div className="sm:hidden flex justify-between items-start mb-2">
+                            <h3 className="font-bold text-gray-900 text-lg truncate pr-4">
+                                Order #{order._id.slice(-6)}
+                            </h3>
+                            <span className={`px-3 py-1 rounded-full text-xs ${
+                                order.orderStatus === "Delivered"
+                                    ? 'bg-green-100 text-green-700'
+                                    : 'bg-yellow-100 text-yellow-700'
+                            }`}>
+                                {order.orderStatus}
+                            </span>
+                        </div>
+
+                        {/* Order ID */}
+                        <div className="sm:min-w-[120px] text-gray-500 text-sm">
+                            <span className="sm:hidden mr-2 text-gray-600">Order ID:</span>
+                            <span className="font-mono text-xs sm:text-sm">{order._id}</span>
+                        </div>
+
+                        {/* Status */}
+                        <div className="sm:min-w-[90px]">
+                            <span className="sm:hidden mr-2 text-gray-600">Status:</span>
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                                order.orderStatus === "Delivered"
+                                    ? 'bg-green-100 text-green-700'
+                                    : 'bg-yellow-100 text-yellow-700'
+                            }`}>
+                                {order.orderStatus}
+                            </span>
+                        </div>
+
+                        {/* Items (hidden on mobile) */}
+                        <div className="sm:min-w-[60px] hidden sm:block">
+                            {order.orderItems.length}
+                        </div>
+
+                        {/* Total */}
+                        <div className="sm:min-w-[90px] text-green-600 font-semibold">
+                            <span className="sm:hidden mr-2 text-gray-600">Total:</span>
+                            US$ {order.totalPrice}
+                        </div>
+
+                        {/* Download Receipt */}
+                        <div className="sm:min-w-[50px] flex justify-end sm:justify-start">
+                            <Link
+                                to={`/order/${order._id}`}
+                                className="inline-flex items-center text-blue-500 hover:text-blue-600 transition-colors"
+                            >
+                                <span className="sm:hidden mr-2">Download</span>
+                                <AiOutlineArrowRight className="text-lg" />
+                            </Link>
+                        </div>
+
+                        {/* Mobile Items Display */}
+                        <div className="sm:hidden grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-gray-100">
+                            <div className="text-gray-600">Items:</div>
+                            <div className="text-right">
+                                {order.orderItems.length} items
+                            </div>
+                            <div className="text-gray-600">Products:</div>
+                            <div className="text-right truncate">
+                                {order.orderItems.map(item => item.name).join(', ')}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
 
 const TrackOrders = () => {
     const orders = [
+        // ... your orders data
         {
             _id: "184265416511ddd263",
             orderItems: [
@@ -503,115 +466,97 @@ const TrackOrders = () => {
             totalPrice: 200,
             orderStatus: "Delivered",
         },
-    ]
-
-    const columns = [
-        {
-            field: "id",
-            headerName: "Order ID",
-            minWidth: 100,
-            flex: 1,
-            headerClassName: 'sm:text-sm',
-            cellClassName: 'text-xs sm:text-sm'
-        },
-        {
-            field: "status",
-            headerName: "Status",
-            minWidth: 90,
-            flex: 0.8,
-            cellClassName: (params) => {
-                return params.value === "Delivered"
-                    ? "greenColor text-xs sm:text-sm"
-                    : "redColor text-xs sm:text-sm";
-            },
-            headerClassName: 'sm:text-sm',
-        },
-        {
-            field: "itemsQty",
-            headerName: "Items",
-            type: "number",
-            minWidth: 60,
-            flex: 0.5,
-            headerClassName: 'sm:text-sm',
-            cellClassName: 'text-xs sm:text-sm',
-            hide: { md: false, sm: true } // Hide on small screens
-        },
-        {
-            field: "total",
-            headerName: "Total",
-            type: "number",
-            minWidth: 90,
-            flex: 0.8,
-            headerClassName: 'sm:text-sm',
-            cellClassName: 'text-xs sm:text-sm'
-        },
-        {
-            field: " Download Receipt ",
-            flex: 0.5,
-            minWidth: 50,
-            headerName: "Download Receipt",
-            sortable: false,
-            renderCell: (params) => (
-                <Link to={`/order/${params.id}`}>
-                    <IconButton size="small">
-                        <AiOutlineArrowRight className="text-sm sm:text-base" />
-                    </IconButton>
-                </Link>
-            ),
-            disableColumnMenu: true
-        },
     ];
 
-    const row = [];
-
-    orders && orders.forEach((item) => {
-        row.push({
-            id: item._id,
-            itemsQty: item.orderItems.length,
-            total: "US$ " + item.totalPrice,
-            status: item.orderStatus,
-        })
-    });
-
-
     return (
-        <div className=" sm:pl-8 mt-8 sm:mt-0 w-full overflow-x-auto">
-            <DataGrid
-                rows={row}
-                columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5, 10, 20]}
-                disableSelectionOnClick
-                componentsProps={{
-                    pagination: {
-                        labelRowsPerPage: 'Rows:',
-                        classes: {
-                            root: 'text-xs sm:text-sm',
-                            selectIcon: 'text-xs sm:text-sm'
-                        }
-                    }
-                }}
-                sx={{
-                    '& .MuiDataGrid-columnHeaders': {
-                        backgroundColor: '#f5f5f5',
-                    },
-                    '& .MuiDataGrid-cell': {
-                        padding: '8px',
-                        '@media (max-width: 600px)': {
-                            padding: '4px'
-                        }
-                    },
-                    '& .MuiDataGrid-columnHeaderTitle': {
-                        fontWeight: '600',
-                        '@media (max-width: 600px)': {
-                            fontSize: '0.75rem'
-                        }
-                    }
-                }}
-            />
+        <div className="w-full sm:mx-8 pt-1 sm:mt-4">
+            {/* Desktop Header */}
+            <div className="hidden sm:grid sm:grid-cols-5 gap-4 bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b font-medium text-sm text-gray-600 rounded-t-xl">
+                <div className="min-w-[120px]">Order ID</div>
+                <div className="min-w-[90px]">Status</div>
+                <div className="min-w-[60px]">Items</div>
+                <div className="min-w-[90px]">Total</div>
+                <div className="min-w-[50px]">Receipt</div>
+            </div>
+
+            {/* Orders List */}
+            <div className="space-y-4 sm:space-y-0">
+                {orders.map((order) => (
+                    <div
+                        key={order._id}
+                        className="flex flex-col sm:grid sm:grid-cols-5 gap-4 p-6 sm:p-4 text-sm group hover:bg-gray-50 transition-all rounded-2xl sm:rounded-none bg-white shadow-xl sm:shadow-none border border-gray-100 sm:border-none mb-4 sm:mb-0"
+                    >
+                        {/* Mobile Header */}
+                        <div className="sm:hidden flex justify-between items-start mb-2">
+                            <h3 className="font-bold text-gray-900 text-lg truncate pr-4">
+                                Order #{order._id.slice(-6)}
+                            </h3>
+                            <span className={`px-3 py-1 rounded-full text-xs ${
+                                order.orderStatus === "Delivered"
+                                    ? 'bg-green-100 text-green-700'
+                                    : 'bg-yellow-100 text-yellow-700'
+                            }`}>
+                                {order.orderStatus}
+                            </span>
+                        </div>
+
+                        {/* Order ID */}
+                        <div className="sm:min-w-[120px] text-gray-500 text-sm">
+                            <span className="sm:hidden mr-2 text-gray-600">Order ID:</span>
+                            <span className="font-mono text-xs sm:text-sm">{order._id}</span>
+                        </div>
+
+                        {/* Status */}
+                        <div className="sm:min-w-[90px]">
+                            <span className="sm:hidden mr-2 text-gray-600">Status:</span>
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                                order.orderStatus === "Delivered"
+                                    ? 'bg-green-100 text-green-700'
+                                    : 'bg-yellow-100 text-yellow-700'
+                            }`}>
+                                {order.orderStatus}
+                            </span>
+                        </div>
+
+                        {/* Items (hidden on mobile) */}
+                        <div className="sm:min-w-[60px] hidden sm:block">
+                            {order.orderItems.length}
+                        </div>
+
+                        {/* Total */}
+                        <div className="sm:min-w-[90px] text-green-600 font-semibold">
+                            <span className="sm:hidden mr-2 text-gray-600">Total:</span>
+                            US$ {order.totalPrice}
+                        </div>
+
+                        {/* Download Receipt */}
+                        <div className="sm:min-w-[50px] flex justify-end sm:justify-start">
+                            <Link
+                                to={`/order/${order._id}`}
+                                className="inline-flex items-center text-blue-500 hover:text-blue-600 transition-colors"
+                            >
+                                <span className="sm:hidden mr-2">Download</span>
+                                <AiOutlineArrowRight className="text-lg" />
+                            </Link>
+                        </div>
+
+                        {/* Mobile Items Display */}
+                        <div className="sm:hidden grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-gray-100">
+                            <div className="text-gray-600">Items:</div>
+                            <div className="text-right">
+                                {order.orderItems.length} items
+                            </div>
+                            <div className="text-gray-600">Products:</div>
+                            <div className="text-right truncate">
+                                {order.orderItems.map(item => item.name).join(', ')}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
-    )
-}
+    );
+};
 
 // const PaymentMethod = () => {
 //     return (
@@ -637,528 +582,188 @@ const TrackOrders = () => {
 //     )
 // }
 
-
 const PaymentMethod = () => {
-    // const [open, setOpen] = useState(false);
-    // const [country, setCountry] = useState("");
-    // const [city, setCity] = useState("");
-    // const [zipCode, setZipCode] = useState();
-    // const [address1, setAddress1] = useState("");
-    // const [address2, setAddress2] = useState("");
-    // const [addressType, setAddressType] = useState("");
-    // const { user } = useSelector((state) => state.user);
-    // const dispatch = useDispatch();
-    //
-    // const addressTypeData = [
-    //     {
-    //         name: "Default",
-    //     },
-    //     {
-    //         name: "Home",
-    //     },
-    //     {
-    //         name: "Office",
-    //     },
-    // ];
-    //
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //
-    //     if (addressType === "" || country === "" || city === "") {
-    //         toast.error("Please fill all the fields!");
-    //     } else {
-    //         dispatch(
-    //             updatUserAddress(
-    //                 country,
-    //                 city,
-    //                 address1,
-    //                 address2,
-    //                 zipCode,
-    //                 addressType
-    //             )
-    //         );
-    //         setOpen(false);
-    //         setCountry("");
-    //         setCity("");
-    //         setAddress1("");
-    //         setAddress2("");
-    //         setZipCode(null);
-    //         setAddressType("");
-    //     }
-    // };
-    //
-    // const handleDelete = (item) => {
-    //     const id = item._id;
-    //     dispatch(deleteUserAddress(id));
-    // };
-
     return (
-        <div className="w-full px-5">
-            {/*{open && (*/}
-            {/*    <div className="fixed w-full h-screen bg-[#0000004b] top-0 left-0 flex items-center justify-center ">*/}
-            {/*        <div className="w-[35%] h-[80vh] bg-white rounded shadow relative overflow-y-scroll">*/}
-            {/*            <div className="w-full flex justify-end p-3">*/}
-            {/*                <RxCross1*/}
-            {/*                    size={30}*/}
-            {/*                    className="cursor-pointer"*/}
-            {/*                    onClick={() => setOpen(false)}*/}
-            {/*                />*/}
-            {/*            </div>*/}
-            {/*            <h1 className="text-center text-[25px] font-Poppins">*/}
-            {/*                Add New Address*/}
-            {/*            </h1>*/}
-            {/*            <div className="w-full">*/}
-            {/*                <form aria-required onSubmit={handleSubmit} className="w-full">*/}
-            {/*                    <div className="w-full block p-4">*/}
-            {/*                        <div className="w-full pb-2">*/}
-            {/*                            <label className="block pb-2">Country</label>*/}
-            {/*                            <select*/}
-            {/*                                name=""*/}
-            {/*                                id=""*/}
-            {/*                                value={country}*/}
-            {/*                                onChange={(e) => setCountry(e.target.value)}*/}
-            {/*                                className="w-[95%] border h-[40px] rounded-[5px]"*/}
-            {/*                            >*/}
-            {/*                                <option value="" className="block border pb-2">*/}
-            {/*                                    choose your country*/}
-            {/*                                </option>*/}
-            {/*                                {Country &&*/}
-            {/*                                    Country.getAllCountries().map((item) => (*/}
-            {/*                                        <option*/}
-            {/*                                            className="block pb-2"*/}
-            {/*                                            key={item.isoCode}*/}
-            {/*                                            value={item.isoCode}*/}
-            {/*                                        >*/}
-            {/*                                            {item.name}*/}
-            {/*                                        </option>*/}
-            {/*                                    ))}*/}
-            {/*                            </select>*/}
-            {/*                        </div>*/}
-
-            {/*                        <div className="w-full pb-2">*/}
-            {/*                            <label className="block pb-2">Choose your City</label>*/}
-            {/*                            <select*/}
-            {/*                                name=""*/}
-            {/*                                id=""*/}
-            {/*                                value={city}*/}
-            {/*                                onChange={(e) => setCity(e.target.value)}*/}
-            {/*                                className="w-[95%] border h-[40px] rounded-[5px]"*/}
-            {/*                            >*/}
-            {/*                                <option value="" className="block border pb-2">*/}
-            {/*                                    choose your city*/}
-            {/*                                </option>*/}
-            {/*                                {State &&*/}
-            {/*                                    State.getStatesOfCountry(country).map((item) => (*/}
-            {/*                                        <option*/}
-            {/*                                            className="block pb-2"*/}
-            {/*                                            key={item.isoCode}*/}
-            {/*                                            value={item.isoCode}*/}
-            {/*                                        >*/}
-            {/*                                            {item.name}*/}
-            {/*                                        </option>*/}
-            {/*                                    ))}*/}
-            {/*                            </select>*/}
-            {/*                        </div>*/}
-
-            {/*                        <div className="w-full pb-2">*/}
-            {/*                            <label className="block pb-2">Address 1</label>*/}
-            {/*                            <input*/}
-            {/*                                type="address"*/}
-            {/*                                className={`${styles.input}`}*/}
-            {/*                                required*/}
-            {/*                                value={address1}*/}
-            {/*                                onChange={(e) => setAddress1(e.target.value)}*/}
-            {/*                            />*/}
-            {/*                        </div>*/}
-            {/*                        <div className="w-full pb-2">*/}
-            {/*                            <label className="block pb-2">Address 2</label>*/}
-            {/*                            <input*/}
-            {/*                                type="address"*/}
-            {/*                                className={`${styles.input}`}*/}
-            {/*                                required*/}
-            {/*                                value={address2}*/}
-            {/*                                onChange={(e) => setAddress2(e.target.value)}*/}
-            {/*                            />*/}
-            {/*                        </div>*/}
-
-            {/*                        <div className="w-full pb-2">*/}
-            {/*                            <label className="block pb-2">Zip Code</label>*/}
-            {/*                            <input*/}
-            {/*                                type="number"*/}
-            {/*                                className={`${styles.input}`}*/}
-            {/*                                required*/}
-            {/*                                value={zipCode}*/}
-            {/*                                onChange={(e) => setZipCode(e.target.value)}*/}
-            {/*                            />*/}
-            {/*                        </div>*/}
-
-            {/*                        <div className="w-full pb-2">*/}
-            {/*                            <label className="block pb-2">Address Type</label>*/}
-            {/*                            <select*/}
-            {/*                                name=""*/}
-            {/*                                id=""*/}
-            {/*                                value={addressType}*/}
-            {/*                                onChange={(e) => setAddressType(e.target.value)}*/}
-            {/*                                className="w-[95%] border h-[40px] rounded-[5px]"*/}
-            {/*                            >*/}
-            {/*                                <option value="" className="block border pb-2">*/}
-            {/*                                    Choose your Address Type*/}
-            {/*                                </option>*/}
-            {/*                                {addressTypeData &&*/}
-            {/*                                    addressTypeData.map((item) => (*/}
-            {/*                                        <option*/}
-            {/*                                            className="block pb-2"*/}
-            {/*                                            key={item.name}*/}
-            {/*                                            value={item.name}*/}
-            {/*                                        >*/}
-            {/*                                            {item.name}*/}
-            {/*                                        </option>*/}
-            {/*                                    ))}*/}
-            {/*                            </select>*/}
-            {/*                        </div>*/}
-
-            {/*                        <div className=" w-full pb-2">*/}
-            {/*                            <input*/}
-            {/*                                type="submit"*/}
-            {/*                                className={`${styles.input} mt-5 cursor-pointer`}*/}
-            {/*                                required*/}
-            {/*                                readOnly*/}
-            {/*                            />*/}
-            {/*                        </div>*/}
-            {/*                    </div>*/}
-            {/*                </form>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*)}*/}
-            <div className="flex w-full items-center justify-between">
-                <h1 className="text-[25px] font-[600] text-[#000000ba] pb-2">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+            <div className="flex w-full items-center justify-between pb-6 border-b border-gray-100">
+                <h1 className="text-2xl font-bold text-gray-900">
                     Payment Methods
+                    <span className="block text-sm font-normal text-gray-500 mt-1">
+                        Manage your saved payment options
+                    </span>
                 </h1>
-                <div
-                    className={`${styles.button} !rounded-lg`}
-                    // onClick={() => setOpen(true)}
-                >
-                    <span className="text-[#fff]">Add New</span>
-                </div>
+                <button className="flex items-center bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <AiOutlinePlusCircle className="mr-2 text-lg" />
+                    Add New Card
+                </button>
             </div>
-            <br/>
-            <div
-                className="w-full bg-white h-min 800px:h-[70px] rounded-[4px] flex items-center px-3 shadow justify-between pr-10"
-            >
-                <div className="flex items-center">
+
+            <br />
+
+            {/* Payment Card */}
+            <div className="w-full bg-gradient-to-br from-blue-600 to-purple-600 h-48 rounded-2xl flex flex-col justify-between p-6 shadow-xl text-white mb-6 ">
+                {/* Card Background Pattern */}
+                <div className=" inset-0 opacity-20 bg-white/20"></div>
+
+                {/* Card Content */}
+                <div className="flex justify-between items-start">
                     <img
-                        src={"https://logos-world.net/wp-content/uploads/2020/05/Visa-Logo.png"}
-                        alt=""
-                        className={"w-20"}
+                        src="https://logos-world.net/wp-content/uploads/2020/05/Visa-Logo.png"
+                        alt="Visa"
+                        className="w-16"
                     />
-                    <h5 className="pl-5 font-semibold text-xl">Sanjeev Kumar Das</h5>
+                    <AiOutlineDelete
+                        size={24}
+                        className="cursor-pointer hover:text-red-200 transition-colors"
+                    />
                 </div>
-                <div className="pl-8 flex items-center">
-                    <h6 className="text-lg">1234 **** **** 1234</h6>
-                    <h5 className="text-md pl-8">Exp: 12/25</h5>
-                </div>
-                <div className="min-w- flex items-center justify-between pl-8">
-                    <AiOutlineDelete size={25} className="cursor-pointer"/>
+
+                <div>
+                    <div className="text-xl tracking-widest mb-4 font-mono">
+                        ●●●● ●●●● ●●●● 1234
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                        <div>
+                            <div className="text-xs text-white/80">Card Holder</div>
+                            <div className="font-semibold tracking-wide">SANJEEV KUMAR DAS</div>
+                        </div>
+                        <div>
+                            <div className="text-xs text-white/80">Expires</div>
+                            <div className="font-semibold tracking-wide">12/25</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-
-            {/*{user &&*/}
-            {/*    user.addresses.map((item, index) => (*/}
-            {/*        <div*/}
-            {/*            className="w-full bg-white h-min 800px:h-[70px] rounded-[4px] flex items-center px-3 shadow justify-between pr-10 mb-5"*/}
-            {/*            key={index}*/}
-            {/*        >*/}
-            {/*            <div className="flex items-center">*/}
-            {/*                <h5 className="pl-5 font-[600]">{item.addressType}</h5>*/}
-            {/*            </div>*/}
-            {/*            <div className="pl-8 flex items-center">*/}
-            {/*                <h6 className="text-[12px] 800px:text-[unset]">*/}
-            {/*                    {item.address1} {item.address2}*/}
-            {/*                </h6>*/}
-            {/*            </div>*/}
-            {/*            <div className="pl-8 flex items-center">*/}
-            {/*                <h6 className="text-[12px] 800px:text-[unset]">*/}
-            {/*                    {user && user.phoneNumber}*/}
-            {/*                </h6>*/}
-            {/*            </div>*/}
-            {/*            <div className="min-w-[10%] flex items-center justify-between pl-8">*/}
-            {/*                <AiOutlineDelete*/}
-            {/*                    size={25}*/}
-            {/*                    className="cursor-pointer"*/}
-            {/*                    onClick={() => handleDelete(item)}*/}
-            {/*                />*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    ))}*/}
-
-            {/*{user && user.addresses.length === 0 && (*/}
-            {/*    <h5 className="text-center pt-8 text-[18px]">*/}
-            {/*        You not have any saved address!*/}
-            {/*    </h5>*/}
-            {/*)}*/}
+            {/* Additional Payment Methods */}
+            <div className="w-full bg-white h-32 rounded-2xl flex items-center p-6 shadow-md hover:shadow-lg transition-shadow duration-300 group mb-6">
+                <div className="flex items-center w-full">
+                    <div className="bg-gray-100 p-4 rounded-xl mr-6">
+                        <img
+                            src="https://logos-world.net/wp-content/uploads/2020/04/PayPal-Logo.png"
+                            alt="PayPal"
+                            className="w-20"
+                        />
+                    </div>
+                    <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-gray-800">PayPal Account</h3>
+                        <p className="text-gray-500 text-sm">user@example.com</p>
+                    </div>
+                    <AiOutlineDelete
+                        size={24}
+                        className="text-gray-400 hover:text-red-500 cursor-pointer ml-4 transition-colors"
+                    />
+                </div>
+            </div>
         </div>
     );
 };
 
+
 const Address = () => {
-    // const [open, setOpen] = useState(false);
-    // const [country, setCountry] = useState("");
-    // const [city, setCity] = useState("");
-    // const [zipCode, setZipCode] = useState();
-    // const [address1, setAddress1] = useState("");
-    // const [address2, setAddress2] = useState("");
-    // const [addressType, setAddressType] = useState("");
-    // const { user } = useSelector((state) => state.user);
-    // const dispatch = useDispatch();
-    //
-    // const addressTypeData = [
-    //     {
-    //         name: "Default",
-    //     },
-    //     {
-    //         name: "Home",
-    //     },
-    //     {
-    //         name: "Office",
-    //     },
-    // ];
-    //
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //
-    //     if (addressType === "" || country === "" || city === "") {
-    //         toast.error("Please fill all the fields!");
-    //     } else {
-    //         dispatch(
-    //             updatUserAddress(
-    //                 country,
-    //                 city,
-    //                 address1,
-    //                 address2,
-    //                 zipCode,
-    //                 addressType
-    //             )
-    //         );
-    //         setOpen(false);
-    //         setCountry("");
-    //         setCity("");
-    //         setAddress1("");
-    //         setAddress2("");
-    //         setZipCode(null);
-    //         setAddressType("");
-    //     }
-    // };
-    //
-    // const handleDelete = (item) => {
-    //     const id = item._id;
-    //     dispatch(deleteUserAddress(id));
-    // };
-
     return (
-        <div className="w-full px-5">
-            {/*{open && (*/}
-            {/*    <div className="fixed w-full h-screen bg-[#0000004b] top-0 left-0 flex items-center justify-center ">*/}
-            {/*        <div className="w-[35%] h-[80vh] bg-white rounded shadow relative overflow-y-scroll">*/}
-            {/*            <div className="w-full flex justify-end p-3">*/}
-            {/*                <RxCross1*/}
-            {/*                    size={30}*/}
-            {/*                    className="cursor-pointer"*/}
-            {/*                    onClick={() => setOpen(false)}*/}
-            {/*                />*/}
-            {/*            </div>*/}
-            {/*            <h1 className="text-center text-[25px] font-Poppins">*/}
-            {/*                Add New Address*/}
-            {/*            </h1>*/}
-            {/*            <div className="w-full">*/}
-            {/*                <form aria-required onSubmit={handleSubmit} className="w-full">*/}
-            {/*                    <div className="w-full block p-4">*/}
-            {/*                        <div className="w-full pb-2">*/}
-            {/*                            <label className="block pb-2">Country</label>*/}
-            {/*                            <select*/}
-            {/*                                name=""*/}
-            {/*                                id=""*/}
-            {/*                                value={country}*/}
-            {/*                                onChange={(e) => setCountry(e.target.value)}*/}
-            {/*                                className="w-[95%] border h-[40px] rounded-[5px]"*/}
-            {/*                            >*/}
-            {/*                                <option value="" className="block border pb-2">*/}
-            {/*                                    choose your country*/}
-            {/*                                </option>*/}
-            {/*                                {Country &&*/}
-            {/*                                    Country.getAllCountries().map((item) => (*/}
-            {/*                                        <option*/}
-            {/*                                            className="block pb-2"*/}
-            {/*                                            key={item.isoCode}*/}
-            {/*                                            value={item.isoCode}*/}
-            {/*                                        >*/}
-            {/*                                            {item.name}*/}
-            {/*                                        </option>*/}
-            {/*                                    ))}*/}
-            {/*                            </select>*/}
-            {/*                        </div>*/}
-
-            {/*                        <div className="w-full pb-2">*/}
-            {/*                            <label className="block pb-2">Choose your City</label>*/}
-            {/*                            <select*/}
-            {/*                                name=""*/}
-            {/*                                id=""*/}
-            {/*                                value={city}*/}
-            {/*                                onChange={(e) => setCity(e.target.value)}*/}
-            {/*                                className="w-[95%] border h-[40px] rounded-[5px]"*/}
-            {/*                            >*/}
-            {/*                                <option value="" className="block border pb-2">*/}
-            {/*                                    choose your city*/}
-            {/*                                </option>*/}
-            {/*                                {State &&*/}
-            {/*                                    State.getStatesOfCountry(country).map((item) => (*/}
-            {/*                                        <option*/}
-            {/*                                            className="block pb-2"*/}
-            {/*                                            key={item.isoCode}*/}
-            {/*                                            value={item.isoCode}*/}
-            {/*                                        >*/}
-            {/*                                            {item.name}*/}
-            {/*                                        </option>*/}
-            {/*                                    ))}*/}
-            {/*                            </select>*/}
-            {/*                        </div>*/}
-
-            {/*                        <div className="w-full pb-2">*/}
-            {/*                            <label className="block pb-2">Address 1</label>*/}
-            {/*                            <input*/}
-            {/*                                type="address"*/}
-            {/*                                className={`${styles.input}`}*/}
-            {/*                                required*/}
-            {/*                                value={address1}*/}
-            {/*                                onChange={(e) => setAddress1(e.target.value)}*/}
-            {/*                            />*/}
-            {/*                        </div>*/}
-            {/*                        <div className="w-full pb-2">*/}
-            {/*                            <label className="block pb-2">Address 2</label>*/}
-            {/*                            <input*/}
-            {/*                                type="address"*/}
-            {/*                                className={`${styles.input}`}*/}
-            {/*                                required*/}
-            {/*                                value={address2}*/}
-            {/*                                onChange={(e) => setAddress2(e.target.value)}*/}
-            {/*                            />*/}
-            {/*                        </div>*/}
-
-            {/*                        <div className="w-full pb-2">*/}
-            {/*                            <label className="block pb-2">Zip Code</label>*/}
-            {/*                            <input*/}
-            {/*                                type="number"*/}
-            {/*                                className={`${styles.input}`}*/}
-            {/*                                required*/}
-            {/*                                value={zipCode}*/}
-            {/*                                onChange={(e) => setZipCode(e.target.value)}*/}
-            {/*                            />*/}
-            {/*                        </div>*/}
-
-            {/*                        <div className="w-full pb-2">*/}
-            {/*                            <label className="block pb-2">Address Type</label>*/}
-            {/*                            <select*/}
-            {/*                                name=""*/}
-            {/*                                id=""*/}
-            {/*                                value={addressType}*/}
-            {/*                                onChange={(e) => setAddressType(e.target.value)}*/}
-            {/*                                className="w-[95%] border h-[40px] rounded-[5px]"*/}
-            {/*                            >*/}
-            {/*                                <option value="" className="block border pb-2">*/}
-            {/*                                    Choose your Address Type*/}
-            {/*                                </option>*/}
-            {/*                                {addressTypeData &&*/}
-            {/*                                    addressTypeData.map((item) => (*/}
-            {/*                                        <option*/}
-            {/*                                            className="block pb-2"*/}
-            {/*                                            key={item.name}*/}
-            {/*                                            value={item.name}*/}
-            {/*                                        >*/}
-            {/*                                            {item.name}*/}
-            {/*                                        </option>*/}
-            {/*                                    ))}*/}
-            {/*                            </select>*/}
-            {/*                        </div>*/}
-
-            {/*                        <div className=" w-full pb-2">*/}
-            {/*                            <input*/}
-            {/*                                type="submit"*/}
-            {/*                                className={`${styles.input} mt-5 cursor-pointer`}*/}
-            {/*                                required*/}
-            {/*                                readOnly*/}
-            {/*                            />*/}
-            {/*                        </div>*/}
-            {/*                    </div>*/}
-            {/*                </form>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*)}*/}
-            <div className="flex w-full items-center justify-between">
-                <h1 className="text-[25px] font-[600] text-[#000000ba] pb-2">
-                    My Addresses
-                </h1>
-                <div
-                    className={`${styles.button} !rounded-lg`}
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+            {/* Header Section */}
+            <div className="flex w-full items-center justify-between pb-6 border-b border-gray-100">
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-900">
+                        My Addresses
+                        <span className="block text-sm font-normal text-gray-500 mt-1">
+                            Manage your saved addresses
+                        </span>
+                    </h1>
+                </div>
+                <button
+                    className="flex items-center bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                     // onClick={() => setOpen(true)}
                 >
-                    <span className="text-[#fff]">Add New</span>
-                </div>
-            </div>
-            <br/>
-            <div
-                className="w-full bg-white h-min 800px:h-[70px] rounded-[4px] flex items-center px-3 shadow justify-between pr-10"
-            >
-                <div className="flex items-center">
-                    <h5 className="pl-5 font-semibold text-xl">Default Address</h5>
-                </div>
-                <div className="pl-8 flex items-center">
-                    <h6 className="text-lg">1234 shark st, Chandigarh, Chandigarh</h6>
-                </div>
-                <div className="pl-8 flex items-center">
-                    <h6 className="text-lg">(123) 456-7890</h6>
-                </div>
-                <div className="min-w- flex items-center justify-between pl-8">
-                    <AiOutlineDelete size={25} className="cursor-pointer"/>
-                </div>
+                    <AiOutlinePlusCircle className="mr-2 text-lg" />
+                    Add New Address
+                </button>
             </div>
 
+            {/* Address Card */}
+            <div className="w-full bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 group mb-6">
+                <div className="flex flex-col sm:flex-row justify-between items-start">
+                    {/* Address Type */}
+                    <div className="flex items-center mb-4 sm:mb-0">
+                        <div className="bg-blue-50 p-3 rounded-lg mr-4">
+                            <HiHome className="text-blue-600 text-xl" />
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-semibold text-gray-800">Default Address</h3>
+                            <p className="text-sm text-gray-500">Primary address</p>
+                        </div>
+                    </div>
 
-            {/*{user &&*/}
-            {/*    user.addresses.map((item, index) => (*/}
-            {/*        <div*/}
-            {/*            className="w-full bg-white h-min 800px:h-[70px] rounded-[4px] flex items-center px-3 shadow justify-between pr-10 mb-5"*/}
-            {/*            key={index}*/}
-            {/*        >*/}
-            {/*            <div className="flex items-center">*/}
-            {/*                <h5 className="pl-5 font-[600]">{item.addressType}</h5>*/}
-            {/*            </div>*/}
-            {/*            <div className="pl-8 flex items-center">*/}
-            {/*                <h6 className="text-[12px] 800px:text-[unset]">*/}
-            {/*                    {item.address1} {item.address2}*/}
-            {/*                </h6>*/}
-            {/*            </div>*/}
-            {/*            <div className="pl-8 flex items-center">*/}
-            {/*                <h6 className="text-[12px] 800px:text-[unset]">*/}
-            {/*                    {user && user.phoneNumber}*/}
-            {/*                </h6>*/}
-            {/*            </div>*/}
-            {/*            <div className="min-w-[10%] flex items-center justify-between pl-8">*/}
-            {/*                <AiOutlineDelete*/}
-            {/*                    size={25}*/}
-            {/*                    className="cursor-pointer"*/}
-            {/*                    onClick={() => handleDelete(item)}*/}
-            {/*                />*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    ))}*/}
+                    {/* Address Details */}
+                    <div className="flex-1 sm:px-8">
+                        <div className="text-gray-700">
+                            <p>1234 Shark Street</p>
+                            <p>Chandigarh, Chandigarh</p>
+                            <p>160047</p>
+                        </div>
+                        <div className="mt-2 text-gray-600">
+                            <p>(123) 456-7890</p>
+                        </div>
+                    </div>
 
-            {/*{user && user.addresses.length === 0 && (*/}
-            {/*    <h5 className="text-center pt-8 text-[18px]">*/}
-            {/*        You not have any saved address!*/}
-            {/*    </h5>*/}
-            {/*)}*/}
+                    {/* Delete Button */}
+                    <div className="mt-4 sm:mt-0">
+                        <button className="text-gray-400 hover:text-red-500 transition-colors">
+                            <AiOutlineDelete className="text-xl" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Additional Address Example */}
+            <div className="w-full bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 group mb-6">
+                <div className="flex flex-col sm:flex-row justify-between items-start">
+                    {/* Address Type */}
+                    <div className="flex items-center mb-4 sm:mb-0">
+                        <div className="bg-purple-50 p-3 rounded-lg mr-4">
+                            <HiOfficeBuilding className="text-purple-600 text-xl" />
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-semibold text-gray-800">Office Address</h3>
+                            <p className="text-sm text-gray-500">Work address</p>
+                        </div>
+                    </div>
+
+                    {/* Address Details */}
+                    <div className="flex-1 sm:px-8">
+                        <div className="text-gray-700">
+                            <p>5678 Business Road</p>
+                            <p>Chandigarh, Chandigarh</p>
+                            <p>160048</p>
+                        </div>
+                        <div className="mt-2 text-gray-600">
+                            <p>(123) 987-6543</p>
+                        </div>
+                    </div>
+
+                    {/* Delete Button */}
+                    <div className="mt-4 sm:mt-0">
+                        <button className="text-gray-400 hover:text-red-500 transition-colors">
+                            <AiOutlineDelete className="text-xl" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Empty State */}
+            {/* {user && user.addresses.length === 0 && (
+                <div className="text-center py-12">
+                    <div className="inline-block p-6 bg-gray-50 rounded-2xl mb-4">
+                        <HiLocationMarker className="text-4xl text-gray-400" />
+                    </div>
+                    <h5 className="text-gray-500 font-medium">
+                        No saved addresses found
+                    </h5>
+                </div>
+            )} */}
         </div>
     );
 };
