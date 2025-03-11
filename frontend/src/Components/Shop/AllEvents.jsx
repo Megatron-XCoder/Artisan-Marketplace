@@ -20,6 +20,8 @@ const AllEvents = () => {
 
     return (
         <div className="w-full mx-4 sm:mx-8 py-4 ">
+            <h1 className="text-2xl md:text-4xl mb-4 font-bold px-10 md:px-6 bg-gradient-to-b from-blue-600 to-purple-600 bg-clip-text text-transparent">All Events</h1>
+
             {/* Desktop Header */}
             <div className="hidden sm:grid sm:grid-cols-7 gap-4 bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b font-medium text-sm text-gray-600 rounded-t-xl">
                 <div className="min-w-[150px]">Product ID</div>

@@ -24,6 +24,7 @@ import {useEffect} from "react";
 import {loadShop, loadUser} from "./redux/Actions/user.js";
 import Store from "./redux/store.js";
 import {
+    ShopAllCoupons,
     ShopAllEvents,
     ShopAllProducts,
     ShopCreateEvents,
@@ -82,10 +83,12 @@ function App() {
                            <ShopCreateProduct/>
                        </ShopProtectedRoute>}/>
 
-                <Route path="/dashboard-products"
-                       element={<ShopProtectedRoute>
-                    <ShopAllProducts/>
-                </ShopProtectedRoute>}/>
+                <Route
+                    path="/dashboard-products"
+                    element={<ShopProtectedRoute>
+                        <ShopAllProducts/>
+                    </ShopProtectedRoute>}
+                />
 
                 <Route
                     path="/dashboard-create-event"
@@ -98,6 +101,13 @@ function App() {
                        element={<ShopProtectedRoute>
                            <ShopAllEvents/>
                        </ShopProtectedRoute>}/>
+
+                <Route path="/dashboard-coupons"
+                       element={<ShopProtectedRoute>
+                           <ShopAllCoupons/>
+                       </ShopProtectedRoute>}/>
+
+
 
             </Routes>
             <ToastContainer

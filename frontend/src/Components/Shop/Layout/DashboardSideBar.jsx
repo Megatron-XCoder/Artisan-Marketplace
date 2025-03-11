@@ -55,7 +55,7 @@ const DashboardSideBar = ({ active }) => {
                                     { id: 6, icon: <FaFileCirclePlus size={24} />, text: "Create Event", to: "/dashboard-create-event" },
                                     { id: 7, icon: <FaMoneyBillAlt size={24} />, text: "Withdraw Money", to: "/dashboard-withdraw-money" },
                                     { id: 8, icon: <TbMessageChatbotFilled size={24} />, text: "Shop Inbox", to: "/dashboard-messages" },
-                                    { id: 9, icon: <AiFillGift size={24} />, text: "Discount Codes", to: "/dashboard-coupouns" },
+                                    { id: 9, icon: <AiFillGift size={24} />, text: "Coupon Codes", to: "/dashboard-coupons" },
                                     { id: 10, icon: <HiMiniReceiptRefund size={24} />, text: "Refunds", to: "/dashboard-refunds" },
                                     { id: 11, icon: <AiFillSetting size={24} />, text: "Settings", to: "/settings" },
                                 ].map((item) => (
@@ -100,7 +100,7 @@ const DashboardSideBar = ({ active }) => {
                             { id: 6, icon: <FaFileCirclePlus size={24} />, text: "Create Event", to: "/dashboard-create-event" },
                             { id: 7, icon: <FaMoneyBillAlt size={24} />, text: "Withdraw Money", to: "/dashboard-withdraw-money" },
                             { id: 8, icon: <TbMessageChatbotFilled size={24} />, text: "Shop Inbox", to: "/dashboard-messages" },
-                            { id: 9, icon: <AiFillGift size={24} />, text: "Discount Codes", to: "/dashboard-coupouns" },
+                            { id: 9, icon: <AiFillGift size={24} />, text: "Coupon Codes", to: "/dashboard-coupons" },
                             { id: 10, icon: <HiMiniReceiptRefund size={24} />, text: "Refunds", to: "/dashboard-refunds" },
                             { id: 11, icon: <AiFillSetting size={24} />, text: "Settings", to: "/settings" },
                         ].map((item) => (
