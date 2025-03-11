@@ -1,10 +1,8 @@
 import axios from "axios";
-import {useEffect, useState} from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {backend_url, server} from "../../server";
-import styles from "../../styles/styles";
-import Loader from "../Layout/Loader";
-import {useDispatch, useSelector} from "react-redux";
+
+import {useSelector} from "react-redux";
 import {toast} from "react-toastify";
 // import { getAllProductsShop } from "../../redux/actions/product";
 

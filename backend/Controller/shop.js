@@ -226,7 +226,7 @@ router.get(
     isShop,
     catchAsyncErrors(async (req, res, next) => {
         try {
-            res.cookie("token", null, {
+            res.cookie("shopToken", null, {
                 expires: new Date(Date.now()),
                 httpOnly: true,
                 sameSite: "none",

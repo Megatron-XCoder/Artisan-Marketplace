@@ -3,7 +3,6 @@ import {useEffect, useState} from 'react'
 import styles from '../../styles/styles'
 import EventCard from "./EventCard";
 import {productData} from "../../Static/data.jsx";
-import ProductCard from "../Route/ProductCard/ProductCard.jsx";
 import {Link} from "react-router-dom";
 
 const Events = () => {

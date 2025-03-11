@@ -53,55 +53,47 @@ router.get(
     })
 );
 
+// delete product of a shop
+router.delete(
+  "/delete-shop-product/:id",
+  isShop,
+  catchAsyncErrors(async (req, res, next) => {
+    try {
 
-//
-// // delete product of a shop
-// router.delete(
-//   "/delete-shop-product/:id",
-//   isSeller,
-//   catchAsyncErrors(async (req, res, next) => {
-//     try {
-//       const product = await Product.findById(req.params.id);
-//
-//       if (!product) {
-//         return next(new ErrorHandler("Product is not found with this id", 404));
-//       }
-//
-//       for (let i = 0; 1 < product.images.length; i++) {
-//         const result = await cloudinary.v2.uploader.destroy(
-//           product.images[i].public_id
-//         );
-//       }
-//
-//       await product.remove();
-//
-//       res.status(201).json({
-//         success: true,
-//         message: "Product Deleted successfully!",
-//       });
-//     } catch (error) {
-//       return next(new ErrorHandler(error, 400));
-//     }
-//   })
-// );
-//
-// // get all products
-// router.get(
-//   "/get-all-products",
-//   catchAsyncErrors(async (req, res, next) => {
-//     try {
-//       const products = await Product.find().sort({ createdAt: -1 });
-//
-//       res.status(201).json({
-//         success: true,
-//         products,
-//       });
-//     } catch (error) {
-//       return next(new ErrorHandler(error, 400));
-//     }
-//   })
-// );
-//
+      const productId = req.params.id;
+      const product = await Product.findByIdAndDelete(productId);
+
+      if (!product) {
+        return next(new ErrorHandler("Product is not found with this id", 500));
+      }
+
+      res.status(201).json({
+        success: true,
+        message: "Product Deleted successfully!",
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error, 400));
+    }
+  })
+);
+
+// get all products
+router.get(
+  "/get-all-products",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const products = await Product.find().sort({ createdAt: -1 });
+
+      res.status(201).json({
+        success: true,
+        products,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error, 400));
+    }
+  })
+);
+
 // // review for a product
 // router.put(
 //   "/create-new-review",

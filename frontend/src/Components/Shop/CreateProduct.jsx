@@ -17,9 +17,9 @@ const CreateProduct = () => {
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
     const [tags, setTags] = useState("");
-    const [originalPrice, setOriginalPrice] = useState();
-    const [discountPrice, setDiscountPrice] = useState();
-    const [stock, setStock] = useState();
+    const [originalPrice, setOriginalPrice] = useState("");
+    const [discountPrice, setDiscountPrice] = useState("");
+    const [stock, setStock] = useState("");
 
     useEffect(() => {
         if (error) {
@@ -27,7 +27,7 @@ const CreateProduct = () => {
         }
         if (success) {
             toast.success("Product created successfully!");
-            navigate("/dashboard");
+            navigate("/dashboard-products");
             window.location.reload();
         }
     }, [dispatch, error, success]);
@@ -68,7 +68,7 @@ const CreateProduct = () => {
     return (
         <div
             className="w-[95%] 800px:w-[70%] mx-auto bg-white shadow-xl rounded-2xl p-6 sm:p-8 border border-gray-100 ">
-            <h5 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h5 className="text-4xl md:text-5xl font-bold text-center mb-8 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Create Product
             </h5>
             <form onSubmit={handleSubmit} className="space-y-6">
