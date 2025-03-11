@@ -27,6 +27,7 @@ router.post("/create-user", upload.single("avatar"), async (req, res, next) => {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       console.log("🚫 User already exists:", email);
+
       const filename = req.file.filename;
       const filePath = `uploads/${filename}`;
       fs.unlink(filePath, (err) => {
