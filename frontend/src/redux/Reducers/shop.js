@@ -1,60 +1,45 @@
-import { createReducer } from "@reduxjs/toolkit";
+import {createReducer} from "@reduxjs/toolkit";
 
 const initialState = {
-  isLoading: true,
-  // loading: false,
-  // user: null,
-  // error: null,
+    isLoading: true,
+    // loading: false,
+    // user: null,
+    // error: null,
 };
 
 export const shopReducer = createReducer(initialState, (builder) => {
-  builder
-      .addCase("LoadShopRequest", (state) => {
-        state.isLoading = true;
-      })
-      .addCase("LoadShopSuccess", (state, action) => {
-        state.isShop = true;
-        state.isLoading = false;
-        state.shop = action.payload;
-      })
-      .addCase("LoadShopFail", (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-        state.isShop = false;
-      })
-      .addCase("clearErrors", (state) => {
-        state.error = null;
-      });
+    builder
+        .addCase("LoadShopRequest", (state) => {
+            state.isLoading = true;
+        })
+        .addCase("LoadShopSuccess", (state, action) => {
+            state.isShop = true;
+            state.isLoading = false;
+            state.shop = action.payload;
+        })
+        .addCase("LoadShopFail", (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
+            state.isShop = false;
+        })
+
+        // Get all sellers ----------Admin
+        .addCase("getAllShopsRequest", (state) => {
+            state.adminShopLoading = true;
+        })
+        .addCase("getAllShopsSuccess", (state, action) => {
+            state.adminShopLoading = false;
+            state.shop = action.payload;
+        })
+        .addCase("LoadAllShopFail", (state, action) => {
+            state.error = action.payload;
+            state.adminShopLoading = false;
+        })
+
+
+        .addCase("clearErrors", (state) => {
+            state.error = null;
+        });
 });
 
 
-  // LoadSellerRequest: (state) => {
-  //   state.isLoading = true;
-  // },
-  // LoadSellerSuccess: (state, action) => {
-  //   state.isSeller = true;
-  //   state.isLoading = false;
-  //   state.seller = action.payload;
-  // },
-  // LoadSellerFail: (state, action) => {
-  //   state.isLoading = false;
-  //   state.error = action.payload;
-  //   state.isSeller = false;
-
-
-//   // get all sellers ---admin
-//   getAllSellersRequest: (state) => {
-//     state.isLoading = true;
-//   },
-//   getAllSellersSuccess: (state, action) => {
-//     state.isLoading = false;
-//     state.sellers = action.payload;
-//   },
-//   getAllSellerFailed: (state, action) => {
-//     state.isLoading = false;
-//     state.error = action.payload;
-//   },
-//   clearErrors: (state) => {
-//     state.error = null;
-//   },
-// });

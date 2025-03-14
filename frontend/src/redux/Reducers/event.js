@@ -54,7 +54,7 @@ export const eventReducer = createReducer(initialState, (builder) => {
         })
         .addCase("getAllEventsSuccess", (state, action) => {
             state.isLoading = false;
-            state.events = action.payload;
+            state.allEvents = action.payload;
         })
         .addCase("getAllEventsFailed", (state, action) => {
             state.isLoading = false;

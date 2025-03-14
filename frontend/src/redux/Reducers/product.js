@@ -1,9 +1,10 @@
 import {createReducer} from "@reduxjs/toolkit";
 
 const initialState = {
+    products: [],  // Add products array
     isLoading: true,
-    success: false,   // Add success property
-    error: null       // Add error property
+    success: false,
+    error: null
 };
 
 export const productReducer = createReducer(initialState, (builder) => {
@@ -21,6 +22,7 @@ export const productReducer = createReducer(initialState, (builder) => {
             state.error = action.payload;
             state.success = false;
         })
+
 
         //get all products of shop
         .addCase("getAllProductsShopRequest", (state) => {
@@ -54,7 +56,7 @@ export const productReducer = createReducer(initialState, (builder) => {
         })
         .addCase("getAllProductsSuccess", (state, action) => {
             state.isLoading = false;
-            state.products = action.payload;
+            state.allProducts = action.payload;
         })
         .addCase("getAllProductsFailed", (state, action) => {
             state.isLoading = false;

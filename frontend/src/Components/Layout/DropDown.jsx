@@ -14,7 +14,7 @@ const DropDown = ({ categoriesData, setDropDown }) => {
         categoriesData.map((i, index) => (
           <div
             key={index}
-            className={`flex items-center hover:drop-shadow-2xl hover:font-semibold`}
+            className={`flex items-center hover:drop-shadow-md hover:bg-gray-100 hover:font-semibold`}
             onClick={() => submitHandle(i)}
           >
             <img

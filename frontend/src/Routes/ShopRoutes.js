@@ -5,7 +5,7 @@ import ShopAllProducts from "../pages/Shop/ShopAllProducts.jsx";
 import ShopCreateEvents from "../pages/Shop/ShopCreateEvents.jsx";
 import ShopAllEvents from "../pages/Shop/ShopAllEvents.jsx";
 import ShopAllCoupons from "../Pages/Shop/ShopAllCoupons.jsx";
-// import ShopPreviewPage from "../pages/Shop/ShopPreviewPage";
+import ShopPreviewPage from "../pages/Shop/ShopPreviewPage";
 // import ShopAllOrders from "../pages/Shop/ShopAllOrders";
 // import ShopOrderDetails from "../pages/Shop/ShopOrderDetails";
 // import ShopAllRefunds from "../pages/Shop/ShopAllRefunds";
@@ -21,7 +21,7 @@ export {
     ShopCreateEvents,
     ShopAllEvents,
     ShopAllCoupons,
-    // ShopPreviewPage,
+    ShopPreviewPage,
     // ShopAllOrders,
     // ShopOrderDetails,
     // ShopAllRefunds,

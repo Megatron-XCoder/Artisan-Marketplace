@@ -31,16 +31,19 @@ import {
     ShopCreateProduct,
     ShopDashboardPage,
     ShopHomePage,
+    ShopPreviewPage,
 
 } from "./Routes/ShopRoutes.js";
 import ShopProtectedRoute from "./ProtectedRoutes/ShopProtectedRoute.jsx";
+import {getAllProducts} from "./redux/Actions/product.js";
+import {getAllEvents} from "./redux/Actions/event.js";
 
 function App() {
     useEffect(() => {
         Store.dispatch(loadUser());
         Store.dispatch(loadShop());
-        // Store.dispatch(getAllProducts());
-        // Store.dispatch(getAllEvents());
+        Store.dispatch(getAllProducts());
+        Store.dispatch(getAllEvents());
 
     }, []);
 
@@ -56,7 +59,7 @@ function App() {
                 <Route path="/events" element={<EventsPage/>}/>
                 <Route path="/faq" element={<FAQPage/>}/>
                 <Route path="/products" element={<ProductsPage/>}/>
-                <Route path="/product/:name" element={<ProductDetailsPage/>}/>
+                <Route path="/product/:id" element={<ProductDetailsPage/>}/>
                 <Route path="/checkout" element={<ProtectedRoute>
                     <CheckoutPage/>
                 </ProtectedRoute>}/>
@@ -65,6 +68,8 @@ function App() {
                 <Route path="/profile" element={<ProtectedRoute>
                     <ProfilePage/>
                 </ProtectedRoute>}/>
+
+                <Route path="/shop/preview/:id" element={<ShopPreviewPage />} />
 
                 {/* shop Routes */}
                 <Route path="/shop-create" element={<ShopCreatePage/>}/>

@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import styles from "../../../styles/styles";
 // import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import {backend_url} from "../../../server.jsx";
 // import { addTocart } from "../../../redux/actions/cart";
 // import {
 //   addToWishlist,
@@ -74,7 +75,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
         {data ? (
             <div className="fixed w-full h-screen top-0 left-0 bg-[#00000030] z-40 flex items-center justify-center">
               <div
-                  className="w-[90%] 800px:w-[70%] h-[90vh] 800px:h-[85vh] overflow-y-scroll bg-gray-50  rounded-md shadow-sm relative p-6">
+                  className="w-[90%] 800px:w-[70%] h-[90vh] 800px:h-[85vh] overflow-y-scroll bg-gray-50  rounded-md shadow-sm relative p-2 md:p-6">
                 <RxCross1
                     size={30}
                     className="absolute right-3 top-3 z-50 cursor-pointer"
@@ -82,28 +83,31 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                 />
 
                 {/* Container without flex at desktop */}
-                <section className="py-8  md:py-16 antialiased">
-                  <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+                <section className="py-8 md:py-16 antialiased">
+                  <div className="max-w-screen-xl p-4 mx-auto 2xl:p-0">
                     <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
                       <div className="shrink-0 max-w-md lg:max-w-lg mx-auto">
-                        <img
-                            src={data.image_Url[0].url}
-                            alt=""
-                            className="w-full hidden dark:block rounded-lg"
-                        />
-
+                        <Link to={`/product/${data._id}`}>
+                          <img
+                              src={`${backend_url}uploads/${data?.images?.[0]}`}
+                              alt="Product Image"
+                              className="w-full hidden dark:block rounded-lg"
+                          />
+                        </Link>
                         <div className="mt-6 p-4 bg-gray-100 rounded-lg w-full">
-                          <div className="flex items-center mb-4">
-                            <img
-                                src={data.shop.shop_avatar.url}
-                                alt=""
-                                className="w-12 h-12 rounded-full mr-3"
-                            />
-                            <div>
-                              <h3 className="text-lg font-semibold">{data.shop.name}</h3>
-                              <h5 className=" text-[15px]">{data.shop.ratings} Ratings</h5>
+                          <Link to={`/shop/preview/${data.shop._id}`}>
+                            <div className="flex items-center mb-4">
+                              <img
+                                  src={`${backend_url}${data.shop.avatar}`}
+                                  alt=""
+                                  className="w-12 h-12 object-cover rounded-full mr-3"
+                              />
+                              <div>
+                                <h3 className="text-lg font-semibold">{data.shop.name}</h3>
+                                <h5 className=" text-[15px]">(4) Ratings</h5>
+                              </div>
                             </div>
-                          </div>
+                          </Link>
                           <p className=" text-red-600 text-sm font-medium">
                             50 sold in last 24 hours
                           </p>
@@ -131,18 +135,18 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                           {/* Pricing Section */}
                           <div className="flex items-center mb-6">
                             <span className="text-2xl font-bold text-black">
-                              ${data.discount_price}
+                              ${data.discountPrice}
                             </span>
-                              {data.price && (
+                              {data.originalPrice && (
                                   <span className="ml-3 text-red-500 line-through">
-                                    ${data.price}
+                                    ${data.originalPrice}
                                   </span>
                               )}
                           </div>
 
                           {/* Increment & Favorite Section */}
                           <div className="flex items-center justify-between mb-8">
-                            <div className="flex items-center border border-gray-200 rounded-lg">
+                            <div className="flex items-center border border-gray-200 mr-6 md:mr-0 rounded-lg">
                               <button
                                   className="px-4 py-2 bg-gray-100 hover:bg-gray-200"
                                   onClick={decrementCount}
@@ -166,7 +170,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                               ) : (
                                   <AiOutlineHeart size={28} />
                               )}
-                              <span className="ml-2">Add to Favorites</span>
+                              <span className="md:ml-2 text-md">Add to Favorites</span>
                             </button>
                           </div>
 

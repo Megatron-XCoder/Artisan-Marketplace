@@ -19,7 +19,7 @@ const DashboardHeader = () => {
         </span>
         </Link>
         <div className="flex items-center justify-end space-x-2 md:space-x-5">
-          <Link to="/dashboard/coupons">
+          <Link to="/dashboard-coupons">
             <AiFillGift className="text-gray-400 hover:text-purple-700 transition-colors" size={28} />
           </Link>
           <Link to="/dashboard-events">

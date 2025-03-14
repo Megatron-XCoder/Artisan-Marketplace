@@ -95,7 +95,7 @@ const AllEvents = () => {
 
                         {/* Desktop Price */}
                         <div className="hidden sm:block sm:min-w-[100px] text-green-600 font-semibold">
-                            US$ {item.discountPrice}
+                            $ {item.discountPrice}
                         </div>
 
                         {/* Desktop Stock */}

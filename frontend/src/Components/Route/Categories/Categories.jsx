@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { brandingData, categoriesData } from "../../../static/data.jsx";
 import styles from "../../../Styles/Styles.jsx";
 
@@ -34,9 +34,11 @@ const Categories = () => {
                     <p className="text-gray-400 text-lg mb-4">
                         Don&#39;t Miss Out - Limited Stock at Rock-Bottom Prices!
                     </p>
-                    <button className={`bg-gradient-to-tl from-purple-700 via-purple-500 text-[18px] to-blue-700 hover:bg-gradient-to-br hover:shadow-xl text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors`}>
-                        Shop now
-                    </button>
+                    <Link to={"/products"}>
+                        <button className={`bg-gradient-to-tl from-purple-700 via-purple-500 text-[18px] to-blue-700 hover:bg-gradient-to-br hover:shadow-xl text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors`}>
+                            Shop now
+                        </button>
+                    </Link>
                 </div>
                 <div className="grid grid-cols-2  gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                     {categoriesData &&

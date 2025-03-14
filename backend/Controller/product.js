@@ -102,19 +102,35 @@ router.delete(
 
 // get all products
 router.get(
-  "/get-all-products",
-  catchAsyncErrors(async (req, res, next) => {
-    try {
-      const products = await Product.find().sort({ createdAt: -1 });
+    "/get-all-products",
+    catchAsyncErrors(async (req, res, next) => {
+        try {
+            const products = await Product.find().sort({ createdAt: -1 });
 
-      res.status(201).json({
-        success: true,
-        products,
-      });
-    } catch (error) {
-      return next(new ErrorHandler(error, 400));
-    }
-  })
+            res.status(201).json({
+                success: true,
+                products,
+            });
+        } catch (error) {
+            return next(new ErrorHandler(error, 400));
+        }
+    })
+);
+
+// Get a product based on ID
+router.get(
+    `/:id`,
+    catchAsyncErrors(async (req, res, next) => {
+        try {
+            const product = await Product.findById(req.params.id);
+            res.status(200).json({
+                success: true,
+                product,
+            });
+        } catch (error) {
+            return next(new ErrorHandler(error.message, 500));
+        }
+    })
 );
 
 // // review for a product

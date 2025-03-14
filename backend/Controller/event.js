@@ -104,22 +104,33 @@ router.delete(
     })
 );
 
-// // get all products
-// router.get(
-//     "/get-all-products",
-//     catchAsyncErrors(async (req, res, next) => {
-//         try {
-//             const products = await Product.find().sort({ createdAt: -1 });
-//
-//             res.status(201).json({
-//                 success: true,
-//                 products,
-//             });
-//         } catch (error) {
-//             return next(new ErrorHandler(error, 400));
-//         }
-//     })
-// );
+// get all events
+router.get("/get-all-events", async (req, res, next) => {
+    try {
+        const events = await Event.find();
+        res.status(201).json({
+            success: true,
+            events,
+        });
+    } catch (error) {
+        return next(new ErrorHandler(error, 400));
+    }
+});
+
+router.get(
+    `/:id`,
+    catchAsyncErrors(async (req, res, next) => {
+        try {
+            const event = await Event.findById(req.params.id);
+            res.status(200).json({
+                success: true,
+                event,
+            });
+        } catch (error) {
+            return next(new ErrorHandler(error.message, 500));
+        }
+    })
+);
 //
 // // all events --- for admin
 // router.get(

@@ -59,8 +59,8 @@ const CreateEvent = () => {
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
 
-        if (images.length + files.length > 4) {
-            toast.error("You can only upload up to 4 images.");
+        if (images.length + files.length > 3) {
+            toast.error("You can only upload up to 3 images.");
             return;
         }
 
@@ -265,7 +265,7 @@ const CreateEvent = () => {
                             <AiOutlinePlusCircle
                                 className="mx-auto text-3xl text-gray-400 mb-2 hover:text-blue-500 transition-colors"/>
                             <p className="text-sm text-gray-500">Drag & drop or click to upload</p>
-                            <p className="text-xs text-gray-400 mt-1">(Up to 4 images)</p>
+                            <p className="text-xs text-gray-400 mt-1">(Up to 3 images)</p>
                         </label>
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 max-h-96 overflow-y-auto">
                             {images?.map((file, index) => (
