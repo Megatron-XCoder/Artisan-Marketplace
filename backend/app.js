@@ -73,10 +73,10 @@ app.use(cors({
 
 // import routes
 const user = require("./Controller/user");
-const shop = require("./controller/shop");
-const product = require("./controller/product");
-const event = require("./controller/event");
-const coupon = require("./controller/couponCode");
+const shop = require("./Controller/shop");
+const product = require("./Controller/product");
+const event = require("./Controller/event");
+const coupon = require("./Controller/couponCode");
 // const payment = require("./controller/payment");
 // const order = require("./controller/order");
 // const conversation = require("./controller/conversation");
