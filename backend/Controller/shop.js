@@ -3,11 +3,11 @@ const Shop = require("../Model/shop");
 const router = express.Router();
 const upload = require("../multer");
 const fs = require("fs");
-const ErrorHandler = require("../utils/ErrorHandler");
+const ErrorHandler = require("../Utils/ErrorHandler");
 const jwt = require("jsonwebtoken");
-const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-const sendMail = require("../utils/sendMail");
-const sendShopToken = require("../utils/shopToken");
+const catchAsyncErrors = require("../Middleware/catchAsyncErrors");
+const sendMail = require("../Utils/sendMail");
+const sendShopToken = require("../Utils/shopToken");
 const {isShop} = require("../Middleware/auth");
 
 // create shop
