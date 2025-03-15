@@ -10,7 +10,7 @@ import CheckoutPage from "../Pages/CheckoutPage";
 import PaymentPage from "../Pages/PaymentPage";
 import OrderSuccessPage from "../Pages/OrderSuccessPage";
 import ProductDetailsPage from "../Pages/ProductDetailsPage.jsx";
-import ProfilePage from "../pages/ProfilePage";
+import ProfilePage from "../Pages/ProfilePage";
 import ShopCreatePage from "../Pages/ShopCreatePage.jsx";
 import SellerActivationPage from "../Pages/SellerActivationPage";
 import ShopLoginPage from "../Pages/ShopLoginPage.jsx";
