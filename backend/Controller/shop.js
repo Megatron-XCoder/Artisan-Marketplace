@@ -1,5 +1,5 @@
 const express = require("express");
-const Shop = require("../model/shop");
+const Shop = require("../Model/shop");
 const router = express.Router();
 const upload = require("../multer");
 const fs = require("fs");

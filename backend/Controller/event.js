@@ -1,10 +1,10 @@
 const express = require("express");
-const {isShop, isAuthenticated} = require("../middleware/auth");
-const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const {isShop, isAuthenticated} = require("../Middleware/auth");
+const catchAsyncErrors = require("../Middleware/catchAsyncErrors");
 const router = express.Router();
-const Event = require("../model/event");
-const Shop = require("../model/shop");
-const ErrorHandler = require("../utils/ErrorHandler");
+const Event = require("../Model/event");
+const Shop = require("../Model/shop");
+const ErrorHandler = require("../Utils/ErrorHandler");
 const upload = require("../multer");
 const fs = require("fs");
 
