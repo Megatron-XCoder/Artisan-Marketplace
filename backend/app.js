@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 
-app.use("/test", (req, res) => {
+app.get("/", (req, res) => {
     res.send(`
         <!DOCTYPE html>
         <html lang="en">
