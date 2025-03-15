@@ -18,7 +18,7 @@ import ShopLoginPage from "../Pages/ShopLoginPage.jsx";
 // import TrackOrderPage from "../Pages/TrackOrderPage.jsx";
 // import UserInbox from "../Pages/UserInbox.jsx";
 
-export { 
+export {
     LoginPage,
     SignupPage,
     ActivationPage,

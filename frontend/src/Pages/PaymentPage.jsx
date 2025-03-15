@@ -1,19 +1,19 @@
-import CheckoutSteps from '../components/Checkout/CheckoutSteps'
-import Footer from '../components/Layout/Footer'
-import Header from '../components/Layout/Header'
-import Payment from "../components/Payment/Payment";
+import CheckoutSteps from '../Components/Checkout/CheckoutSteps'
+import Footer from '../Components/Layout/Footer'
+import Header from '../Components/Layout/Header'
+import Payment from "../Components/Payment/Payment";
 
 const PaymentPage = () => {
-  return (
-    <div className=' '>
-       <Header />
-       <br />
-       <CheckoutSteps active={2} />
-       <Payment />
-       <br />
-       <Footer />
-    </div>
-  )
+    return (
+        <div className=' '>
+            <Header/>
+            <br/>
+            <CheckoutSteps active={2}/>
+            <Payment/>
+            <br/>
+            <Footer/>
+        </div>
+    )
 }
 
 export default PaymentPage

@@ -1,5 +1,5 @@
 import {Link, useNavigate} from "react-router-dom";
-import { brandingData, categoriesData } from "../../../static/data.jsx";
+import {brandingData, categoriesData} from "../../../Static/Data.jsx";
 import styles from "../../../Styles/Styles.jsx";
 
 const Categories = () => {
@@ -9,7 +9,8 @@ const Categories = () => {
         <>
             {/* Branding Section */}
             <div className={`${styles.section} hidden sm:block`}>
-                <div className="branding my-12 flex flex-wrap justify-between w-full shadow-sm bg-white p-5 rounded-md gap-4">
+                <div
+                    className="branding my-12 flex flex-wrap justify-between w-full shadow-sm bg-white p-5 rounded-md gap-4">
                     {brandingData &&
                         brandingData.map((i, index) => (
                             <div className="flex items-start flex-grow min-w-[200px] max-w-[300px]" key={index}>
@@ -35,7 +36,8 @@ const Categories = () => {
                         Don&#39;t Miss Out - Limited Stock at Rock-Bottom Prices!
                     </p>
                     <Link to={"/products"}>
-                        <button className={`bg-gradient-to-tl from-purple-700 via-purple-500 text-[18px] to-blue-700 hover:bg-gradient-to-br hover:shadow-xl text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors`}>
+                        <button
+                            className={`bg-gradient-to-tl from-purple-700 via-purple-500 text-[18px] to-blue-700 hover:bg-gradient-to-br hover:shadow-xl text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors`}>
                             Shop now
                         </button>
                     </Link>

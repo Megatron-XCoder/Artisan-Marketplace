@@ -1,18 +1,18 @@
 import DashboardHeader from "../../Components/Shop/Layout/DashboardHeader.jsx";
 import DashboardSideBar from "../../Components/Shop/Layout/DashboardSideBar.jsx";
-import AllEvents from "../../components/Shop/AllEvents.jsx";
+import AllEvents from "../../Components/Shop/AllEvents.jsx";
 
 const ShopAllEvents = () => {
     return (
         <>
             <div>
-                <DashboardHeader />
+                <DashboardHeader/>
                 <div>
-                    <DashboardSideBar active={5} />
+                    <DashboardSideBar active={5}/>
                 </div>
                 <div className="flex items-center justify-between w-full">
                     <div className="w-full justify-center flex mb-4 sm:mb-8">
-                        <AllEvents />
+                        <AllEvents/>
                     </div>
                 </div>
             </div>

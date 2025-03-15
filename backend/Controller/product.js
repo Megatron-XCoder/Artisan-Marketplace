@@ -176,7 +176,7 @@ router.get(
 //
 //       await Order.findByIdAndUpdate(
 //         orderId,
-//         { $set: { "cart.$[elem].isReviewed": true } },
+//         { $set: { "Cart.$[elem].isReviewed": true } },
 //         { arrayFilters: [{ "elem._id": productId }], new: true }
 //       );
 //

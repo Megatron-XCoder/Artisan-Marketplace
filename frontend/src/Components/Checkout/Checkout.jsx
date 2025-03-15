@@ -64,7 +64,8 @@ const Checkout = () => {
 
                                     <div>
                                         <label htmlFor="email"
-                                               className="mb-2 block text-sm font-medium text-gray-900 "> Zip Code </label>
+                                               className="mb-2 block text-sm font-medium text-gray-900 "> Zip
+                                            Code </label>
                                         <input type="email" id="email"
                                                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 y-600 0  r:text-gray-400 er-primary-500 -primary-500"
                                                placeholder="name@flowbite.com" required/>
@@ -144,7 +145,8 @@ const Checkout = () => {
 
                                     <p className="text-sm font-normal text-gray-500 400">One or more items in
                                         your cart require an account.
-                                        <Link to={"/login"} title="" className="font-medium text-primary-700 no-underline hover:underline ry-500">Sign
+                                        <Link to={"/login"} title=""
+                                              className="font-medium text-primary-700 no-underline hover:underline ry-500">Sign
                                             in or create an account now.</Link>
                                     </p>
                                 </div>

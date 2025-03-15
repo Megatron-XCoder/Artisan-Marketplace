@@ -8,8 +8,8 @@ import DropDown from "./DropDown.jsx";
 import Navbar from "./Navbar.jsx";
 import {useSelector} from "react-redux";
 import {backend_url} from "../../server.jsx";
-import Cart from "../cart/Cart.jsx";
-import { categoriesData } from "../../Static/data.jsx";
+import Cart from "../Cart/Cart.jsx";
+import {categoriesData} from "../../Static/Data.jsx";
 import Wishlist from "../Wishlist/Wishlist.jsx";
 
 const Header = ({activeHeading}) => {

@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import styles from "../../../styles/styles";
+import {useEffect, useState} from "react";
+import styles from "../../../Styles/Styles";
 import ProductCard from "../ProductCard/ProductCard";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 import Loader from "../../Layout/Loader"; // Import the Loader component
 
 const BestDeals = () => {
-    const { allProducts, isLoading } = useSelector((state) => state.products); // Assuming isLoading is available
+    const {allProducts, isLoading} = useSelector((state) => state.products); // Assuming isLoading is available
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -39,11 +39,12 @@ const BestDeals = () => {
                     </div>
                 </div>
                 {isLoading ? ( // Show loader if data is loading
-                    <Loader />
+                    <Loader/>
                 ) : (
-                    <div className="grid gap-[10px] sm:gap-[15px] md:gap-[20px] md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mb-12 border-0 px-2 sm:px-0">
+                    <div
+                        className="grid gap-[10px] sm:gap-[15px] md:gap-[20px] md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mb-12 border-0 px-2 sm:px-0">
                         {data.map((i, index) => (
-                            <ProductCard data={i} key={index} isShop={true} />
+                            <ProductCard data={i} key={index} isShop={true}/>
                         ))
                         }
                     </div>

@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import {useState} from "react";
+import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
+import {Link} from "react-router-dom";
 import {RxAvatar} from "react-icons/rx";
-import { server } from "../../server.jsx";
-import { toast } from "react-toastify";
+import {server} from "../../server.jsx";
+import {toast} from "react-toastify";
 import axios from "axios";
 
 const ShopCreate = () => {
@@ -15,7 +15,6 @@ const ShopCreate = () => {
     const [avatar, setAvatar] = useState();
     const [password, setPassword] = useState("");
     const [visible, setVisible] = useState(false);
-
 
 
     const handleFileInputChange = (e) => {
@@ -63,7 +62,7 @@ const ShopCreate = () => {
             console.error("Registering Seller Error:", error.response.data || error.message);
 
             // Show error notification
-            toast.error(error.response.data.message || "Registration failed. Please try again." , {
+            toast.error(error.response.data.message || "Registration failed. Please try again.", {
                 position: "top-right",
                 autoClose: 3000,
             });
@@ -73,7 +72,8 @@ const ShopCreate = () => {
     window.scrollTo(0, 0);
 
     return (
-        <section className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-bl from-violet-600 to-fuchsia-400 dark:from-violet-700 dark:to-fuchsia-500 px-4 py-16">
+        <section
+            className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-bl from-violet-600 to-fuchsia-400 dark:from-violet-700 dark:to-fuchsia-500 px-4 py-16">
             <h1 className="text-5xl font-bold text-white drop-shadow-md mb-2 text-center">
                 Artisan Marketplace
             </h1>
@@ -118,7 +118,8 @@ const ShopCreate = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        <label htmlFor="password"
+                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Password
                         </label>
                         <div className="relative">
@@ -136,16 +137,17 @@ const ShopCreate = () => {
                                 className="absolute inset-y-0 right-4 flex items-center cursor-pointer"
                             >
                                 {visible ? (
-                                    <AiOutlineEye className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                                    <AiOutlineEye className="w-5 h-5 text-gray-500 dark:text-gray-400"/>
                                 ) : (
-                                    <AiOutlineEyeInvisible className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                                    <AiOutlineEyeInvisible className="w-5 h-5 text-gray-500 dark:text-gray-400"/>
                                 )}
                             </span>
                         </div>
                     </div>
 
                     <div>
-                        <label htmlFor="phone-number" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        <label htmlFor="phone-number"
+                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Phone Number
                         </label>
                         <input
@@ -161,7 +163,8 @@ const ShopCreate = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="address" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        <label htmlFor="address"
+                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Shop Address
                         </label>
                         <input
@@ -177,7 +180,8 @@ const ShopCreate = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="zipcode" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        <label htmlFor="zipcode"
+                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Zip Code
                         </label>
                         <input
@@ -196,9 +200,9 @@ const ShopCreate = () => {
                 <span
                     className="h-12 w-12 rounded-full overflow-hidden border border-gray-300 dark:border-gray-600 flex items-center justify-center">
                   {avatar ? (
-                      <img src={URL.createObjectURL(avatar)} alt="avatar" className="h-full w-full object-cover" />
+                      <img src={URL.createObjectURL(avatar)} alt="avatar" className="h-full w-full object-cover"/>
                   ) : (
-                      <RxAvatar className="h-12 w-12 text-gray-500 dark:text-gray-400" />
+                      <RxAvatar className="h-12 w-12 text-gray-500 dark:text-gray-400"/>
                   )}
 
                 </span>

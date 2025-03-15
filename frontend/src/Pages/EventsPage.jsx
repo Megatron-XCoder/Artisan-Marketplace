@@ -1,14 +1,14 @@
-import { useSelector } from "react-redux";
-import EventCard from "../components/Events/EventCard";
-import Header from "../components/Layout/Header";
+import {useSelector} from "react-redux";
+import EventCard from "../Components/Events/EventCard";
+import Header from "../Components/Layout/Header";
 import Footer from "../Components/Layout/Footer.jsx";
 import styles from "../Styles/Styles.jsx";
-import Loader from "../components/Layout/Loader";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import Loader from "../Components/Layout/Loader";
+import {useEffect} from "react";
+import {Link} from "react-router-dom";
 
 const EventsPage = () => {
-    const { allEvents, isLoading } = useSelector((state) => state.events);
+    const {allEvents, isLoading} = useSelector((state) => state.events);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -17,10 +17,10 @@ const EventsPage = () => {
     return (
         <>
             {isLoading ? (
-                <Loader />
+                <Loader/>
             ) : (
                 <div>
-                    <Header activeHeading={4} />
+                    <Header activeHeading={4}/>
                     <div className={`${styles.section} my-8`}>
                         {/* Breadcrumbs */}
                         <nav className="flex mb-4" aria-label="Breadcrumb">
@@ -37,7 +37,8 @@ const EventsPage = () => {
                                             fill="currentColor"
                                             viewBox="0 0 20 20"
                                         >
-                                            <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                                            <path
+                                                d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
                                         </svg>
                                         Home
                                     </Link>
@@ -76,7 +77,7 @@ const EventsPage = () => {
                         <div className="w-full grid gap-6">
                             {allEvents && allEvents.length > 0 ? (
                                 allEvents.map((event, index) => (
-                                    <EventCard key={event._id} active={index === 0} data={event} />
+                                    <EventCard key={event._id} active={index === 0} data={event}/>
                                 ))
                             ) : (
                                 <h1 className="text-center w-full pb-[75px] text-[20px]">
@@ -85,7 +86,7 @@ const EventsPage = () => {
                             )}
                         </div>
                     </div>
-                    <Footer />
+                    <Footer/>
                 </div>
             )}
         </>

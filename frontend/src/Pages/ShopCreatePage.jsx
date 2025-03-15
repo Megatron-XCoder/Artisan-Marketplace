@@ -1,4 +1,4 @@
-import ShopCreate from "../components/Shop/ShopCreate.jsx";
+import ShopCreate from "../Components/Shop/ShopCreate.jsx";
 import Header from "../Components/Layout/Header.jsx";
 import Footer from "../Components/Layout/Footer.jsx";
 import {useNavigate} from "react-router-dom";
@@ -8,7 +8,7 @@ import {useEffect} from "react";
 
 const ShopCreatePage = () => {
     const navigate = useNavigate();
-    const { isShop } = useSelector((state) => state.shop);
+    const {isShop} = useSelector((state) => state.shop);
 
     useEffect(() => {
         if (isShop === true) {
@@ -19,9 +19,9 @@ const ShopCreatePage = () => {
     return (
         <>
             <div>
-                <Header />
-                <ShopCreate />
-                <Footer />
+                <Header/>
+                <ShopCreate/>
+                <Footer/>
             </div>
         </>
     )

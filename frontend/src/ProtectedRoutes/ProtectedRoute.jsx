@@ -1,16 +1,17 @@
-import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import {useSelector} from "react-redux";
+import {Navigate} from "react-router-dom";
+import {toast} from "react-toastify";
 import Loader from "../Components/Layout/Loader.jsx";
 
-const ProtectedRoute = ({ children }) => {
-    const { loading, isAuthenticated } = useSelector((state) => state.user);
+const ProtectedRoute = ({children}) => {
+    const {loading, isAuthenticated} = useSelector((state) => state.user);
     if (loading === true) {
         return (
             <Loader/>
-        )} else {
+        )
+    } else {
         if (!isAuthenticated) {
-            toast.info(`Please login to Continue`,{
+            toast.info(`Please login to Continue`, {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: true,
@@ -19,7 +20,7 @@ const ProtectedRoute = ({ children }) => {
                 draggable: true,
                 progress: undefined,
             });
-            return <Navigate to="/login" replace />;
+            return <Navigate to="/login" replace/>;
         }
         return children;
     }

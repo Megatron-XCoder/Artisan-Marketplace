@@ -1,8 +1,8 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { server } from "../../server.jsx";
+import {useEffect, useState} from "react";
+import {server} from "../../server.jsx";
 
-const CountDown = ({ data }) => {
+const CountDown = ({data}) => {
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
     useEffect(() => {
@@ -44,7 +44,8 @@ const CountDown = ({ data }) => {
                     key={interval}
                     className="flex flex-col items-center bg-gradient-to-b from-gray-50 to-white p-3 rounded-xl w-20 shadow-md border border-gray-100"
                 >
-          <span className="text-2xl lg:text-3xl font-bold mb-1 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <span
+              className="text-2xl lg:text-3xl font-bold mb-1 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
             {timeLeft[interval]?.toString().padStart(2, "0") || "00"}
           </span>
                     <span className="text-xs uppercase tracking-wider font-semibold text-gray-500">

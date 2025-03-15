@@ -1,10 +1,10 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {AiFillHeart, AiOutlineHeart, AiOutlineMessage, AiOutlineShoppingCart} from "react-icons/ai";
 import styles from "../../Styles/Styles.jsx";
 import {backend_url} from "../../server.jsx";
 
-const ProductDetails = ({ data, products }) => {
+const ProductDetails = ({data, products}) => {
     const [count, setCount] = useState(1);
     const [click, setClick] = useState(false);
     const [select, setSelect] = useState(0);
@@ -141,14 +141,14 @@ const ProductDetails = ({ data, products }) => {
                         </div>
                     </div>
 
-                    <ProductDetailsInfo data={data} products={products} />
+                    <ProductDetailsInfo data={data} products={products}/>
                 </div>
             ) : null}
         </section>
     );
 };
 
-const ProductDetailsInfo = ({ data, products }) => {
+const ProductDetailsInfo = ({data, products}) => {
     const [active, setActive] = useState(1);
 
     return (

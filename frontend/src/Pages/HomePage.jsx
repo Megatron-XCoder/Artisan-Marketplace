@@ -28,18 +28,18 @@ const HomePage = () => {
         }
     }, [location]);
 
-  return (
-    <div className={"bg-gray-100"}>
-        <Header activeHeading={1} />
-        <Hero />
-        <Categories />
-        <BestDeals />
-        <Events />
-        <FeaturedProduct />
-        <Sponsored />
-        <Footer />
-    </div>
-  )
+    return (
+        <div className={"bg-gray-100"}>
+            <Header activeHeading={1}/>
+            <Hero/>
+            <Categories/>
+            <BestDeals/>
+            <Events/>
+            <FeaturedProduct/>
+            <Sponsored/>
+            <Footer/>
+        </div>
+    )
 }
 
 export default HomePage

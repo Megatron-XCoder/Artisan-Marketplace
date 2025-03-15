@@ -1,6 +1,6 @@
-import DashboardHeader from '../../components/Shop/Layout/DashboardHeader'
-import DashboardSideBar from '../../components/Shop/Layout/DashboardSideBar'
-import CreateProduct from "../../components/Shop/CreateProduct.jsx";
+import DashboardHeader from '../../Components/Shop/Layout/DashboardHeader'
+import DashboardSideBar from '../../Components/Shop/Layout/DashboardSideBar'
+import CreateProduct from "../../Components/Shop/CreateProduct.jsx";
 
 const ShopCreateProduct = () => {
     return (

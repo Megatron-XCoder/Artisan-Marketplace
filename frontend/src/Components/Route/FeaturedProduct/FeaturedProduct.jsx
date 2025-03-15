@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import styles from "../../../styles/styles";
+import styles from "../../../Styles/Styles";
 import ProductCard from "../ProductCard/ProductCard";
 import {Link} from "react-router-dom";
 

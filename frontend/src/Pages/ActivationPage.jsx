@@ -1,13 +1,13 @@
 import axios from "axios";
-import { useEffect, useState, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { server } from "../server.jsx";
-import { toast } from "react-toastify";
+import {useEffect, useState, useRef} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import {server} from "../server.jsx";
+import {toast} from "react-toastify";
 import Header from "../Components/Layout/Header.jsx";
 import Footer from "../Components/Layout/Footer.jsx";
 
 const ActivationPage = () => {
-    const { activation_token } = useParams();
+    const {activation_token} = useParams();
     const [error, setError] = useState(false);
     const navigate = useNavigate();
     const [countdown, setCountdown] = useState(20);
@@ -56,14 +56,15 @@ const ActivationPage = () => {
 
     return (
         <>
-            <Header />
+            <Header/>
             <div className="w-full min-h-screen flex flex-col items-center justify-center bg-white text-center p-4">
                 <img
                     src="https://img.freepik.com/free-vector/email-campaign-concept-illustration_114360-1681.jpg"
                     alt="Success Animation"
                     className="w-[20rem] h-[20rem] sm:w-[18rem] sm:h-[18rem] md:w-[23rem] md:h-[23rem] lg:w-[30rem] lg:h-[30rem] mx-auto mb-6"
                 />
-                <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-4 sm:p-6 w-full max-w-md md:max-w-lg lg:max-w-xl">
+                <div
+                    className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-4 sm:p-6 w-full max-w-md md:max-w-lg lg:max-w-xl">
                     {error ? (
                         <div className="font-semibold text-red-600 dark:text-red-400">
                             <p className="text-lg">Your token has expired! ❌</p>
@@ -71,7 +72,7 @@ const ActivationPage = () => {
                     ) : (
                         <div className="font-semibold text-green-600 dark:text-green-400">
                             <p className="text-lg">Your account has been created successfully! 🎉</p>
-                            <br />
+                            <br/>
                             <p className="text-lg">😁😁Login to continue..🎊🎊</p>
                         </div>
                     )}
@@ -94,7 +95,7 @@ const ActivationPage = () => {
                     )}
                 </div>
             </div>
-            <Footer />
+            <Footer/>
         </>
     );
 };

@@ -1,9 +1,9 @@
 import CountDown from "./CountDown";
-import { Link } from "react-router-dom";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { backend_url } from "../../server.jsx";
+import {Link} from "react-router-dom";
+import {AiOutlineShoppingCart} from "react-icons/ai";
+import {backend_url} from "../../server.jsx";
 
-const EventCard = ({ active, data }) => {
+const EventCard = ({active, data}) => {
     // Check if data is undefined or null
     if (!data) {
         return (
@@ -55,14 +55,16 @@ const EventCard = ({ active, data }) => {
 
                         <div className="flex flex-row items-start md:items-center justify-between mb-6 gap-3">
                             <div className="flex items-baseline gap-3">
-                <span className="text-3xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                <span
+                    className="text-3xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
                   ${data.discountPrice}
                 </span>
                                 <span className="text-xl line-through font-medium text-red-400">
                   ${data.originalPrice}
                 </span>
                             </div>
-                            <span className="bg-pink-100 text-pink-800 px-3 py-1.5 rounded-full text-sm md:text-md font-medium inline-flex items-center">
+                            <span
+                                className="bg-pink-100 text-pink-800 px-3 py-1.5 rounded-full text-sm md:text-md font-medium inline-flex items-center">
                 <span className="w-2 h-2 bg-pink-500 rounded-full mr-2"></span>
                                 {data.sold_out} units sold
               </span>
@@ -76,7 +78,7 @@ const EventCard = ({ active, data }) => {
                                     ⏳ Hurry up! Sale ends in
                                 </h3>
                                 <div className="flex justify-center">
-                                    <CountDown data={data} />
+                                    <CountDown data={data}/>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +88,7 @@ const EventCard = ({ active, data }) => {
                                 type="button"
                                 className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-4 px-6 rounded-xl font-semibold transition-all transform hover:scale-[1.02] shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                             >
-                                <AiOutlineShoppingCart className="text-xl" />
+                                <AiOutlineShoppingCart className="text-xl"/>
                                 Add to Cart
                             </button>
                             <Link

@@ -1,5 +1,5 @@
-import ShopInfo from "../../components/Shop/ShopInfo.jsx";
-import ShopProfileData from "../../components/Shop/ShopProfileData.jsx";
+import ShopInfo from "../../Components/Shop/ShopInfo.jsx";
+import ShopProfileData from "../../Components/Shop/ShopProfileData.jsx";
 import Header from "../../Components/Layout/Header.jsx";
 import Footer from "../../Components/Layout/Footer.jsx";
 
@@ -12,13 +12,13 @@ const ShopPreviewPage = () => {
                     {/* Left Sidebar - Mobile First */}
                     <div className="w-full md:w-[25%] bg-white rounded-xl shadow-lg md:h-[90vh]
                     md:sticky md:top-10 left-0 overflow-hidden hover:shadow-xl transition-all duration-300">
-                        <ShopInfo />
+                        <ShopInfo/>
                     </div>
 
                     {/* Right Content */}
                     <div className="w-full md:w-[72%] bg-white/90 backdrop-blur-sm rounded-xl shadow-lg
                     p-4 md:p-8 transition-all duration-300 hover:shadow-xl">
-                        <ShopProfileData />
+                        <ShopProfileData/>
                     </div>
                 </div>
             </div>

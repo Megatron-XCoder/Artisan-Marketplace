@@ -1,6 +1,5 @@
-
-import ShopInfo from "../../components/Shop/ShopInfo.jsx";
-import ShopProfileData from "../../components/Shop/ShopProfileData.jsx";
+import ShopInfo from "../../Components/Shop/ShopInfo.jsx";
+import ShopProfileData from "../../Components/Shop/ShopProfileData.jsx";
 
 const ShopHomePage = () => {
     return (
@@ -9,13 +8,13 @@ const ShopHomePage = () => {
                 {/* Left Sidebar - Mobile First */}
                 <div className="w-full md:w-[25%] bg-white rounded-xl shadow-lg md:h-[90vh] md:overflow-y-scroll
                     md:sticky md:top-10 left-0 z-10 overflow-hidden hover:shadow-xl transition-all duration-300">
-                    <ShopInfo isOwner={true} />
+                    <ShopInfo isOwner={true}/>
                 </div>
 
                 {/* Right Content */}
                 <div className="w-full md:w-[72%] bg-white/90 backdrop-blur-sm rounded-xl shadow-lg
                     p-4 md:p-8 transition-all duration-300 hover:shadow-xl">
-                    <ShopProfileData isOwner={true} />
+                    <ShopProfileData isOwner={true}/>
                 </div>
             </div>
         </div>

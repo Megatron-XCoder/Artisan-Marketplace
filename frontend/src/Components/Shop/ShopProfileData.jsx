@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useParams} from "react-router-dom";
-import styles from "../../styles/styles";
+import styles from "../../Styles/Styles";
 import ProductCard from "../Route/ProductCard/ProductCard";
-import {getAllProductsShop} from "../../redux/actions/product.js";
+import {getAllProductsShop} from "../../redux/Actions/product.js";
 import {getAllEventsShop} from "../../redux/Actions/event.js";
 
 const ShopProfileData = ({isOwner}) => {

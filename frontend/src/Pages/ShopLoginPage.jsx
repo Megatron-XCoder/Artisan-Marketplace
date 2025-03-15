@@ -7,7 +7,7 @@ import {useEffect} from "react";
 
 const ShopLoginPage = () => {
     const navigate = useNavigate();
-    const { isShop } = useSelector((state) => state.shop);
+    const {isShop} = useSelector((state) => state.shop);
 
     useEffect(() => {
         if (isShop === true) {

@@ -1,23 +1,18 @@
 import {AiOutlineArrowRight, AiOutlineCamera, AiOutlineDelete, AiOutlinePlusCircle} from "react-icons/ai";
 import {backend_url} from "../../server.jsx";
 import {useSelector} from "react-redux";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import {useState} from "react";
-import styles from "../../Styles/Styles.jsx";
-import { DataGrid } from '@mui/x-data-grid';
-import {IconButton} from "@material-tailwind/react/dist";
 import {HiHome, HiOfficeBuilding} from "react-icons/hi";
 
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-
 };
 
 
-
-const ProfileContent = ({ active }) => {
-    const { user } = useSelector((state) => state.user);
+const ProfileContent = ({active}) => {
+    const {user} = useSelector((state) => state.user);
     const [name, setName] = useState(user && user?.name);
     const [email, setEmail] = useState(user && user?.email);
     const [phoneNumber, setPhoneNumber] = useState(user && user?.phoneNumber);
@@ -188,7 +183,6 @@ const ProfileContent = ({ active }) => {
 }
 
 
-
 const AllOrders = () => {
     const orders = [
         // ... your orders data
@@ -201,7 +195,7 @@ const AllOrders = () => {
             ],
             totalPrice: 200,
             orderStatus: "Delivered",
-        },{
+        }, {
             _id: "1842654165www11263",
             orderItems: [
                 {
@@ -210,7 +204,7 @@ const AllOrders = () => {
             ],
             totalPrice: 200,
             orderStatus: "Delivered",
-        },{
+        }, {
             _id: "184265416511263",
             orderItems: [
                 {
@@ -225,7 +219,8 @@ const AllOrders = () => {
     return (
         <div className="w-full sm:mx-8 pt-1 sm:mt-4">
             {/* Desktop Header */}
-            <div className="hidden sm:grid sm:grid-cols-5 gap-4 bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b font-medium text-sm text-gray-600 rounded-t-xl">
+            <div
+                className="hidden sm:grid sm:grid-cols-5 gap-4 bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b font-medium text-sm text-gray-600 rounded-t-xl">
                 <div className="min-w-[120px]">Order ID</div>
                 <div className="min-w-[90px]">Status</div>
                 <div className="min-w-[60px]">Items</div>
@@ -290,7 +285,7 @@ const AllOrders = () => {
                                 className="inline-flex items-center text-blue-500 hover:text-blue-600 transition-colors"
                             >
                                 <span className="sm:hidden mr-2">Download</span>
-                                <AiOutlineArrowRight className="text-lg" />
+                                <AiOutlineArrowRight className="text-lg"/>
                             </Link>
                         </div>
 
@@ -324,7 +319,7 @@ const AllRefundOrders = () => {
             ],
             totalPrice: 200,
             orderStatus: "Delivered",
-        },{
+        }, {
             _id: "1842654165www11263",
             orderItems: [
                 {
@@ -333,7 +328,7 @@ const AllRefundOrders = () => {
             ],
             totalPrice: 200,
             orderStatus: "Delivered",
-        },{
+        }, {
             _id: "184265416511263",
             orderItems: [
                 {
@@ -348,7 +343,8 @@ const AllRefundOrders = () => {
     return (
         <div className="w-full sm:mx-8 pt-1 sm:mt-4">
             {/* Desktop Header */}
-            <div className="hidden sm:grid sm:grid-cols-5 gap-4 bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b font-medium text-sm text-gray-600 rounded-t-xl">
+            <div
+                className="hidden sm:grid sm:grid-cols-5 gap-4 bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b font-medium text-sm text-gray-600 rounded-t-xl">
                 <div className="min-w-[120px]">Order ID</div>
                 <div className="min-w-[90px]">Status</div>
                 <div className="min-w-[60px]">Items</div>
@@ -413,7 +409,7 @@ const AllRefundOrders = () => {
                                 className="inline-flex items-center text-blue-500 hover:text-blue-600 transition-colors"
                             >
                                 <span className="sm:hidden mr-2">Download</span>
-                                <AiOutlineArrowRight className="text-lg" />
+                                <AiOutlineArrowRight className="text-lg"/>
                             </Link>
                         </div>
 
@@ -447,7 +443,7 @@ const TrackOrders = () => {
             ],
             totalPrice: 200,
             orderStatus: "Delivered",
-        },{
+        }, {
             _id: "1842654165www11263",
             orderItems: [
                 {
@@ -456,7 +452,7 @@ const TrackOrders = () => {
             ],
             totalPrice: 200,
             orderStatus: "Delivered",
-        },{
+        }, {
             _id: "184265416511263",
             orderItems: [
                 {
@@ -471,7 +467,8 @@ const TrackOrders = () => {
     return (
         <div className="w-full sm:mx-8 pt-1 sm:mt-4">
             {/* Desktop Header */}
-            <div className="hidden sm:grid sm:grid-cols-5 gap-4 bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b font-medium text-sm text-gray-600 rounded-t-xl">
+            <div
+                className="hidden sm:grid sm:grid-cols-5 gap-4 bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b font-medium text-sm text-gray-600 rounded-t-xl">
                 <div className="min-w-[120px]">Order ID</div>
                 <div className="min-w-[90px]">Status</div>
                 <div className="min-w-[60px]">Items</div>
@@ -536,7 +533,7 @@ const TrackOrders = () => {
                                 className="inline-flex items-center text-blue-500 hover:text-blue-600 transition-colors"
                             >
                                 <span className="sm:hidden mr-2">Download</span>
-                                <AiOutlineArrowRight className="text-lg" />
+                                <AiOutlineArrowRight className="text-lg"/>
                             </Link>
                         </div>
 
@@ -592,16 +589,18 @@ const PaymentMethod = () => {
                         Manage your saved payment options
                     </span>
                 </h1>
-                <button className="flex items-center bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                    <AiOutlinePlusCircle className="mr-2 text-lg" />
+                <button
+                    className="flex items-center bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <AiOutlinePlusCircle className="mr-2 text-lg"/>
                     Add New Card
                 </button>
             </div>
 
-            <br />
+            <br/>
 
             {/* Payment Card */}
-            <div className="w-full bg-gradient-to-br from-blue-600 to-purple-600 h-48 rounded-2xl flex flex-col justify-between p-6 shadow-xl text-white mb-6 ">
+            <div
+                className="w-full bg-gradient-to-br from-blue-600 to-purple-600 h-48 rounded-2xl flex flex-col justify-between p-6 shadow-xl text-white mb-6 ">
                 {/* Card Background Pattern */}
                 <div className=" inset-0 opacity-20 bg-white/20"></div>
 
@@ -637,7 +636,8 @@ const PaymentMethod = () => {
             </div>
 
             {/* Additional Payment Methods */}
-            <div className="w-full bg-white h-32 rounded-2xl flex items-center p-6 shadow-md hover:shadow-lg transition-shadow duration-300 group mb-6">
+            <div
+                className="w-full bg-white h-32 rounded-2xl flex items-center p-6 shadow-md hover:shadow-lg transition-shadow duration-300 group mb-6">
                 <div className="flex items-center w-full">
                     <div className="bg-gray-100 p-4 rounded-xl mr-6">
                         <img
@@ -678,18 +678,19 @@ const Address = () => {
                     className="flex items-center bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                     // onClick={() => setOpen(true)}
                 >
-                    <AiOutlinePlusCircle className="mr-2 text-lg" />
+                    <AiOutlinePlusCircle className="mr-2 text-lg"/>
                     Add New Address
                 </button>
             </div>
 
             {/* Address Card */}
-            <div className="w-full bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 group mb-6">
+            <div
+                className="w-full bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 group mb-6">
                 <div className="flex flex-col sm:flex-row justify-between items-start">
                     {/* Address Type */}
                     <div className="flex items-center mb-4 sm:mb-0">
                         <div className="bg-blue-50 p-3 rounded-lg mr-4">
-                            <HiHome className="text-blue-600 text-xl" />
+                            <HiHome className="text-blue-600 text-xl"/>
                         </div>
                         <div>
                             <h3 className="text-lg font-semibold text-gray-800">Default Address</h3>
@@ -712,19 +713,20 @@ const Address = () => {
                     {/* Delete Button */}
                     <div className="mt-4 sm:mt-0">
                         <button className="text-gray-400 hover:text-red-500 transition-colors">
-                            <AiOutlineDelete className="text-xl" />
+                            <AiOutlineDelete className="text-xl"/>
                         </button>
                     </div>
                 </div>
             </div>
 
             {/* Additional Address Example */}
-            <div className="w-full bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 group mb-6">
+            <div
+                className="w-full bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 group mb-6">
                 <div className="flex flex-col sm:flex-row justify-between items-start">
                     {/* Address Type */}
                     <div className="flex items-center mb-4 sm:mb-0">
                         <div className="bg-purple-50 p-3 rounded-lg mr-4">
-                            <HiOfficeBuilding className="text-purple-600 text-xl" />
+                            <HiOfficeBuilding className="text-purple-600 text-xl"/>
                         </div>
                         <div>
                             <h3 className="text-lg font-semibold text-gray-800">Office Address</h3>
@@ -747,7 +749,7 @@ const Address = () => {
                     {/* Delete Button */}
                     <div className="mt-4 sm:mt-0">
                         <button className="text-gray-400 hover:text-red-500 transition-colors">
-                            <AiOutlineDelete className="text-xl" />
+                            <AiOutlineDelete className="text-xl"/>
                         </button>
                     </div>
                 </div>

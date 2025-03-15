@@ -7,12 +7,12 @@ const CheckoutPage = () => {
     return (
         <>
             <div>
-                <Header />
-                <br />
-                <CheckoutSteps active={1} />
-                <Checkout />
-                <br />
-                <Footer />
+                <Header/>
+                <br/>
+                <CheckoutSteps active={1}/>
+                <Checkout/>
+                <br/>
+                <Footer/>
             </div>
         </>
     )

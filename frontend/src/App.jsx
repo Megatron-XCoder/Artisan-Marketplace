@@ -69,7 +69,7 @@ function App() {
                     <ProfilePage/>
                 </ProtectedRoute>}/>
 
-                <Route path="/shop/preview/:id" element={<ShopPreviewPage />} />
+                <Route path="/shop/preview/:id" element={<ShopPreviewPage/>}/>
 
                 {/* shop Routes */}
                 <Route path="/shop-create" element={<ShopCreatePage/>}/>
@@ -80,8 +80,8 @@ function App() {
 
                 <Route path="/dashboard"
                        element={<ShopProtectedRoute>
-                    <ShopDashboardPage/>
-                </ShopProtectedRoute>}/>
+                           <ShopDashboardPage/>
+                       </ShopProtectedRoute>}/>
 
                 <Route path="/dashboard-create-product"
                        element={<ShopProtectedRoute>
@@ -111,7 +111,6 @@ function App() {
                        element={<ShopProtectedRoute>
                            <ShopAllCoupons/>
                        </ShopProtectedRoute>}/>
-
 
 
             </Routes>

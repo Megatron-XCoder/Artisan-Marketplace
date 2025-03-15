@@ -25,7 +25,7 @@ const AllCoupons = () => {
     useEffect(() => {
         setIsLoading(true);
         axios
-            .get(`${server}/coupon/get-coupon/${shop._id}`, { withCredentials: true })
+            .get(`${server}/coupon/get-coupon/${shop._id}`, {withCredentials: true})
             .then((res) => {
                 setIsLoading(false);
                 setCoupons(res.data.couponCodes || []);
@@ -36,7 +36,7 @@ const AllCoupons = () => {
     }, [shop._id]);
 
     const handleDelete = async (id) => {
-        axios.delete(`${server}/coupon/delete-coupon/${id}`, { withCredentials: true })
+        axios.delete(`${server}/coupon/delete-coupon/${id}`, {withCredentials: true})
             .then((res) => {
                 toast.success("Coupon code deleted successfully!");
                 setCoupons(prev => prev.filter(coupon => coupon._id !== id));
@@ -89,7 +89,8 @@ const AllCoupons = () => {
             {/* Coupons Grid */}
             <div className="mx-4 sm:mx-0">
                 {/* Desktop Header */}
-                <div className="hidden sm:grid sm:grid-cols-4 gap-4 bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b font-medium text-sm text-gray-600 rounded-t-xl">
+                <div
+                    className="hidden sm:grid sm:grid-cols-4 gap-4 bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b font-medium text-sm text-gray-600 rounded-t-xl">
                     <div className="min-w-[150px]">Coupon ID</div>
                     <div className="min-w-[180px]">Code</div>
                     <div className="min-w-[100px]">Value</div>
@@ -140,11 +141,11 @@ const AllCoupons = () => {
 
                                 {/* Actions */}
                                 <div className="flex justify-end sm:justify-normal sm:min-w-[120px]">
-                                <button
+                                    <button
                                         onClick={() => handleDelete(item._id)}
                                         className="inline-flex hover:bg-gray-100 rounded-full p-2 transition-colors group-hover:bg-gray-100 text-red-500 hover:text-red-600"
                                     >
-                                        <AiOutlineDelete className="text-xl" />
+                                        <AiOutlineDelete className="text-xl"/>
                                         <span className="sm:hidden ml-2 text-sm">Delete</span>
                                     </button>
                                 </div>
@@ -156,8 +157,10 @@ const AllCoupons = () => {
 
             {/* Create Coupon Modal */}
             {open && (
-                <div className="fixed top-0 left-0 w-full h-screen bg-black/50 z-[20000] flex items-center justify-center p-4">
-                    <div className="w-full h-[95%] md:h-[90%] max-w-3xl bg-white rounded-2xl p-6 sm:p-8 border overflow-y-scroll md:overflow-y-hidden border-gray-100">
+                <div
+                    className="fixed top-0 left-0 w-full h-screen bg-black/50 z-[20000] flex items-center justify-center p-4">
+                    <div
+                        className="w-full h-[95%] md:h-[90%] max-w-3xl bg-white rounded-2xl p-6 sm:p-8 border overflow-y-scroll md:overflow-y-hidden border-gray-100">
                         <div className="flex justify-between items-center mb-6">
                             <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                                 Create Coupon

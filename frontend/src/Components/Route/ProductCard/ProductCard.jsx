@@ -12,13 +12,13 @@ import ProductDetailsCard from "../ProductDetailsCard/ProductDetailsCard";
 import {backend_url} from "../../../server.jsx";
 // import { useDispatch, useSelector } from "react-redux";
 // import { addToWishlist, removeFromWishlist } from "../../../redux/actions/wishlist";
-// import { addTocart } from "../../../redux/actions/cart";
+// import { addTocart } from "../../../redux/actions/Cart";
 // import Ratings from "../../Products/Ratings";
 // import { toast } from "react-toastify";
 
 const ProductCard = ({data}) => {
     // const { wishlist } = useSelector((state) => state.wishlist);
-    // const { cart } = useSelector((state) => state.cart);
+    // const { Cart } = useSelector((state) => state.Cart);
     const [click, setClick] = useState(false);
     const [open, setOpen] = useState(false);
     // const dispatch = useDispatch();
@@ -43,9 +43,9 @@ const ProductCard = ({data}) => {
 
     // const addToCartHandler = () => {
     //   if (data.stock < 1) return toast.error("Product stock limited!");
-    //   if (cart?.find((i) => i._id === data._id)) return toast.error("Item already in cart!");
+    //   if (Cart?.find((i) => i._id === data._id)) return toast.error("Item already in Cart!");
     //   dispatch(addTocart({ ...data, qty: 1 }));
-    //   toast.success("Item added to cart!");
+    //   toast.success("Item added to Cart!");
     // };
 
     return (
@@ -144,7 +144,7 @@ const ProductCard = ({data}) => {
             >
                 <AiOutlineShoppingCart size={18}/>
                 <span className="font-medium">
-          {/* {data.stock > 0 ? "Add to cart" : "Out of Stock"} */}
+          {/* {data.stock > 0 ? "Add to Cart" : "Out of Stock"} */}
                     Add to cart
         </span>
             </button>

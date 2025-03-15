@@ -3,7 +3,7 @@ import {userReducer} from "./Reducers/user";
 import {shopReducer} from "./Reducers/shop.js";
 import {productReducer} from "./Reducers/product";
 import { eventReducer } from "./Reducers/event";
-// import { cartReducer } from "./Reducers/cart";
+// import { cartReducer } from "./Reducers/Cart";
 // import { wishlistReducer } from "./Reducers/wishlist";
 // import { orderReducer } from "./Reducers/order";
 
@@ -14,7 +14,7 @@ const Store = configureStore({
         shop: shopReducer,
         products: productReducer,
         events: eventReducer,
-        // cart: cartReducer,
+        // Cart: cartReducer,
         // wishlist: wishlistReducer,
         // order: orderReducer,
     },

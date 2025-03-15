@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import {useState} from "react";
+import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
-import { server } from "../../server.jsx";
-import { toast } from "react-toastify";
+import {server} from "../../server.jsx";
+import {toast} from "react-toastify";
 import {useDispatch} from "react-redux";
 import {loadUser} from "../../redux/Actions/user.js";
 
@@ -24,7 +24,7 @@ const Login = () => {
                     email,
                     password,
                 },
-                { withCredentials: true }
+                {withCredentials: true}
             )
             .then((res) => {
                 if (res.data.success === true) {
@@ -51,7 +51,7 @@ const Login = () => {
                     // }
                     // The request was made and the server responded with a non-2xx status code
                     if (error.response.status === 404) {
-                        toast.error(error.response.data.message,{
+                        toast.error(error.response.data.message, {
                             position: "top-right",
                             autoClose: 3000,
                         });
@@ -91,7 +91,8 @@ const Login = () => {
     window.scrollTo(0, 0);
 
     return (
-        <section className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-bl from-violet-600 to-fuchsia-400 dark:from-violet-700 dark:to-fuchsia-500 px-4">
+        <section
+            className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-bl from-violet-600 to-fuchsia-400 dark:from-violet-700 dark:to-fuchsia-500 px-4">
             <h1 className="text-5xl font-bold text-white drop-shadow-md mb-8 text-center">
                 Artisan Marketplace
             </h1>
@@ -117,7 +118,8 @@ const Login = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        <label htmlFor="password"
+                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Password
                         </label>
                         <div className="relative">
@@ -135,9 +137,9 @@ const Login = () => {
                                 className="absolute inset-y-0 right-4 flex items-center cursor-pointer"
                             >
                                 {visible ? (
-                                    <AiOutlineEye className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                                    <AiOutlineEye className="w-5 h-5 text-gray-500 dark:text-gray-400"/>
                                 ) : (
-                                    <AiOutlineEyeInvisible className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                                    <AiOutlineEyeInvisible className="w-5 h-5 text-gray-500 dark:text-gray-400"/>
                                 )}
                             </span>
                         </div>
@@ -153,7 +155,8 @@ const Login = () => {
                                 Remember me
                             </label>
                         </div>
-                        <Link to="/forgot-password" className="text-sm text-violet-600 hover:underline dark:text-violet-400">
+                        <Link to="/forgot-password"
+                              className="text-sm text-violet-600 hover:underline dark:text-violet-400">
                             Forgot password?
                         </Link>
                     </div>

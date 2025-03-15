@@ -1,18 +1,18 @@
 import DashboardHeader from "../../Components/Shop/Layout/DashboardHeader.jsx";
 import DashboardSideBar from "../../Components/Shop/Layout/DashboardSideBar.jsx";
-import AllProducts from "../../components/Shop/AllProducts.jsx";
+import AllProducts from "../../Components/Shop/AllProducts.jsx";
 
 const ShopAllProducts = () => {
     return (
         <>
             <div>
-                <DashboardHeader />
+                <DashboardHeader/>
                 <div>
-                    <DashboardSideBar active={3} />
+                    <DashboardSideBar active={3}/>
                 </div>
                 <div className="flex items-center justify-between w-full">
                     <div className="w-full justify-center flex mb-4 sm:mb-8">
-                        <AllProducts />
+                        <AllProducts/>
                     </div>
                 </div>
             </div>
