@@ -1,11 +1,11 @@
-import ShopDashboardPage from "../pages/Shop/ShopDashboardPage.jsx";
-import ShopHomePage from "../pages/Shop/ShopHomePage.jsx";
-import ShopCreateProduct from "../pages/Shop/ShopCreateProduct.jsx";
-import ShopAllProducts from "../pages/Shop/ShopAllProducts.jsx";
-import ShopCreateEvents from "../pages/Shop/ShopCreateEvents.jsx";
-import ShopAllEvents from "../pages/Shop/ShopAllEvents.jsx";
+import ShopDashboardPage from "../Pages/Shop/ShopDashboardPage.jsx";
+import ShopHomePage from "../Pages/Shop/ShopHomePage.jsx";
+import ShopCreateProduct from "../Pages/Shop/ShopCreateProduct.jsx";
+import ShopAllProducts from "../Pages/Shop/ShopAllProducts.jsx";
+import ShopCreateEvents from "../Pages/Shop/ShopCreateEvents.jsx";
+import ShopAllEvents from "../Pages/Shop/ShopAllEvents.jsx";
 import ShopAllCoupons from "../Pages/Shop/ShopAllCoupons.jsx";
-import ShopPreviewPage from "../pages/Shop/ShopPreviewPage";
+import ShopPreviewPage from "../Pages/Shop/ShopPreviewPage";
 // import ShopAllOrders from "../pages/Shop/ShopAllOrders";
 // import ShopOrderDetails from "../pages/Shop/ShopOrderDetails";
 // import ShopAllRefunds from "../pages/Shop/ShopAllRefunds";
