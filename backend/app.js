@@ -67,7 +67,7 @@ app.use(bodyParser.urlencoded({extended: true, limit: "50mb"}));
 require("dotenv").config();
 
 app.use(cors({
-    origin: [process.env.FRONTEND_URL],
+    origin: [process.env.FRONTEND_URL || "https://artisan-marketplace-web.vercel.app"],
     credentials: true
 }));
 
