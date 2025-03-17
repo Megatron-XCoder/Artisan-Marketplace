@@ -14,6 +14,8 @@ import Wishlist from "../Wishlist/Wishlist.jsx";
 
 const Header = ({activeHeading}) => {
     const {isAuthenticated, user} = useSelector((state) => state.user);
+    const {cart} = useSelector((state) => state.cart);
+    const {allProducts} = useSelector((state) => state.products);
     const [searchTerm, setSearchTerm] = useState("");
     const [searchData, setSearchData] = useState(null);
     const [active, setActive] = useState(false);
@@ -21,7 +23,6 @@ const Header = ({activeHeading}) => {
     const [openWishlist, setOpenWishList] = useState(false);
     const [dropDown, setDropDown] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const {allProducts} = useSelector((state) => state.products);
 
     const searchRef = useRef(null);
 
@@ -156,9 +157,10 @@ const Header = ({activeHeading}) => {
                                     onClick={() => setOpenCart(true)}>
                                     <AiOutlineShoppingCart size={24} className="text-gray-700"/>
                                     <span
-                                        className="absolute -top-1 -right-1 bg-[#3bc177] w-4 h-4 text-white text-xs rounded-full flex items-center justify-center">
-                            1
-                          </span>
+                                        className="absolute -top-1 -right-1 bg-[#3bc177] w-4 h-4 text-white text-xs rounded-full flex items-center justify-center"
+                                    >
+                                        {cart && cart.length}
+                                  </span>
                                 </div>
                                 <div className="flex items-center gap-x-4">
                                     {isAuthenticated ? (
@@ -232,7 +234,7 @@ const Header = ({activeHeading}) => {
                                 >
                                     <AiOutlineShoppingCart size={30} color="white"/>
                                     <span
-                                        className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 text-white text-xs text-center">0</span>
+                                        className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 text-white text-xs text-center">{cart && cart.length}</span>
                                 </div>
                                 <div className="relative cursor-pointer">
                                     {isAuthenticated ? (

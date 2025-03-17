@@ -7,19 +7,19 @@ import {
 } from "react-icons/ai";
 import {RxCross1} from "react-icons/rx";
 import {Link} from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {toast} from "react-toastify";
 import {backend_url} from "../../../server.jsx";
-// import { addTocart } from "../../../redux/actions/Cart";
+import {addToCart} from "../../../redux/actions/cart.js";
 // import {
 //   addToWishlist,
 //   removeFromWishlist,
 // } from "../../../redux/actions/wishlist";
 
 const ProductDetailsCard = ({setOpen, data}) => {
-    // const { Cart } = useSelector((state) => state.Cart);
+    const {cart} = useSelector((state) => state.cart);
     // const { wishlist } = useSelector((state) => state.wishlist);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const [count, setCount] = useState(1);
     const [click, setClick] = useState(false);
     const [select, setSelect] = useState(false);
@@ -34,23 +34,27 @@ const ProductDetailsCard = ({setOpen, data}) => {
     };
 
     const incrementCount = () => {
-        setCount(count + 1);
+        if (count < data.stock) {
+            setCount(count + 1);
+        } else {
+            toast.error("Cannot exceed available stock!");
+        }
     };
-    //
-    // const addToCartHandler = (id) => {
-    //   const isItemExists = Cart && Cart.find((i) => i._id === id);
-    //   if (isItemExists) {
-    //     toast.error("Item already in Cart!");
-    //   } else {
-    //     if (data.stock < count) {
-    //       toast.error("Product stock limited!");
-    //     } else {
-    //       const cartData = { ...data, qty: count };
-    //       dispatch(addTocart(cartData));
-    //       toast.success("Item added to Cart successfully!");
-    //     }
-    //   }
-    // };
+
+    const addToCartHandler = () => {
+        if (data.stock < 1) {
+            toast.error("Product stock limited!");
+            return;
+        }
+        if (cart?.find((i) => i._id === data._id)) {
+            toast.error("Item already in Cart! Please check your cart. ");
+            return;
+        }
+        dispatch(addToCart({...data, qty: count})); // Use `count` instead of hardcoded `qty: 1`
+        toast.success("Item added to Cart!");
+    };
+
+
     //
     // useEffect(() => {
     //   if (wishlist && wishlist.find((i) => i._id === data._id)) {
@@ -175,7 +179,10 @@ const ProductDetailsCard = ({setOpen, data}) => {
 
                                             {/* Add to Cart Button */}
                                             <button
-                                                className="w-full bg-teal-600 text-white py-3 rounded-lg flex items-center justify-center hover:bg-teal-700 transition-colors">
+                                                onClick={addToCartHandler} // Add click handler
+                                                disabled={data.stock < 1} // Disable button if out of stock
+                                                className="w-full bg-teal-600 text-white py-3 rounded-lg flex items-center justify-center hover:bg-teal-700 transition-colors"
+                                            >
                                                 <AiOutlineShoppingCart className="mr-2"/> Add to Cart
                                             </button>
                                         </div>

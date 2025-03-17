@@ -3,20 +3,27 @@ import {Dialog, DialogBackdrop, DialogPanel, DialogTitle} from "@headlessui/reac
 import {RxCross1} from "react-icons/rx";
 import {HiOutlineMinus, HiPlus} from "react-icons/hi";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {backend_url} from "../../server.jsx";
+import {toast} from "react-toastify";
+import {addToCart, removeFromCart} from "../../redux/Actions/cart.js";
 
 // eslint-disable-next-line react/prop-types
 const Cart = ({setOpenCart}) => {
-    const cartData = [
-        {name: "Product 1", description: "Product 1 Description", price: 100},
-        {name: "Product 2", description: "Product 2 Description", price: 200},
-        {name: "Product 3", description: "Product 3 Description", price: 300},
-        {name: "Product 3", description: "Product 3 Description", price: 300},
-        {name: "Product 3", description: "Product 3 Description", price: 300},
-        {name: "Product 3", description: "Product 3 Description", price: 300},
-        {name: "Product 3", description: "Product 3 Description", price: 300},
-    ];
+    const {cart} = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
 
-    const totalPrice = cartData.reduce((acc, item) => acc + item.price, 0);
+
+    const totalPrice = cart.reduce((acc, item) => acc + item.discountPrice * item.qty, 0);
+
+    const removeFromCartHandler = (data) => {
+        toast.success("Item removed from cart!");
+        dispatch(removeFromCart(data));
+    };
+
+    const quantityChangeHandler = (data) => {
+        dispatch(addToCart(data));
+    };
 
     return (
         <Dialog open={true} onClose={() => setOpenCart(false)} className="relative z-10">
@@ -36,7 +43,7 @@ const Cart = ({setOpenCart}) => {
                                 <div className="border-b border-gray-200 px-4 py-6 sm:px-6">
                                     <div className="flex items-start justify-between">
                                         <DialogTitle className="text-lg font-medium text-gray-900">
-                                            Shopping Cart [ {cartData.length} Items ]
+                                            Shopping Cart [ {cart.length} Items ]
                                         </DialogTitle>
 
                                         <button
@@ -52,22 +59,54 @@ const Cart = ({setOpenCart}) => {
                                 </div>
 
                                 <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-                                    <div className="">
+                                    {cart.length === 0 ? (
+                                        // Display this when the cart is empty
+                                        <div className="flex flex-col items-center justify-center h-full">
+                                            <img
+                                                src="https://img.freepik.com/free-vector/empty-shopping-basket-concept-illustration_114360-29795.jpg"
+                                                alt="Empty Cart"
+                                                className="w-56 h-56 mb-4 mix-blend-multiply"
+                                            />
+
+                                            <p className="text-lg text-gray-600">No products in the cart</p>
+                                            <div className="flex justify-center text-center text-sm text-gray-500">
+                                                <p>
+                                                    <Link to={"/products"}
+                                                          className="font-medium text-indigo-600 hover:text-indigo-500">
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setOpenCart(false)}
+                                                            className="font-medium text-pink-600 hover:text-indigo-500"
+                                                        >
+                                                            Continue Shopping
+                                                            <span aria-hidden="true"> &rarr;</span>
+                                                        </button>
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        // Display this when the cart has items
                                         <div className="flow-root">
                                             <ul className="-my-6 divide-y divide-gray-200">
-                                                {cartData.map((item, index) => (
-                                                    <CartSingle key={index} data={item}/>
+                                                {cart.map((item, index) => (
+                                                    <CartSingle
+                                                        key={index}
+                                                        data={item}
+                                                        removeFromCartHandler={removeFromCartHandler}
+                                                        quantityChangeHandler={quantityChangeHandler}
+                                                    />
                                                 ))}
                                             </ul>
                                         </div>
-                                    </div>
+                                    )}
                                 </div>
 
 
                                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                         <p>Subtotal</p>
-                                        <p>${totalPrice}</p>
+                                        <p>$ {totalPrice}</p>
                                     </div>
                                     <p className="mt-0.5 text-sm text-gray-500">
                                         Shipping and taxes calculated at checkout.
@@ -77,7 +116,7 @@ const Cart = ({setOpenCart}) => {
                                             to="/checkout"
                                             className="flex items-center justify-center rounded-md bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                                         >
-                                            Checkout Now (USD${totalPrice})
+                                            Checkout Now (USD $ {totalPrice})
                                         </Link>
                                     </div>
                                     <div className="mt-3 flex justify-center text-center text-sm text-gray-500">
@@ -107,16 +146,32 @@ const Cart = ({setOpenCart}) => {
 };
 
 // eslint-disable-next-line react/prop-types
-const CartSingle = ({data}) => {
-    const [quantity, setQuantity] = useState(1);
+const CartSingle = ({data, quantityChangeHandler, removeFromCartHandler}) => {
+    const [quantity, setQuantity] = useState(data.qty);
+
+    const increment = (data) => {
+        if (data.stock === quantity) {
+            toast.error("Product stock limited!");
+        } else {
+            setQuantity(quantity + 1);
+            const updateCartData = {...data, qty: quantity + 1};
+            quantityChangeHandler(updateCartData);
+        }
+    };
+
+    const decrement = (data) => {
+        setQuantity(quantity === 1 ? 1 : quantity - 1);
+        const updateCartData = {...data, qty: quantity === 1 ? 1 : quantity - 1};
+        quantityChangeHandler(updateCartData);
+    };
 
 
     return (
         <li className="flex bg-gray-100 rounded-lg hover:scale-105 my-3 p-3">
             <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                 <img
-                    src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt={data.description}
+                    src={`${backend_url}uploads/${data?.images?.[0]}`}
+                    alt={data.name}
                     className="h-full w-full object-cover"
                 />
             </div>
@@ -125,29 +180,31 @@ const CartSingle = ({data}) => {
                 <div>
                     <div className="flex justify-between text-base font-medium text-gray-900">
                         <h3>{data.name}</h3>
-                        <p className="ml-4">${data.price}</p>
+                        <p className="ml-4">$ {data.discountPrice}</p>
                     </div>
-                    <p className="mt-1 text-sm text-gray-500">{data.description}</p>
+                    <p className="mt-1 text-sm text-gray-500">{data.description.length > 28 ? `${data.description.slice(0, 28)}...` : data.description}</p>
                 </div>
 
-                <div className="flex flex-1 items-end justify-between text-sm">
+                <div className="flex flex-1 items-end justify-between text-sm mt-2">
                     <div className="flex items-center gap-2">
                         <button
-                            onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                            onClick={() => decrement(data)}
                             className="rounded-md bg-gray-200 p-1.5 hover:bg-gray-200"
                         >
                             <HiOutlineMinus className="h-4 w-4"/>
                         </button>
                         <span className="text-gray-900 text-lg">{quantity}</span>
                         <button
-                            onClick={() => setQuantity(quantity + 1)}
+                            onClick={() => increment(data)}
                             className="rounded-md bg-gray-200 p-1.5 hover:bg-gray-200"
                         >
                             <HiPlus className="h-4 w-4"/>
                         </button>
                     </div>
 
-                    <button className="font-medium text-indigo-600 hover:text-indigo-500">
+                    <button className="font-medium text-indigo-600 hover:text-indigo-500"
+                            onClick={() => removeFromCartHandler(data)}
+                    >
                         Remove
                     </button>
                 </div>
