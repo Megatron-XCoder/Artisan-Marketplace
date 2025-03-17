@@ -3,15 +3,46 @@ import {Link, useNavigate} from "react-router-dom";
 import {AiFillHeart, AiOutlineHeart, AiOutlineMessage, AiOutlineShoppingCart} from "react-icons/ai";
 import styles from "../../Styles/Styles.jsx";
 import {backend_url} from "../../server.jsx";
+import {toast} from "react-toastify";
+import {addToCart} from "../../redux/Actions/cart.js";
+import {useDispatch, useSelector} from "react-redux";
 
 const ProductDetails = ({data, products}) => {
     const [count, setCount] = useState(1);
     const [click, setClick] = useState(false);
     const [select, setSelect] = useState(0);
+    const {cart} = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const incrementCount = () => setCount(count + 1);
-    const decrementCount = () => count > 1 && setCount(count - 1);
+    const decrementCount = () => {
+        if (count > 1) {
+            setCount(count - 1);
+        }
+    };
+
+    const incrementCount = () => {
+        if (count < data.stock) {
+            setCount(count + 1);
+        } else {
+            toast.error("Cannot exceed available stock!");
+        }
+    };
+
+    const addToCartHandler = () => {
+        if (data.stock < 1) {
+            toast.error("Product stock limited!");
+            return;
+        }
+        if (cart?.find((i) => i._id === data._id)) {
+            toast.error("Item already in Cart! Please check your cart. ");
+            return;
+        }
+        dispatch(addToCart({...data, qty: count})); // Use `count` instead of hardcoded `qty: 1`
+        toast.success("Item added to Cart!");
+    };
+
+
     const handleMessageSubmit = () => navigate("/inbox?conversation=12356789");
 
     return (
@@ -102,7 +133,10 @@ const ProductDetails = ({data, products}) => {
                                 </button>
 
                                 <button
-                                    className="w-full flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none focus:ring-4 focus:ring-primary-300">
+                                    onClick={addToCartHandler} // Add click handler
+                                    disabled={data.stock < 1} // Disable button if out of stock
+                                    className="w-full flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none focus:ring-4 focus:ring-primary-300"
+                                >
                                     <AiOutlineShoppingCart className="w-5 h-5 mr-2"/>
                                     Add to cart
                                 </button>
