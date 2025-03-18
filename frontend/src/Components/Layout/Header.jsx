@@ -15,6 +15,7 @@ import Wishlist from "../Wishlist/Wishlist.jsx";
 const Header = ({activeHeading}) => {
     const {isAuthenticated, user} = useSelector((state) => state.user);
     const {cart} = useSelector((state) => state.cart);
+    const {wishlist} = useSelector((state) => state.wishlist);
     const {allProducts} = useSelector((state) => state.products);
     const [searchTerm, setSearchTerm] = useState("");
     const [searchData, setSearchData] = useState(null);
@@ -149,7 +150,7 @@ const Header = ({activeHeading}) => {
                                     <AiOutlineHeart size={24} className="text-gray-700"/>
                                     <span
                                         className="absolute -top-1 -right-1 bg-[#3bc177] w-4 h-4 text-white text-xs rounded-full flex items-center justify-center">
-                          0
+                                        {wishlist && wishlist.length}
                         </span>
                                 </div>
                                 <div
@@ -226,7 +227,7 @@ const Header = ({activeHeading}) => {
                                 >
                                     <AiOutlineHeart size={30} color="white"/>
                                     <span
-                                        className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 text-white text-xs text-center">0</span>
+                                        className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 text-white text-xs text-center">{wishlist && wishlist.length}</span>
                                 </div>
                                 <div
                                     className="relative cursor-pointer"

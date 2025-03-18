@@ -11,14 +11,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {toast} from "react-toastify";
 import {backend_url} from "../../../server.jsx";
 import {addToCart} from "../../../redux/actions/cart.js";
-// import {
-//   addToWishlist,
-//   removeFromWishlist,
-// } from "../../../redux/actions/wishlist";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../../../redux/actions/wishlist";
 
 const ProductDetailsCard = ({setOpen, data}) => {
     const {cart} = useSelector((state) => state.cart);
-    // const { wishlist } = useSelector((state) => state.wishlist);
+    const { wishlist } = useSelector((state) => state.wishlist);
     const dispatch = useDispatch();
     const [count, setCount] = useState(1);
     const [click, setClick] = useState(false);
@@ -55,24 +55,26 @@ const ProductDetailsCard = ({setOpen, data}) => {
     };
 
 
-    //
-    // useEffect(() => {
-    //   if (wishlist && wishlist.find((i) => i._id === data._id)) {
-    //     setClick(true);
-    //   } else {
-    //     setClick(false);
-    //   }
-    // }, [wishlist]);
-    //
-    // const removeFromWishlistHandler = (data) => {
-    //   setClick(!click);
-    //   dispatch(removeFromWishlist(data));
-    // };
-    //
-    // const addToWishlistHandler = (data) => {
-    //   setClick(!click);
-    //   dispatch(addToWishlist(data));
-    // };
+
+    useEffect(() => {
+      if (wishlist && wishlist.find((i) => i._id === data._id)) {
+        setClick(true);
+      } else {
+        setClick(false);
+      }
+    }, [wishlist]);
+
+    const removeFromWishlistHandler = (data) => {
+        setClick(!click);
+        dispatch(removeFromWishlist(data));
+        toast.error("Item removed to Wishlist!");
+    };
+
+    const addToWishlistHandler = (data) => {
+        setClick(!click);
+        dispatch(addToWishlist(data));
+        toast.success("Item added to Wishlist!");
+    };
 
     return (
         <div className="bg-[#fff]">
@@ -136,13 +138,13 @@ const ProductDetailsCard = ({setOpen, data}) => {
 
                                             {/* Pricing Section */}
                                             <div className="flex items-center mb-6">
-                            <span className="text-2xl font-bold text-black">
-                              ${data.discountPrice}
-                            </span>
+                                                <span className="text-2xl font-bold text-black">
+                                                  ${data.discountPrice}
+                                                </span>
                                                 {data.originalPrice && (
                                                     <span className="ml-3 text-red-500 line-through">
-                                    ${data.originalPrice}
-                                  </span>
+                                                        ${data.originalPrice}
+                                                    </span>
                                                 )}
                                             </div>
 
@@ -169,9 +171,21 @@ const ProductDetailsCard = ({setOpen, data}) => {
                                                     onClick={() => setClick(!click)}
                                                 >
                                                     {click ? (
-                                                        <AiFillHeart size={28} className="text-red-600"/>
+                                                        <AiFillHeart
+                                                            size={28}
+                                                            className="cursor-pointer hover:scale-110 transition-transform"
+                                                            onClick={() => removeFromWishlistHandler(data)}
+                                                            color="red"
+                                                            title="Remove from wishlist"
+                                                        />
                                                     ) : (
-                                                        <AiOutlineHeart size={28}/>
+                                                        <AiOutlineHeart
+                                                            size={28}
+                                                            className="cursor-pointer hover:scale-110 transition-transform"
+                                                            onClick={() => addToWishlistHandler(data)}
+                                                            color="gray"
+                                                            title="Add to wishlist"
+                                                        />
                                                     )}
                                                     <span className="md:ml-2 text-md">Add to Favorites</span>
                                                 </button>

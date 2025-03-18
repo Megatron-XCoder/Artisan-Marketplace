@@ -4,7 +4,7 @@ import {shopReducer} from "./Reducers/shop.js";
 import {productReducer} from "./Reducers/product";
 import {eventReducer} from "./Reducers/event";
 import {cartReducer} from "./Reducers/cart.js";
-// import { wishlistReducer } from "./Reducers/wishlist";
+import {wishlistReducer} from "./Reducers/wishlist.js";
 // import { orderReducer } from "./Reducers/order";
 
 
@@ -15,7 +15,7 @@ const Store = configureStore({
         products: productReducer,
         events: eventReducer,
         cart: cartReducer,
-        // wishlist: wishlistReducer,
+        wishlist: wishlistReducer,
         // order: orderReducer,
     },
 });

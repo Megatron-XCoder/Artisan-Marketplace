@@ -1,4 +1,4 @@
-import {useState} from "react";
+      import {useState} from "react";
 import {Dialog, DialogBackdrop, DialogPanel, DialogTitle} from "@headlessui/react";
 import {RxCross1} from "react-icons/rx";
 import {HiOutlineMinus, HiPlus} from "react-icons/hi";
@@ -29,7 +29,7 @@ const Cart = ({setOpenCart}) => {
         <Dialog open={true} onClose={() => setOpenCart(false)} className="relative z-10">
             <DialogBackdrop
                 transition
-                className="fixed inset-0 bg-gray-200/30 transition-opacity duration-all ease-in-out"
+                className="fixed inset-0 bg-black/20 transition-opacity duration-all ease-in-out"
             />
 
             <div className="fixed inset-0 overflow-hidden">
@@ -146,7 +146,7 @@ const Cart = ({setOpenCart}) => {
 };
 
 // eslint-disable-next-line react/prop-types
-const CartSingle = ({data, quantityChangeHandler, removeFromCartHandler}) => {
+const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
     const [quantity, setQuantity] = useState(data.qty);
 
     const increment = (data) => {
@@ -154,14 +154,14 @@ const CartSingle = ({data, quantityChangeHandler, removeFromCartHandler}) => {
             toast.error("Product stock limited!");
         } else {
             setQuantity(quantity + 1);
-            const updateCartData = {...data, qty: quantity + 1};
+            const updateCartData = { ...data, qty: quantity + 1 };
             quantityChangeHandler(updateCartData);
         }
     };
 
     const decrement = (data) => {
         setQuantity(quantity === 1 ? 1 : quantity - 1);
-        const updateCartData = {...data, qty: quantity === 1 ? 1 : quantity - 1};
+        const updateCartData = { ...data, qty: quantity === 1 ? 1 : quantity - 1 };
         quantityChangeHandler(updateCartData);
     };
 
@@ -180,9 +180,9 @@ const CartSingle = ({data, quantityChangeHandler, removeFromCartHandler}) => {
                 <div>
                     <div className="flex justify-between text-base font-medium text-gray-900">
                         <h3>{data.name}</h3>
-                        <p className="ml-4">$ {data.discountPrice}</p>
+                        <p className="ml-4">${data.discountPrice}</p>
                     </div>
-                    <p className="mt-1 text-sm text-gray-500">{data.description.length > 28 ? `${data.description.slice(0, 28)}...` : data.description}</p>
+                    <p className="mt-1 text-sm text-gray-500">{data.description.length > 25 ? `${data.description.slice(0, 25)}...` : data.description}</p>
                 </div>
 
                 <div className="flex flex-1 items-end justify-between text-sm mt-2">

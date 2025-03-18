@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {AiFillHeart, AiOutlineHeart, AiOutlineMessage, AiOutlineShoppingCart} from "react-icons/ai";
 import styles from "../../Styles/Styles.jsx";
@@ -6,12 +6,14 @@ import {backend_url} from "../../server.jsx";
 import {toast} from "react-toastify";
 import {addToCart} from "../../redux/Actions/cart.js";
 import {useDispatch, useSelector} from "react-redux";
+import {addToWishlist, removeFromWishlist} from "../../redux/Actions/wishlist.js";
 
 const ProductDetails = ({data, products}) => {
     const [count, setCount] = useState(1);
     const [click, setClick] = useState(false);
     const [select, setSelect] = useState(0);
     const {cart} = useSelector((state) => state.cart);
+    const {wishlist} = useSelector((state) => state.wishlist);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -40,6 +42,25 @@ const ProductDetails = ({data, products}) => {
         }
         dispatch(addToCart({...data, qty: count})); // Use `count` instead of hardcoded `qty: 1`
         toast.success("Item added to Cart!");
+    };
+
+    useEffect(() => {
+        if (wishlist && wishlist.find((i) => i._id === data._id)) {
+            setClick(true);
+        } else {
+            setClick(false);
+        }
+    }, [wishlist, data._id]); // Added data._id to dependency array
+
+    const handleWishlist = () => {
+        if (click) {
+            dispatch(removeFromWishlist(data)); // Pass ID instead of full object
+            toast.success("Item removed from Wishlist!");
+        } else {
+            dispatch(addToWishlist(data));
+            toast.success("Item added to Wishlist!");
+        }
+        setClick(!click);
     };
 
 
@@ -122,14 +143,24 @@ const ProductDetails = ({data, products}) => {
                             <div className="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
                                 <button
                                     className="flex items-center justify-center w-full py-2.5 px-5 mb-4 sm:mb-0 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100"
-                                    onClick={() => setClick(!click)}
+                                    onClick={handleWishlist} // Use single handler
                                 >
                                     {click ? (
-                                        <AiFillHeart className="w-5 h-5 mr-2 text-red-500"/>
+                                        <AiFillHeart
+                                            size={20}
+                                            className="cursor-pointer mr-2 hover:scale-110 transition-transform"
+                                            color="red"
+                                            title="Remove from wishlist"
+                                        />
                                     ) : (
-                                        <AiOutlineHeart className="w-5 h-5 mr-2"/>
+                                        <AiOutlineHeart
+                                            size={20}
+                                            className="cursor-pointer mr-2 hover:scale-110 transition-transform"
+                                            color="gray"
+                                            title="Add to wishlist"
+                                        />
                                     )}
-                                    Add to favorites
+                                    {click ? "Remove from favorites" : "Add to favorites"}
                                 </button>
 
                                 <button
