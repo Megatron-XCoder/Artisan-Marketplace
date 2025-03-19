@@ -11,15 +11,7 @@ const ProtectedRoute = ({children}) => {
         )
     } else {
         if (!isAuthenticated) {
-            toast.info(`Please login to Continue`, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.info(`Please login to Continue`);
             return <Navigate to="/login" replace/>;
         }
         return children;

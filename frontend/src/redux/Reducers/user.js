@@ -1,10 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
-  loading: true,
-  // loading: false,
-  // user: null,
-  // error: null,
+    loading: true,
+    isAuthenticated: false,
+    user: null,
+    error: null,
+    successMessage: null,
 };
 
 export const userReducer = createReducer(initialState, (builder) => {
@@ -21,6 +22,25 @@ export const userReducer = createReducer(initialState, (builder) => {
         state.loading = false;
         state.error = action.payload;
         state.isAuthenticated = false;
+      })
+
+      // update user information
+      .addCase("updateUserInfoRequest", (state) => {
+          state.loading = true;
+      })
+      .addCase("updateUserInfoSuccess", (state, action) => {
+          state.loading = false;
+          state.user = action.payload;
+          state.successMessage = "Profile updated successfully"; // Set success message
+      })
+      .addCase("updateUserInfoFailed", (state, action) => {
+          state.loading = false;
+          state.error = action.payload;
+      })
+
+
+      .addCase("clearMessages", (state) => {
+          state.successMessage = null;
       })
       .addCase("clearErrors", (state) => {
         state.error = null;
