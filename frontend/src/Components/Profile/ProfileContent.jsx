@@ -6,29 +6,30 @@ import {useEffect, useState} from "react";
 import {Country, State} from "country-state-city";
 import {HiHome, HiLocationMarker, HiOfficeBuilding} from "react-icons/hi";
 import {toast} from "react-toastify";
-import {updateUserInformation} from "../../redux/Actions/user.js";
+import {deleteUserAddress, updateUserAddress, updateUserInformation} from "../../redux/Actions/user.js";
 import {RxCross1} from "react-icons/rx";
 
 
-const ProfileContent = ({ active }) => {
-    const { user, successMessage } = useSelector((state) => state.user);
+const ProfileContent = ({active}) => {
+    const {user, successMessage} = useSelector((state) => state.user);
     const [name, setName] = useState(user?.name || "");
     const [email, setEmail] = useState(user?.email || "");
     const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber || "");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (successMessage) {
-            toast.success(successMessage);
-            dispatch({ type: "clearMessages" });
-        }
-    }, [successMessage, dispatch]);
-
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(updateUserInformation(name, email, phoneNumber, password));
     };
+
+    useEffect(() => {
+        if (successMessage) {
+            toast.success(successMessage);
+            dispatch({type: "clearMessages"});
+            window.location.reload();
+        }
+    }, [successMessage, dispatch]);
 
     return (
         <>
@@ -61,7 +62,8 @@ const ProfileContent = ({ active }) => {
                             <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2">
                                 {/* Name & Email */}
                                 <div className="space-y-2">
-                                    <label className="block text-sm sm:text-base text-gray-700 font-medium">Full Name</label>
+                                    <label className="block text-sm sm:text-base text-gray-700 font-medium">Full
+                                        Name</label>
                                     <input
                                         type="text"
                                         className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
@@ -72,7 +74,8 @@ const ProfileContent = ({ active }) => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="block text-sm sm:text-base text-gray-700 font-medium">Email Address</label>
+                                    <label className="block text-sm sm:text-base text-gray-700 font-medium">Email
+                                        Address</label>
                                     <input
                                         type="email"
                                         className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
@@ -86,7 +89,8 @@ const ProfileContent = ({ active }) => {
                             {/* Phone & Zip Code */}
                             <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2">
                                 <div className="space-y-2">
-                                    <label className="block text-sm sm:text-base text-gray-700 font-medium">Phone Number</label>
+                                    <label className="block text-sm sm:text-base text-gray-700 font-medium">Phone
+                                        Number</label>
                                     <input
                                         type="number"
                                         placeholder={"Phone Number"}
@@ -98,7 +102,8 @@ const ProfileContent = ({ active }) => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="block text-sm sm:text-base text-gray-700 font-medium">Password</label>
+                                    <label
+                                        className="block text-sm sm:text-base text-gray-700 font-medium">Password</label>
                                     <input
                                         type="password"
                                         placeholder={"Enter password to update"}
@@ -597,7 +602,7 @@ const PaymentMethod = () => {
 };
 
 const Address = () => {
-    const { user } = useSelector((state) => state.user);
+    const {user} = useSelector((state) => state.user);
     const [open, setOpen] = useState(false);
     const [country, setCountry] = useState("");
     const [city, setCity] = useState("");
@@ -608,9 +613,9 @@ const Address = () => {
     const dispatch = useDispatch();
 
     const addressTypeData = [
-        { name: `Default` },
-        { name: `Home` },
-        { name: `Office` },
+        {name: `Default`},
+        {name: `Home`},
+        {name: `Office`},
     ];
 
     const handleSubmit = async (e) => {
@@ -619,10 +624,10 @@ const Address = () => {
             toast.error(`Please fill all fields marked with *`);
             return;
         }
-        dispatch(updateUserAddress(country, city, zipCode, address1, address2, addressType));
+        dispatch(updateUserAddress(country, city, address1, address2, zipCode, addressType));
         setOpen(false);
         // Reset form fields
-        [setCountry, setCity, setZipCode, setAddress1, setAddress2, setAddressType].forEach(fn => fn(""));
+        [setCountry, setCity, setAddress1, setAddress2, setZipCode, setAddressType].forEach(fn => fn(""));
     };
 
     const handleDelete = (item) => {
@@ -634,7 +639,8 @@ const Address = () => {
             {/* Modal */}
             {open && (
                 <div className="fixed w-full h-screen bg-black/40 top-0 left-0 flex items-center justify-center z-50">
-                    <div className="w-[90%] md:w-[35%] h-[88vh] bg-white rounded-2xl shadow-xl relative overflow-y-scroll">
+                    <div
+                        className="w-[90%] md:w-[35%] h-[88vh] bg-white rounded-2xl shadow-xl relative overflow-y-scroll">
                         <div className="w-full flex p-3 justify-end">
                             <RxCross1
                                 size={30}
@@ -669,14 +675,14 @@ const Address = () => {
                             {/* City Field */}
                             <div className="w-full pb-4">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    City <span className="text-red-500">*</span>
+                                    State <span className="text-red-500">*</span>
                                 </label>
                                 <select
                                     value={city}
                                     onChange={(e) => setCity(e.target.value)}
                                     className="w-full p-2 border placeholder-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 >
-                                    <option value="">Select City</option>
+                                    <option value="">Select State</option>
                                     {State &&
                                         State.getStatesOfCountry(country).map((item) => (
                                             <option key={item.isoCode} value={item.name}>
@@ -778,22 +784,23 @@ const Address = () => {
                 </button>
             </div>
 
-            <div className="lg:grid md:grid-cols-2 md:gap-56">
+            <div className="lg:grid md:grid-cols-2 md:gap-x-20">
                 {user?.addresses?.map((address, index) => (
-                    <div key={index} className="w-full bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 group mb-6">
+                    <div key={index}
+                         className="w-full bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 group mb-6">
                         <div className="flex flex-col sm:flex-row justify-between items-start">
                             <div className="flex items-center mb-4 sm:mb-0">
                                 <div className={`${
                                     address.addressType === "Home" ? "bg-blue-50"
                                         : address.addressType === "Office" ? "bg-purple-50"
-                                            : "bg-gray-100"
+                                            : "bg-teal-50"
                                 } p-3 rounded-lg mr-4`}>
                                     {address.addressType === "Home" ? (
                                         <HiHome className="text-blue-600 text-xl"/>
                                     ) : address.addressType === "Office" ? (
                                         <HiOfficeBuilding className="text-purple-600 text-xl"/>
                                     ) : (
-                                        <HiLocationMarker className="text-gray-600 text-xl"/>
+                                        <HiLocationMarker className="text-teal-600 text-xl"/>
                                     )}
                                 </div>
                                 <div>
@@ -832,10 +839,14 @@ const Address = () => {
 
             {user?.addresses?.length === 0 && (
                 <div className="text-center py-12">
-                    <div className="inline-block p-6 bg-gray-50 rounded-2xl mb-4">
-                        <HiLocationMarker className="text-4xl text-gray-400" />
+                    <div className="inline-block p-6 rounded-2xl">
+                        <img
+                            src="https://img.freepik.com/free-vector/current-location-concept-illustration_114360-4406.jpg"
+                            alt="Empty Cart"
+                            className="w-72 h-72 mix-blend-multiply"
+                        />
                     </div>
-                    <h5 className="text-gray-500 font-medium">
+                    <h5 className="text-gray-500 text-lg md:text-2xl font-medium">
                         No saved addresses found
                     </h5>
                 </div>
