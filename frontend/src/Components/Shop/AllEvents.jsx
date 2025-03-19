@@ -11,11 +11,13 @@ const AllEvents = () => {
 
     useEffect(() => {
         dispatch(getAllEventsShop(shop._id));
-    }, [dispatch]);
+    }, [dispatch, shop._id]);  // Add shop._id as dependency
 
     const handleDelete = (id) => {
-        dispatch(deleteEvent(id));
-        window.location.reload();
+        dispatch(deleteEvent(id))
+            .then(() => {
+                dispatch(getAllEventsShop(shop._id));  // Refresh events list
+            });
     };
 
     return (

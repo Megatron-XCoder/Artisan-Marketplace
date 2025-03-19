@@ -816,6 +816,7 @@ const Address = () => {
                             <div className="flex-1 sm:px-8">
                                 <div className="text-gray-700">
                                     <p>{address.address1}</p>
+                                    <p>{address.address2}</p>
                                     <p>{address.city}, {address.country}</p>
                                     <p>{address.zipCode}</p>
                                 </div>

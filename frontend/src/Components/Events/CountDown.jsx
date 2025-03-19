@@ -1,25 +1,34 @@
-import axios from "axios";
 import {useEffect, useState} from "react";
-import {server} from "../../server.jsx";
+import {useDispatch} from "react-redux";
+import {deleteEvent} from "../../redux/Actions/event.js";
 
-const CountDown = ({data}) => {
+const CountDown = ({ data }) => {
+    const dispatch = useDispatch();
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+    const [deleted, setDeleted] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setTimeLeft(calculateTimeLeft());
         }, 1000);
 
-        if (
+        if (!deleted &&
             typeof timeLeft.days === "undefined" &&
             typeof timeLeft.hours === "undefined" &&
             typeof timeLeft.minutes === "undefined" &&
             typeof timeLeft.seconds === "undefined"
         ) {
-            axios.delete(`${server}/event/delete-shop-event/${data._id}`);
+            dispatch(deleteEvent(data._id))
+                .then(() => {
+                    setDeleted(true);
+                })
+                .catch((error) => {
+                    console.error("Delete event failed:", error);
+                });
         }
+
         return () => clearTimeout(timer);
-    });
+    }, [timeLeft, deleted, dispatch, data._id]);
 
     function calculateTimeLeft() {
         const difference = +new Date(data.endDate) - +new Date();

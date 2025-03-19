@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {AiOutlineShoppingCart} from "react-icons/ai";
 import {backend_url} from "../../server.jsx";
 
-const EventCard = ({active, data}) => {
+const EventCard = ({ active, data }) => {
     // Check if data is undefined or null
     if (!data) {
         return (
@@ -78,7 +78,7 @@ const EventCard = ({active, data}) => {
                                     ⏳ Hurry up! Sale ends in
                                 </h3>
                                 <div className="flex justify-center">
-                                    <CountDown data={data}/>
+                                    <CountDown data={data} />
                                 </div>
                             </div>
                         </div>

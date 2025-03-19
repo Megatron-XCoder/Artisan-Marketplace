@@ -1,25 +1,25 @@
 import {useState} from "react";
 import Header from "../Components/Layout/Header";
-// import Loader from "../components/Layout/Loader";
+import Loader from "../components/Layout/Loader";
 import ProfileSideBar from "../Components/Profile/ProfileSidebar";
 import ProfileContent from "../Components/Profile/ProfileContent";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const ProfilePage = () => {
-    // const { loading } = useSelector((state) => state.user);
+    const { loading } = useSelector((state) => state.user);
     const [active, setActive] = useState(1);
 
     return (
-        // <div>
-        //   {loading ? (
-        //     <Loader />
-        //   ) : (
+        <div>
+          {loading ? (
+            <Loader />
+          ) : (
         <>
             <Header/>
             <div className="w-11/12 mx-auto bg-[#f5f5f5] sm:py-5">
                 <div className="flex flex-col 800px:grid 800px:grid-cols-[335px_1fr] gap-3">
                     {/* Sidebar on top in mobile view */}
-                    <div className="sticky top-[70px] h-fit z-10 sm:mb-0">
+                    <div className="relative top-[10px] h-fit z-10 sm:mb-0">
                         <ProfileSideBar active={active} setActive={setActive}/>
                     </div>
 
@@ -31,8 +31,8 @@ const ProfilePage = () => {
             </div>
         </>
 
-        //   )}
-        // </div>
+          )}
+        </div>
     );
 };
 

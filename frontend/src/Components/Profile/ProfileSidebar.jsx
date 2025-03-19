@@ -5,12 +5,10 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {server} from "../../server";
 import {toast} from "react-toastify";
-// import { useSelector } from "react-redux";
 
 const ProfileSidebar = ({setActive, active}) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
-    // const {user} = useSelector((state) => state.user);
 
 
     const logoutHandler = () => {
@@ -58,7 +56,10 @@ const ProfileSidebar = ({setActive, active}) => {
                             <li>
                                 <div
                                     className="flex items-center p-2 text-gray-500 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                    onClick={() => setActive(1)}
+                                    onClick={() => {
+                                        setActive(1);
+                                        setIsMobileMenuOpen(false);
+                                    }}
                                 >
                                     <svg
                                         className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -75,7 +76,10 @@ const ProfileSidebar = ({setActive, active}) => {
                             <li>
                                 <div
                                     className="flex items-center p-2 text-gray-500 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                    onClick={() => setActive(2)}
+                                    onClick={() => {
+                                        setActive(2);
+                                        setIsMobileMenuOpen(false);
+                                    }}
                                 >
                                     <svg
                                         className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -92,7 +96,10 @@ const ProfileSidebar = ({setActive, active}) => {
                             <li>
                                 <div
                                     className="flex items-center p-2 text-gray-500 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                    onClick={() => setActive(3)}
+                                    onClick={() => {
+                                        setActive(3);
+                                        setIsMobileMenuOpen(false);
+                                    }}
                                 >
                                     <svg
                                         className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -109,7 +116,10 @@ const ProfileSidebar = ({setActive, active}) => {
                             <li>
                                 <div
                                     className="flex items-center p-2 text-gray-500 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                    onClick={() => setActive(4) || navigate("/inbox")}
+                                    onClick={() => {
+                                        setActive(4) || navigate("/inbox")
+                                        setIsMobileMenuOpen(false);
+                                    }}
                                 >
                                     <svg
                                         className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -126,7 +136,10 @@ const ProfileSidebar = ({setActive, active}) => {
                             <li>
                                 <div
                                     className="flex items-center p-2 text-gray-500 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                    onClick={() => setActive(5)}
+                                    onClick={() => {
+                                        setActive(5);
+                                        setIsMobileMenuOpen(false);
+                                    }}
                                 >
                                     <svg
                                         className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -144,7 +157,10 @@ const ProfileSidebar = ({setActive, active}) => {
                             <li>
                                 <div
                                     className="flex items-center p-2 text-gray-500 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                    onClick={() => setActive(6)}
+                                    onClick={() => {
+                                        setActive(6);
+                                        setIsMobileMenuOpen(false);
+                                    }}
                                 >
                                     <svg
                                         className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -165,7 +181,10 @@ const ProfileSidebar = ({setActive, active}) => {
                             <li>
                                 <div
                                     className="flex items-center p-2 text-gray-500 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                    onClick={() => setActive(7)}
+                                    onClick={() => {
+                                        setActive(7);
+                                        setIsMobileMenuOpen(false);
+                                    }}
                                 >
                                     <svg
                                         className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -182,7 +201,10 @@ const ProfileSidebar = ({setActive, active}) => {
                             <li>
                                 <div
                                     className="flex items-center p-2 text-gray-500 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                    onClick={() => setActive(8) || logoutHandler()}
+                                    onClick={() => {
+                                        setActive(8) || logoutHandler();
+                                        setIsMobileMenuOpen(false);
+                                    }}
                                 >
                                     <svg
                                         className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -222,7 +244,10 @@ const ProfileSidebar = ({setActive, active}) => {
                         <li>
                             <div
                                 className="flex items-center p-2 text-gray-400 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                onClick={() => setActive(1)}
+                                onClick={() => {
+                                    setActive(1);
+                                    setIsMobileMenuOpen(false);
+                                }}
                             >
                                 <svg
                                     className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -239,7 +264,10 @@ const ProfileSidebar = ({setActive, active}) => {
                         <li>
                             <div
                                 className="flex items-center p-2 text-gray-400 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                onClick={() => setActive(2)}
+                                onClick={() => {
+                                    setActive(2);
+                                    setIsMobileMenuOpen(false);
+                                }}
                             >
                                 <svg
                                     className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -256,7 +284,10 @@ const ProfileSidebar = ({setActive, active}) => {
                         <li>
                             <div
                                 className="flex items-center p-2 text-gray-400 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                onClick={() => setActive(3)}
+                                onClick={() => {
+                                    setActive(3);
+                                    setIsMobileMenuOpen(false);
+                                }}
                             >
                                 <svg
                                     className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -273,7 +304,10 @@ const ProfileSidebar = ({setActive, active}) => {
                         <li>
                             <div
                                 className="flex items-center p-2 text-gray-400 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                onClick={() => setActive(4) || navigate("/inbox")}
+                                onClick={() => {
+                                    setActive(4) || navigate("/inbox")
+                                    setIsMobileMenuOpen(false);
+                                }}
                             >
                                 <svg
                                     className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -290,7 +324,10 @@ const ProfileSidebar = ({setActive, active}) => {
                         <li>
                             <div
                                 className="flex items-center p-2 text-gray-400 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                onClick={() => setActive(5)}
+                                onClick={() => {
+                                    setActive(5);
+                                    setIsMobileMenuOpen(false);
+                                }}
                             >
                                 <svg
                                     className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -308,7 +345,10 @@ const ProfileSidebar = ({setActive, active}) => {
                         <li>
                             <div
                                 className="flex items-center p-2 text-gray-400 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                onClick={() => setActive(6)}
+                                onClick={() => {
+                                    setActive(6);
+                                    setIsMobileMenuOpen(false);
+                                }}
                             >
                                 <svg
                                     className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -328,7 +368,10 @@ const ProfileSidebar = ({setActive, active}) => {
                         <li>
                             <div
                                 className="flex items-center p-2 text-gray-400 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                onClick={() => setActive(7)}
+                                onClick={() => {
+                                    setActive(7);
+                                    setIsMobileMenuOpen(false);
+                                }}
                             >
                                 <svg
                                     className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -345,7 +388,10 @@ const ProfileSidebar = ({setActive, active}) => {
                         <li>
                             <div
                                 className="flex items-center p-2 text-gray-400 rounded-lg  hover:bg-gray-800 hover:text-white  group"
-                                onClick={() => setActive(8) || logoutHandler()}
+                                onClick={() => {
+                                    setActive(8) || logoutHandler();
+                                    setIsMobileMenuOpen(false);
+                                }}
                             >
                                 <svg
                                     className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
