@@ -11,7 +11,6 @@ const CheckoutPage = () => {
                 <br/>
                 <CheckoutSteps active={1}/>
                 <Checkout/>
-                <br/>
                 <Footer/>
             </div>
         </>

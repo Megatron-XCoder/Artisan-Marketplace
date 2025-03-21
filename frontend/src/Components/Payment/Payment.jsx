@@ -1,7 +1,15 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 
 const Payment = () => {
+    const [orderData, setOrderData] = useState([]);
+
+
+    useEffect(() => {
+        const orderData = JSON.parse(localStorage.getItem("latestOrder"));
+        setOrderData(orderData);
+    }, []);
+
     return (
         <section className="bg-gray-100 antialiased min-h-screen">
             <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
@@ -11,7 +19,7 @@ const Payment = () => {
                     </div>
 
                     <div className="mt-6 w-full space-y-6 sm:mt-8 lg:mt-0 lg:max-w-xs xl:max-w-md">
-                        <CartData/>
+                        <CartData orderData={orderData} />
                     </div>
                 </div>
             </div>
@@ -139,30 +147,30 @@ const PaymentInfo = () => {
     );
 };
 
-const CartData = () => {
+const CartData = ({orderData}) => {
     return (
         <div className="bg-white rounded-xl shadow-lg p-6">
             <h2 className="text-lg font-bold text-gray-800 mb-4">Order Summary</h2>
 
             <div className="space-y-3">
                 <div className="flex justify-between">
-                    <span className="text-gray-600">Subtotal (3 items)</span>
-                    <span className="font-medium">$230.00</span>
+                    <span className="text-gray-600">Subtotal ({orderData?.cart?.length} items):</span>
+                    <span className="font-medium">${orderData?.subTotalPrice}</span>
                 </div>
                 <div className="flex justify-between">
-                    <span className="text-gray-600">Shipping</span>
-                    <span className="font-medium">$15.00</span>
+                    <span className="text-gray-600">Shipping:</span>
+                    <span className="font-medium">${orderData?.shipping}</span>
                 </div>
                 <div className="flex justify-between">
-                    <span className="text-gray-600">Discount</span>
-                    <span className="text-blue-600 font-medium">-$10.00</span>
+                    <span className="text-red-600 bg-red-100 px-2">Coupon-Code Discount:</span>
+                    <span className="text-red-600 font-medium">-${orderData?.discountPrice}</span>
                 </div>
             </div>
 
             <div className="border-t mt-4 pt-4">
                 <div className="flex justify-between items-center">
                     <span className="text-lg font-bold text-gray-800">Total</span>
-                    <span className="text-xl font-bold text-gray-800">$235.00</span>
+                    <span className="text-xl font-bold text-gray-800">${orderData?.totalPrice}</span>
                 </div>
             </div>
 

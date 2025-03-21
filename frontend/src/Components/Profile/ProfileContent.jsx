@@ -5,6 +5,10 @@ import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Country, State} from "country-state-city";
 import {HiHome, HiLocationMarker, HiOfficeBuilding} from "react-icons/hi";
+import axios from "axios";
+import { server } from "../../server";
+import { IoMdLock } from "react-icons/io";
+import {FiCheckCircle, FiAlertCircle, FiEyeOff, FiEye} from "react-icons/fi";
 import {toast} from "react-toastify";
 import {deleteUserAddress, updateUserAddress, updateUserInformation} from "../../redux/Actions/user.js";
 import {RxCross1} from "react-icons/rx";
@@ -152,7 +156,7 @@ const ProfileContent = ({active}) => {
                 {/* Track order page */}
                 {active === 6 && (
                     <div>
-                        <PaymentMethod/>
+                        <ChangePassword/>
                     </div>
                 )}
 
@@ -540,61 +544,166 @@ const TrackOrders = () => {
     );
 };
 
-const PaymentMethod = () => {
+const ChangePassword = () => {
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showOldPassword, setShowOldPassword] = useState(false);
+    const [showNewPassword, setShowNewPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const validatePassword = () => {
+        if (newPassword !== confirmPassword) {
+            setPasswordError("Passwords do not match");
+            return false;
+        }
+        if (newPassword.length < 8) {
+            setPasswordError("Password must be at least 8 characters");
+            return false;
+        }
+        setPasswordError("");
+        return true;
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!validatePassword()) return;
+
+        setIsSubmitting(true);
+        try {
+            const res = await axios.put(
+                `${server}/user/update-user-password`,
+                { oldPassword, newPassword, confirmPassword },
+                { withCredentials: true }
+            );
+
+            toast.success("Password updated successfully", {
+                icon: <FiCheckCircle className="text-green-500 text-xl" />
+            });
+            setOldPassword("");
+            setNewPassword("");
+            setConfirmPassword("");
+        } catch (error) {
+            toast.error(error.response?.data?.message || "Password update failed", {
+                icon: <FiAlertCircle className="text-red-500 text-xl" />
+            });
+        }
+        setIsSubmitting(false);
+    };
+
     return (
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-            <div className="flex w-full items-center justify-between pb-6 border-b border-gray-100">
-                <h1 className="text-2xl font-bold text-gray-900">
-                    Payment Methods
-                    <span className="block text-sm font-normal text-gray-500 mt-1">
-                        Manage your saved payment options
-                    </span>
+        <div className="max-w-2xl mx-auto p-6 lg:p-8">
+            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 flex gap-2">
+                    <IoMdLock className="text-purple-600" />
+                    Change Password
                 </h1>
-                <button
-                    className="flex items-center bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                    <AiOutlinePlusCircle className="mr-2 text-lg"/>
-                    Add New Card
-                </button>
-            </div>
 
-            <br/>
-
-            {/* Payment Card */}
-            <div className={"lg:grid md:grid-cols-2 md:gap-56"}>
-                <div
-                    className="w-full bg-gradient-to-br from-blue-600 to-purple-600 h-48 rounded-2xl flex flex-col justify-between p-6 shadow-xl text-white mb-6 ">
-                    {/* Card Background Pattern */}
-                    <div className=" inset-0 opacity-20 bg-white/20"></div>
-
-                    {/* Card Content */}
-                    <div className="flex justify-between items-start">
-                        <img
-                            src="https://logos-world.net/wp-content/uploads/2020/05/Visa-Logo.png"
-                            alt="Visa"
-                            className="w-16"
-                        />
-                        <AiOutlineDelete
-                            size={24}
-                            className="cursor-pointer hover:text-red-500 transition-colors"
-                        />
-                    </div>
-
-                    <div>
-                        <div className="text-xl tracking-widest mb-4 font-mono">
-                            ●●●● ●●●● ●●●● 1234
-                        </div>
-
-                        <div className="flex justify-between items-center">
-                            <div>
-                                <div className="text-xs text-white/80">Card Holder</div>
-                                <div className="font-semibold tracking-wide">SANJEEV KUMAR DAS</div>
-                            </div>
-                            <div>
-                                <div className="text-xs text-white/80">Expires</div>
-                                <div className="font-semibold tracking-wide">12/25</div>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="space-y-4">
+                        <div className="relative">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Current Password
+                            </label>
+                            <div className="relative flex items-center">
+                                <input
+                                    type={showOldPassword ? "text" : "password"}
+                                    value={oldPassword}
+                                    onChange={(e) => setOldPassword(e.target.value)}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all pr-10"
+                                    placeholder="Enter current password"
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowOldPassword(!showOldPassword)}
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-600"
+                                >
+                                    {showOldPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+                                </button>
                             </div>
                         </div>
+
+                        {/* New Password Field */}
+                        <div className="relative">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                New Password
+                            </label>
+                            <div className="relative flex items-center">
+                                <input
+                                    type={showNewPassword ? "text" : "password"}
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all pr-10"
+                                    placeholder="At least 8 characters"
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowNewPassword(!showNewPassword)}
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-600"
+                                >
+                                    {showNewPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Confirm New Password Field */}
+                        <div className="relative">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Confirm New Password
+                            </label>
+                            <div className="relative flex items-center">
+                                <input
+                                    type={showConfirmPassword ? "text" : "password"}
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    onBlur={validatePassword}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all pr-10"
+                                    placeholder="Re-enter new password"
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-600"
+                                >
+                                    {showConfirmPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+                                </button>
+                            </div>
+                        </div>
+
+                        {passwordError && (
+                            <div className="text-red-600 text-sm flex items-center gap-2">
+                                <FiAlertCircle />
+                                {passwordError}
+                            </div>
+                        )}
                     </div>
+
+                    <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-[1.02] shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                    >
+                        {isSubmitting ? (
+                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                        ) : (
+                            <>
+                                <IoMdLock className="text-lg" />
+                                Update Password
+                            </>
+                        )}
+                    </button>
+                </form>
+
+                <div className="mt-6 text-sm text-gray-500">
+                    <p className="flex items-center gap-2">
+                        <FiAlertCircle className="text-gray-400" />
+                        Password must be at least 8 characters
+                    </p>
                 </div>
             </div>
         </div>

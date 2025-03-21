@@ -1,162 +1,356 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Country, State} from "country-state-city";
+import {toast} from "react-toastify";
+import axios from "axios";
+import {server} from "../../server.jsx";
 
 const Checkout = () => {
+    const {user} = useSelector((state) => state.user);
+    const {cart} = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [country, setCountry] = useState("");
+    const [city, setCity] = useState("");
+    const [address1, setAddress1] = useState("");
+    const [address2, setAddress2] = useState("");
+    const [zipCode, setZipCode] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [couponCode, setCouponCode] = useState("");
+    const [couponCodeData, setCouponCodeData] = useState(null);
+    const [discountPrice, setDiscountPrice] = useState(null);
+    const [useSavedAddress, setUseSavedAddress] = useState(false);
+    const [selectedAddressId, setSelectedAddressId] = useState(null);
+
+
+    const subTotalPrice = cart.reduce(
+        (acc, item) => acc + item.qty * item.discountPrice,
+        0
+    );
+    const shipping = subTotalPrice * 0.05;
+    const totalPrice = couponCodeData
+        ? (subTotalPrice + shipping - discountPrice).toFixed(2)
+        : (subTotalPrice + shipping).toFixed(2);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        if (user?.phoneNumber) setPhoneNumber(user.phoneNumber);
+    }, [user]);
+
+    const handleAddressSelect = (address) => {
+        setCountry(address.country);
+        setCity(address.city); // Changed from address.city to address.state
+        setAddress1(address.address1);
+        setAddress2(address.address2);
+        setZipCode(address.zipCode);
+        setSelectedAddressId(address._id); // Track selected address ID
+    };
+
+    const handleCouponSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!couponCode) return toast.error("Enter a coupon code");
+
+        try {
+            const {data} = await axios.get(
+                `${server}/coupon/get-coupon-value/${couponCode}`
+            );
+
+            const coupon = data.couponCode;
+            if (!coupon) return toast.error("Coupon code invalid");
+
+            // Check if coupon is valid based on selectedProduct or shop
+            let validItems;
+            if (coupon.selectedProduct) {
+                validItems = cart.filter((item) => item._id === coupon.selectedProduct);
+            } else {
+                validItems = cart.filter((item) => item.shopId === coupon.shop._id);
+            }
+
+            if (validItems.length === 0) {
+                return toast.error("Coupon not valid for these products");
+            }
+
+            const eligiblePrice = validItems.reduce(
+                (acc, item) => acc + item.qty * item.discountPrice,
+                0
+            );
+
+            // Check if eligible price meets coupon's min/max requirements
+            if (eligiblePrice < coupon.minAmount || eligiblePrice > coupon.maxAmount) {
+                return toast.error(`Coupon valid for orders between $${coupon.minAmount} and $${coupon.maxAmount}`);
+            }
+
+            setDiscountPrice((eligiblePrice * coupon.value) / 100);
+            setCouponCodeData(coupon);
+            setCouponCode("");
+            toast.success("Coupon applied successfully");
+        } catch (error) {
+            toast.error(error.response?.data?.message || "Error applying coupon");
+        }
+    };
+
+    const handlePaymentSubmit = () => {
+        if (!address1 || !city || !country || !zipCode || !phoneNumber) {
+            return toast.error("Please Choose or Enter Shipping Address");
+        }
+
+        const shippingAddress = {address1, address2, city, country, zipCode};
+        const orderData = {
+            cart,
+            totalPrice,
+            subTotalPrice,
+            shipping,
+            shippingAddress,
+            discountPrice,
+            user,
+        };
+
+        localStorage.setItem("latestOrder", JSON.stringify(orderData));
+        navigate("/payment");
+    };
+
     return (
-        <>
-            <section className=" min-h-screen bg-gray-100 antialiased 0 mt-10 md:py-8">
-                <form action="#" className="mx-auto max-w-screen-xl px-4 2xl:px-0">
-                    <div className="mt-6 sm:mt-0 lg:flex lg:items-start lg:gap-12 xl:gap-16">
-                        <div className="min-w-0 flex-1 space-y-8">
-                            <div className="space-y-4">
-                                <h2 className="text-xl font-semibold text-gray-900 ">Delivery
-                                    Details</h2>
+        <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto lg:flex lg:gap-8">
+                {/* Shipping Section */}
+                <div className="lg:w-2/3 p-2 mb-8 lg:mb-0">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Shipping Details</h2>
 
-                                <div className="grid grid-cols-2 gap-4 sm:grid-cols-2">
-                                    <div>
-                                        <label htmlFor="your_name"
-                                               className="mb-2 block text-sm font-medium text-gray-900 ">
-                                            Full Name
-                                        </label>
-                                        <input type="text" id="your_name"
-                                               className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 y-600 0  r:text-gray-400 er-primary-500 -primary-500"
-                                               placeholder="Bonnie Green" required/>
-                                    </div>
+                    {/* Saved Addresses */}
+                    {user?.addresses?.length > 0 && (
+                        <div className="mb-6">
+                            <label className="flex items-center gap-2 mb-4">
+                                <input
+                                    type="checkbox"
+                                    checked={useSavedAddress}
+                                    onChange={(e) => setUseSavedAddress(e.target.checked)}
+                                    className="h-4 w-4 text-blue-600 rounded border-gray-300"
+                                />
+                                <span className="text-sm font-medium text-gray-700">
+                                  Choose from saved addresses
+                                </span>
+                            </label>
 
-                                    <div>
-                                        <label htmlFor="your_email"
-                                               className="mb-2 block text-sm font-medium text-gray-900 ">
-                                            Email Address
-                                        </label>
-                                        <input type="email" id="your_email"
-                                               className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 y-600 0  r:text-gray-400 er-primary-500 -primary-500"
-                                               placeholder="name@flowbite.com" required/>
-                                    </div>
-
-                                    <div>
-                                        <div className="mb-2 flex items-center gap-2">
-                                            <label htmlFor="select-country-input-3"
-                                                   className="block text-sm font-medium text-gray-900 "> Country </label>
+                            {useSavedAddress && (
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    {user.addresses.map((address) => (
+                                        <div
+                                            key={address._id}
+                                            onClick={() => handleAddressSelect(address)}
+                                            className={`md:flex md:gap-x-6 border rounded-lg p-4 cursor-pointer transition-colors 
+                                                ${selectedAddressId === address._id
+                                                ? "border-blue-500 shadow-md bg-white"
+                                                : "border-gray-300 hover:border-blue-500 hover:shadow-md"}`}
+                                        >
+                                            <div>
+                                                <p className="font-medium">{address.addressType}</p>
+                                            </div>
+                                            <div>
+                                                <p className="text-sm text-gray-600">{address.address1}</p>
+                                                <p className="text-sm text-gray-600">{address.address2}</p>
+                                                <p className="text-sm text-gray-600">{address.city}, {address.country}</p>
+                                                <p className="text-sm text-gray-600">{address.zipCode}, {user.phoneNumber}</p>
+                                            </div>
                                         </div>
-                                        <input type="text" id="your_name"
-                                               className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 y-600 0  r:text-gray-400 er-primary-500 -primary-500"
-                                               placeholder="India" required/>
-                                    </div>
-
-                                    <div>
-                                        <div className="mb-2 flex items-center gap-2">
-                                            <label htmlFor="select-city-input-3"
-                                                   className="block text-sm font-medium text-gray-900 "> City </label>
-                                        </div>
-                                        <input type="text" id="your_name"
-                                               className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 y-600 0  r:text-gray-400 er-primary-500 -primary-500"
-                                               placeholder="Bonnie Green" required/>
-                                    </div>
-
-                                    <div>
-                                        <label htmlFor="phone-input-3"
-                                               className="mb-2 block text-sm font-medium text-gray-900 ">
-                                            Phone Number
-                                        </label>
-                                        <input type="text" id="your_name"
-                                               className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 y-600 0  r:text-gray-400 er-primary-500 -primary-500"
-                                               placeholder="Bonnie Green" required/>
-                                    </div>
-
-                                    <div>
-                                        <label htmlFor="email"
-                                               className="mb-2 block text-sm font-medium text-gray-900 "> Zip
-                                            Code </label>
-                                        <input type="email" id="email"
-                                               className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 y-600 0  r:text-gray-400 er-primary-500 -primary-500"
-                                               placeholder="name@flowbite.com" required/>
-                                    </div>
-
-                                    <div>
-                                        <label htmlFor="company_name"
-                                               className="mb-2 block text-sm font-medium text-gray-900 ">
-                                            Address 1
-                                        </label>
-                                        <input type="text" id="company_name"
-                                               className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 y-600 0  r:text-gray-400 er-primary-500 -primary-500"
-                                               placeholder="123 Main Street, Anytown, USA, 12345" required/>
-                                    </div>
-
-                                    <div>
-                                        <label htmlFor="vat_number"
-                                               className="mb-2 block text-sm font-medium text-gray-900 ">
-                                            Address 2
-                                        </label>
-                                        <input type="text" id="vat_number"
-                                               className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 y-600 0  r:text-gray-400 er-primary-500 -primary-500"
-                                               placeholder="123 Main Street, Anytown, USA, 12345" required/>
-                                    </div>
-
+                                    ))}
                                 </div>
+                            )}
+                        </div>
+                    )}
+
+                    {/* Address Form */}
+                    <div className="space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Full Name
+                                </label>
+                                <input
+                                    type="text"
+                                    value={user?.name || ""}
+                                    readOnly
+                                    className="w-full rounded-lg border-gray-200 bg-gray-100 p-3 text-sm cursor-not-allowed"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Email Address
+                                </label>
+                                <input
+                                    type="email"
+                                    value={user?.email || ""}
+                                    readOnly
+                                    className="w-full rounded-lg border-gray-200 bg-gray-100 p-3 text-sm cursor-not-allowed"
+                                />
                             </div>
                         </div>
 
-                        <br/>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Phone Number <span className="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="number"
+                                    value={phoneNumber}
+                                    onChange={(e) => setPhoneNumber(e.target.value)}
+                                    className="w-full rounded-lg border-gray-200 p-3 text-sm focus:border-blue-500 focus:ring-blue-500"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Zip Code <span className="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="number"
+                                    value={zipCode}
+                                    onChange={(e) => setZipCode(e.target.value)}
+                                    className="w-full rounded-lg border-gray-200 p-3 text-sm focus:border-blue-500 focus:ring-blue-500"
+                                    required
+                                />
+                            </div>
+                        </div>
 
-                        <div className="bg-white rounded-lg shadow-lg p-6 w-full sm:w-96">
-                            <div className="mt-5 w-full space-y-6 sm:mt-6  lg:max-w-xs xl:max-w-md">
-                                <div className="flow-root">
-                                    <div className="-my-3 ">
-                                        <dl className="flex items-center justify-between gap-4 py-1">
-                                            <dt className="text-base font-normal text-gray-500 400">Subtotal</dt>
-                                            <dd className="text-base font-medium text-gray-900 ">$8,094.00</dd>
-                                        </dl>
+                        <div className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Address Line 1 <span className="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    value={address1}
+                                    onChange={(e) => setAddress1(e.target.value)}
+                                    className="w-full rounded-lg border-gray-200 p-3 text-sm focus:border-blue-500 focus:ring-blue-500"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Address Line 2
+                                </label>
+                                <input
+                                    type="text"
+                                    value={address2}
+                                    onChange={(e) => setAddress2(e.target.value)}
+                                    className="w-full rounded-lg border-gray-200 p-3 text-sm focus:border-blue-500 focus:ring-blue-500"
+                                />
+                            </div>
+                        </div>
 
-                                        <dl className="flex items-center justify-between gap-4 py-3">
-                                            <dt className="text-base font-normal text-gray-500 400">Shipping</dt>
-                                            <dd className="text-base font-medium text-gray-900">0</dd>
-                                        </dl>
-
-                                        <dl className="flex items-center border-b  justify-between gap-4 pb-4">
-                                            <dt className="text-base font-normal text-gray-500 400">Discount</dt>
-                                            <dd className="text-base font-medium text-gray-900 ">$99</dd>
-                                        </dl>
-
-                                        <dl className="flex items-center justify-between gap-4 py-3">
-                                            <dt className="text-base font-bold text-gray-900 ">Total</dt>
-                                            <dd className="text-base font-bold text-gray-900 ">$8,392.00</dd>
-                                        </dl>
-                                    </div>
-                                </div>
-
-                                <div className="space-y-3">
-                                    <div>
-                                        <label htmlFor="voucher"
-                                               className="mb-2 block text-sm font-medium text-gray-900 ">
-
-                                        </label>
-                                        <div className="flex max-w-md items-center gap-4">
-                                            <input type="text" id="voucher"
-                                                   className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 y-600 0  r:text-gray-400 er-primary-500 -primary-500"
-                                                   placeholder="Enter a gift card, voucher or coupon code" required/>
-                                            <button type="button"
-                                                    className="flex items-center justify-center rounded-lg bg-gradient-to-tr from-purple-600 to-blue-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 -600 rimary-700 -primary-800">Apply
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <button type="submit"
-                                            className="flex w-full items-center justify-center rounded-lg bg-gradient-to-tr from-purple-600 to-blue-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 -600 rimary-700 -primary-800">
-                                        Proceed to Payment
-                                    </button>
-
-                                    <p className="text-sm font-normal text-gray-500 400">One or more items in
-                                        your cart require an account.
-                                        <Link to={"/login"} title=""
-                                              className="font-medium text-primary-700 no-underline hover:underline ry-500">Sign
-                                            in or create an account now.</Link>
-                                    </p>
-                                </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Country <span className="text-red-500">*</span>
+                                </label>
+                                <select
+                                    required
+                                    value={country}
+                                    onChange={(e) => setCountry(e.target.value)}
+                                    className="w-full rounded-lg border-gray-200 p-3 text-sm focus:border-blue-500 focus:ring-blue-500"
+                                >
+                                    <option value="">Select Country</option>
+                                    {Country &&
+                                        Country.getAllCountries().map((item) => (
+                                            <option key={item.isoCode} value={item.isoCode}>
+                                                {item.name}
+                                            </option>
+                                        ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    State <span className="text-red-500">*</span>
+                                </label>
+                                <select
+                                    required
+                                    value={city}
+                                    onChange={(e) => setCity(e.target.value)}
+                                    className="w-full rounded-lg border-gray-200 p-3 text-sm focus:border-blue-500 focus:ring-blue-500"
+                                >
+                                    <option value="">Select State</option>
+                                    {State &&
+                                        State.getStatesOfCountry(country).map((item) => (
+                                            <option key={item.isoCode} value={item.name}>
+                                                {item.name}
+                                            </option>
+                                        ))}
+                                </select>
                             </div>
                         </div>
                     </div>
-                </form>
-            </section>
-        </>
-    )
-}
+                </div>
+
+                {/* Order Summary */}
+                <div className="lg:w-1/3 bg-white rounded-xl shadow-sm p-6 h-fit">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Order Summary</h2>
+
+                    <div className="space-y-4">
+                        <div className="flex justify-between">
+                            <span className="text-gray-600">Subtotal:</span>
+                            <span className="font-medium">${subTotalPrice.toFixed(2)}</span>
+                        </div>
+                        <div className="flex justify-between">
+                            <span className="text-gray-600">Shipping:</span>
+                            <span className="font-medium">${shipping.toFixed(2)}</span>
+                        </div>
+                        {discountPrice > 0 && (
+                            <div className="flex justify-between text-red-600">
+                                <span className={"bg-red-100 px-2 rounded-sm"}>Coupon-Code Discount:</span>
+                                <span>-${discountPrice.toFixed(2)}</span>
+                            </div>
+                        )}
+                        <hr className="my-4"/>
+                        <div className="flex justify-between text-lg font-bold">
+                            <span>Total:</span>
+                            <span>${totalPrice}</span>
+                        </div>
+                    </div>
+
+                    <form onSubmit={handleCouponSubmit} className="mt-6 space-y-4">
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                value={couponCode}
+                                onChange={(e) => setCouponCode(e.target.value)}
+                                placeholder="Enter coupon code"
+                                className="w-full rounded-lg border-gray-200 p-3 text-sm focus:border-blue-500 focus:ring-blue-500"
+                            />
+                            <button
+                                type="submit"
+                                className="px-4 py-3 bg-gradient-to-tr from-blue-600 to-purple-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                            >
+                                Apply
+                            </button>
+                        </div>
+                    </form>
+
+                    <button
+                        onClick={handlePaymentSubmit}
+                        className="w-full mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:opacity-90 transition-opacity font-medium"
+                    >
+                        Proceed to Payment
+                    </button>
+
+                    {!user && (
+                        <p className="mt-4 text-sm text-gray-600 text-center">
+                            Need an account?{" "}
+                            <Link to="/login" className="text-blue-600 hover:underline">
+                                Sign in
+                            </Link>{" "}
+                            or{" "}
+                            <Link to="/signup" className="text-blue-600 hover:underline">
+                                create account
+                            </Link>
+                        </p>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default Checkout;
