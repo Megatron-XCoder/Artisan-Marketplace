@@ -34,7 +34,7 @@ const CheckoutSteps = ({active}) => {
                         <div className={`flex items-center gap-2 rounded-full px-3 py-2 sm:px-4 sm:py-3 ${
                             active > 1 ? "bg-purple-100" : "bg-gray-100"
                         }`}>
-                            <Link to={"/payment"} className={`flex items-center gap-2 rounded-full`}>
+                            <Link to={"#"} className={`flex items-center gap-2 rounded-full`}>
                                 <svg className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" aria-hidden="true"
                                      xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                      viewBox="0 0 24 24">
@@ -46,7 +46,7 @@ const CheckoutSteps = ({active}) => {
                         </div>
                     </div>
 
-                    <div className={`flex shrink-0 items-center gap-2 rounded-full px-4 py-2 sm:px-5 sm:py-3 ${
+                    <div className={`flex shrink-0 items-center gap-2 rounded-full px-4 py-2 sm:px-5 sm:py-3 cursor-pointer ${
                         active > 2 ? "bg-purple-100 text-purple-600" : "bg-gray-100 text-gray-400"
                     }`}>
                         <svg className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" aria-hidden="true"

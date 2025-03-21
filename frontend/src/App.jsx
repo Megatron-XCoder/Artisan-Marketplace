@@ -20,7 +20,7 @@ import {
 } from './Routes/Routes';
 import ProtectedRoute from "./ProtectedRoutes/ProtectedRoute.jsx";
 import {ToastContainer} from "react-toastify";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {loadShop, loadUser} from "./redux/Actions/user.js";
 import Store from "./redux/store.js";
 import {
@@ -37,18 +37,38 @@ import {
 import ShopProtectedRoute from "./ProtectedRoutes/ShopProtectedRoute.jsx";
 import {getAllProducts} from "./redux/Actions/product.js";
 import {getAllEvents} from "./redux/Actions/event.js";
+import {Elements} from "@stripe/react-stripe-js";
+import {loadStripe} from "@stripe/stripe-js";
+import {server} from "./server.jsx";
+import axios from "axios";
 
 function App() {
+    const [stripeApikey, setStripeApikey] = useState("");
+
+    async function getStripeApikey() {
+        const {data} = await axios.get(`${server}/payment/stripeApikey`);
+        setStripeApikey(data.stripeApikey);
+    }
+
     useEffect(() => {
         Store.dispatch(loadUser());
         Store.dispatch(loadShop());
         Store.dispatch(getAllProducts());
         Store.dispatch(getAllEvents());
-
+        getStripeApikey();
     }, []);
 
     return (<>
         <Router>
+            {stripeApikey && (
+                <Elements stripe={loadStripe(stripeApikey)}>
+                    <Routes>
+                        <Route path="/payment" element={<ProtectedRoute>
+                            <PaymentPage/>
+                        </ProtectedRoute>}/>
+                    </Routes>
+                </Elements>
+            )}
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/login" element={<LoginPage/>}/>
@@ -62,9 +82,6 @@ function App() {
                 <Route path="/product/:id" element={<ProductDetailsPage/>}/>
                 <Route path="/checkout" element={<ProtectedRoute>
                     <CheckoutPage/>
-                </ProtectedRoute>}/>
-                <Route path="/payment" element={<ProtectedRoute>
-                    <PaymentPage/>
                 </ProtectedRoute>}/>
                 <Route path="/order/success" element={<OrderSuccessPage/>}/>
                 <Route path="/profile" element={<ProtectedRoute>

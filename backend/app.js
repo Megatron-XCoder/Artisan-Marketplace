@@ -67,7 +67,7 @@ app.use(bodyParser.urlencoded({extended: true, limit: "50mb"}));
 require("dotenv").config();
 
 app.use(cors({
-    origin: [process.env.FRONTEND_URL || "https://artisan-marketplace-web.vercel.app"],
+    origin: [process.env.FRONTEND_URL],
     credentials: true
 }));
 
@@ -77,21 +77,21 @@ const shop = require("./Controller/shop");
 const product = require("./Controller/product");
 const event = require("./Controller/event");
 const coupon = require("./Controller/couponCode");
-// const payment = require("./controller/payment");
-// const order = require("./controller/order");
-// const conversation = require("./controller/conversation");
-// const message = require("./controller/message");
-// const withdraw = require("./controller/withdraw");
+const payment = require("./Controller/payment");
+const order = require("./Controller/order");
+// const conversation = require("./Controller/conversation");
+// const message = require("./Controller/message");
+// const withdraw = require("./Controller/withdraw");
 //
 app.use("/user", user);
 app.use("/shop", shop);
 app.use("/product", product);
 app.use("/event", event);
 app.use("/coupon", coupon);
+app.use("/payment", payment);
+app.use("/order", order);
 // app.use("/conversation", conversation);
 // app.use("/message", message);
-// app.use("/order", order);
-// app.use("/payment", payment);
 // app.use("/withdraw", withdraw);
 
 

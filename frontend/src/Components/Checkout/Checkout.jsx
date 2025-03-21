@@ -116,7 +116,7 @@ const Checkout = () => {
         <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto lg:flex lg:gap-8">
                 {/* Shipping Section */}
-                <div className="lg:w-2/3 p-2 mb-8 lg:mb-0">
+                <div className=" bg-white rounded-2xl shadow-md lg:w-2/3 p-5 md:p-8 mb-8 lg:mb-0">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">Shipping Details</h2>
 
                     {/* Saved Addresses */}
@@ -142,17 +142,17 @@ const Checkout = () => {
                                             onClick={() => handleAddressSelect(address)}
                                             className={`md:flex md:gap-x-6 border rounded-lg p-4 cursor-pointer transition-colors 
                                                 ${selectedAddressId === address._id
-                                                ? "border-blue-500 shadow-md bg-white"
+                                                ? "border-blue-500 shadow-md text-white drop-shadow-md bg-gradient-to-tr from-blue-500 to-purple-500"
                                                 : "border-gray-300 hover:border-blue-500 hover:shadow-md"}`}
                                         >
                                             <div>
                                                 <p className="font-medium">{address.addressType}</p>
                                             </div>
                                             <div>
-                                                <p className="text-sm text-gray-600">{address.address1}</p>
-                                                <p className="text-sm text-gray-600">{address.address2}</p>
-                                                <p className="text-sm text-gray-600">{address.city}, {address.country}</p>
-                                                <p className="text-sm text-gray-600">{address.zipCode}, {user.phoneNumber}</p>
+                                                <p className="text-sm ">{address.address1}</p>
+                                                <p className="text-sm ">{address.address2}</p>
+                                                <p className="text-sm ">{address.city}, {address.country}</p>
+                                                <p className="text-sm ">{address.zipCode}, {user.phoneNumber}</p>
                                             </div>
                                         </div>
                                     ))}
