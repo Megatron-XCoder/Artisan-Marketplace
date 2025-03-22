@@ -15,7 +15,8 @@ import {
     ProfilePage,
     ShopCreatePage,
     SellerActivationPage,
-    ShopLoginPage
+    ShopLoginPage,
+    OrderDetailsPage
 
 } from './Routes/Routes';
 import ProtectedRoute from "./ProtectedRoutes/ProtectedRoute.jsx";
@@ -26,11 +27,12 @@ import Store from "./redux/store.js";
 import {
     ShopAllCoupons,
     ShopAllEvents,
+    ShopAllOrders,
     ShopAllProducts,
     ShopCreateEvents,
     ShopCreateProduct,
     ShopDashboardPage,
-    ShopHomePage,
+    ShopHomePage, ShopOrderDetails,
     ShopPreviewPage,
 
 } from "./Routes/ShopRoutes.js";
@@ -84,9 +86,19 @@ function App() {
                     <CheckoutPage/>
                 </ProtectedRoute>}/>
                 <Route path="/order/success" element={<OrderSuccessPage/>}/>
-                <Route path="/profile" element={<ProtectedRoute>
-                    <ProfilePage/>
-                </ProtectedRoute>}/>
+                <Route
+                    path="/profile"
+                    element={<ProtectedRoute>
+                        <ProfilePage/>
+                    </ProtectedRoute>}/>
+                <Route
+                    path="/user/order/:id"
+                    element={
+                        <ProtectedRoute>
+                            <OrderDetailsPage/>
+                        </ProtectedRoute>
+                    }
+                />
 
                 <Route path="/shop/preview/:id" element={<ShopPreviewPage/>}/>
 
@@ -113,6 +125,19 @@ function App() {
                         <ShopAllProducts/>
                     </ShopProtectedRoute>}
                 />
+
+                <Route
+                    path="/dashboard-orders"
+                    element={<ShopProtectedRoute>
+                        <ShopAllOrders/>
+                    </ShopProtectedRoute>}
+                />
+
+                <Route
+                    path="/order/:id"
+                    element={<ShopProtectedRoute>
+                        <ShopOrderDetails/>
+                    </ShopProtectedRoute>}/>
 
                 <Route
                     path="/dashboard-create-event"

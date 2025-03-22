@@ -230,14 +230,14 @@ const PaymentInfo = ({ orderData, paymentHandler, user, createOrder, open, setOp
                             </button>
 
                             {open && (
-                                <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50">
-                                    <div className="bg-white rounded-lg p-6 max-w-md w-full relative">
+                                <div className="fixed inset-0 bg-black/40 bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50">
+                                    <div className="bg-white rounded-lg mx-5 p-6 max-w-md w-full h-60 relative">
                                         <RxCross1
                                             size={24}
-                                            className="absolute top-4 right-4 cursor-pointer text-gray-500 hover:text-gray-700"
+                                            className="relative lg:left-95 mb-6 cursor-pointer text-gray-500 hover:text-gray-900"
                                             onClick={() => setOpen(false)}
                                         />
-                                        <PayPalScriptProvider options={{ "client-id": "your-paypal-client-id" }}>
+                                        <PayPalScriptProvider options={{ "client-id": "AdA3Y4tFfckS89_mL7nogkkljlfgc9THLamxX8Fl3zOyhGFcVtSMlgZvk42UHX4by5oaVXq4ijOFGzgz" }}>
                                             <PayPalButtons
                                                 style={{ layout: "vertical" }}
                                                 onApprove={onApprove}

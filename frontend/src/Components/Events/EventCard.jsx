@@ -2,8 +2,14 @@ import CountDown from "./CountDown";
 import {Link} from "react-router-dom";
 import {AiOutlineShoppingCart} from "react-icons/ai";
 import {backend_url} from "../../server.jsx";
+import {addToCart} from "../../redux/Actions/cart.js";
+import {toast} from "react-toastify";
+import {useDispatch, useSelector} from "react-redux";
 
 const EventCard = ({ active, data }) => {
+    const {cart} = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
+
     // Check if data is undefined or null
     if (!data) {
         return (
@@ -14,6 +20,19 @@ const EventCard = ({ active, data }) => {
     }
 
     const hasDiscount = data.discountPrice > 0;
+
+    const addToCartHandler = () => {
+        if (data.stock < 1) {
+            toast.error("Product stock limited!");
+            return;
+        }
+        if (cart?.find((i) => i._id === data._id)) {
+            toast.error("Item already in Cart! Please check your cart. ");
+            return;
+        }
+        dispatch(addToCart({...data, qty: 1})); // Use `count` instead of hardcoded `qty: 1`
+        toast.success("Item added to Cart!");
+    };
 
     // Calculate discount percentage
     const discountPercentage = hasDiscount
@@ -87,6 +106,8 @@ const EventCard = ({ active, data }) => {
                             <button
                                 type="button"
                                 className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-4 px-6 rounded-xl font-semibold transition-all transform hover:scale-[1.02] shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                                onClick={addToCartHandler} // Add click handler
+                                disabled={data.stock < 1} // Disable button if out of stock
                             >
                                 <AiOutlineShoppingCart className="text-xl"/>
                                 Add to Cart

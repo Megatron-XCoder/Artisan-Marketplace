@@ -12,6 +12,7 @@ import {FiCheckCircle, FiAlertCircle, FiEyeOff, FiEye} from "react-icons/fi";
 import {toast} from "react-toastify";
 import {deleteUserAddress, updateUserAddress, updateUserInformation} from "../../redux/Actions/user.js";
 import {RxCross1} from "react-icons/rx";
+import {getAllOrdersOfUser} from "../../redux/Actions/order.js";
 
 
 const ProfileContent = ({active}) => {
@@ -173,120 +174,145 @@ const ProfileContent = ({active}) => {
 
 
 const AllOrders = () => {
-    const orders = [
-        // ... your orders data
-        {
-            _id: "184265416511ddd263",
-            orderItems: [
-                {
-                    name: "Nike Air Max 270",
-                }
-            ],
-            totalPrice: 200,
-            orderStatus: "Delivered",
-        }, {
-            _id: "1842654165www11263",
-            orderItems: [
-                {
-                    name: "Nike Air Max 270",
-                }
-            ],
-            totalPrice: 200,
-            orderStatus: "Delivered",
-        }, {
-            _id: "184265416511263",
-            orderItems: [
-                {
-                    name: "Nike Air Max 270",
-                }
-            ],
-            totalPrice: 200,
-            orderStatus: "Delivered",
-        },
-    ];
+    const { user } = useSelector((state) => state.user);
+    const { orders } = useSelector((state) => state.order);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getAllOrdersOfUser(user._id));
+    }, [dispatch, user._id]);
+
 
     return (
-        <div className="w-full sm:mx-8 pt-1 sm:mt-4">
-            {/* Desktop Header */}
-            <div
-                className="hidden sm:grid sm:grid-cols-5 gap-4 bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b font-medium text-sm text-gray-600 rounded-t-xl">
+        <div className="w-full mb-6 sm:px-8 pt-1 sm:pt-6">
+            {/* Desktop Header - Added Product column */}
+            <div className="hidden sm:grid grid-cols-6 gap-4 bg-gray-50 p-5 border-b font-medium text-gray-500 text-sm rounded-t-xl shadow-sm">
                 <div className="min-w-[120px]">Order ID</div>
                 <div className="min-w-[90px]">Status</div>
+                <div className="min-w-[100px]">Products</div>
                 <div className="min-w-[60px]">Items</div>
                 <div className="min-w-[90px]">Total</div>
                 <div className="min-w-[50px]">Receipt</div>
             </div>
 
             {/* Orders List */}
-            <div className="space-y-4 sm:space-y-0">
-                {orders.map((order) => (
+            <div className="space-y-3">
+                {orders?.map((order) => (
                     <div
-                        key={order._id}
-                        className="flex flex-col sm:grid sm:grid-cols-5 gap-4 p-6 sm:p-4 text-sm group hover:bg-gray-50 transition-all rounded-2xl sm:rounded-none bg-white shadow-xl sm:shadow-none border border-gray-100 sm:border-none mb-4 sm:mb-0"
+                        key={order?._id}
+                        className="flex flex-col sm:grid md:items-center sm:grid-cols-6 mt-3 gap-4 p-5 sm:px-5 text-sm group hover:shadow-md transition-all rounded-xl bg-white shadow-sm border border-gray-100"
                     >
                         {/* Mobile Header */}
-                        <div className="sm:hidden flex justify-between items-start mb-2">
-                            <h3 className="font-bold text-gray-900 text-lg truncate pr-4">
-                                Order #{order._id.slice(-6)}
+                        <div className="sm:hidden flex justify-between items-start mb-3">
+                            <h3 className="font-semibold text-gray-900 text-base truncate pr-4">
+                                Order #{order?._id.slice(-6)}
                             </h3>
-                            <span className={`px-3 py-1 rounded-full text-xs ${
-                                order.orderStatus === "Delivered"
-                                    ? 'bg-green-100 text-green-700'
-                                    : 'bg-yellow-100 text-yellow-700'
+                            <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${
+                                order.status === "Delivered"
+                                    ? 'bg-emerald-50 text-emerald-700'
+                                    : 'bg-amber-50 text-amber-700'
                             }`}>
-                                {order.orderStatus}
-                            </span>
+                            {order?.status}
+                        </span>
                         </div>
 
                         {/* Order ID */}
-                        <div className="sm:min-w-[120px] text-gray-500 text-sm">
-                            <span className="sm:hidden mr-2 text-gray-600">Order ID:</span>
-                            <span className="font-mono text-xs sm:text-sm">{order._id}</span>
+                        <div className="sm:min-w-[120px] text-gray-500">
+                            <span className="sm:hidden mr-2 text-gray-600 font-medium">Order ID:</span>
+                            <span className="font-mono text-gray-400 text-xs sm:text-sm">{order?._id}</span>
                         </div>
 
                         {/* Status */}
-                        <div className="sm:min-w-[90px]">
-                            <span className="sm:hidden mr-2 text-gray-600">Status:</span>
-                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                                order.orderStatus === "Delivered"
-                                    ? 'bg-green-100 text-green-700'
-                                    : 'bg-yellow-100 text-yellow-700'
+                        <div className="sm:min-w-[90px] flex items-center">
+                            <span className="sm:hidden mr-2 text-gray-600 font-medium">Status:</span>
+                            <span className={`px-2.5 py-1 rounded-full text-xs font-medium inline-flex items-center ${
+                                order.status === "Delivered"
+                                    ? 'bg-emerald-50 text-emerald-700'
+                                    : 'bg-amber-50 text-amber-700'
                             }`}>
-                                {order.orderStatus}
-                            </span>
+                            {order.status === "Delivered" && (
+                                <svg className="w-3 h-3 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                            )}
+                                {order?.status}
+                        </span>
                         </div>
 
-                        {/* Items (hidden on mobile) */}
-                        <div className="sm:min-w-[60px] hidden sm:block">
-                            {order.orderItems.length}
+                        {/* Product Preview (Desktop) */}
+                        <div className="sm:min-w-[100px] hidden sm:flex flex-col gap-2">
+                            {order.cart.map((item) => (
+                                <div key={item._id} className="flex items-center gap-3 group">
+                                    <Link to={"/product/" + item._id} className="flex items-center gap-3 group">
+                                        <div className="w-8 h-8 rounded-md overflow-hidden border border-gray-100">
+                                            <img
+                                                src={`${server}/uploads/${item.images[0]}`}
+                                                alt={item.name}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                        <span className="text-gray-600 text-sm truncate max-w-[120px] block overflow-hidden whitespace-nowrap">
+                                            {item.name}
+                                        </span>
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
+
+
+                        {/* Items */}
+                        <div className="sm:min-w-[60px] text-gray-500">
+                            <span className="sm:hidden mr-2 text-gray-600 font-medium">Items:</span>
+                            {order?.cart?.length}
                         </div>
 
                         {/* Total */}
-                        <div className="sm:min-w-[90px] text-green-600 font-semibold">
-                            <span className="sm:hidden mr-2 text-gray-600">Total:</span>
-                            US$ {order.totalPrice}
+                        <div className="sm:min-w-[90px] text-gray-900 font-medium">
+                            <span className="sm:hidden mr-2 text-gray-600 font-medium">Total:</span>
+                            US$ {order?.totalPrice}
                         </div>
 
                         {/* Download Receipt */}
                         <div className="sm:min-w-[50px] flex justify-end sm:justify-start">
                             <Link
-                                to={`/order/${order._id}`}
-                                className="inline-flex items-center text-blue-500 hover:text-blue-600 transition-colors"
+                                to={`/user/order/${order._id}`}
+                                className="inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors group"
                             >
-                                <span className="sm:hidden mr-2">Download</span>
-                                <AiOutlineArrowRight className="text-lg"/>
+                                <span className="mr-2 font-medium">Details</span>
+                                <svg
+                                    className="w-5 h-5 transform transition-transform group-hover:translate-x-0.5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                    />
+                                </svg>
                             </Link>
                         </div>
 
-                        {/* Mobile Items Display */}
-                        <div className="sm:hidden grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-gray-100">
-                            <div className="text-gray-600">Items:</div>
-                            <div className="text-right">
-                                {order.orderItems.length} items
-                            </div>
-                            <div className="text-gray-600">Products:</div>
-                            <div className="text-right truncate">
-                                {order.orderItems.map(item => item.name).join(', ')}
+                        {/* Mobile Product Display */}
+                        <div className="sm:hidden grid grid-cols-2 gap-y-2 mt-4 pt-4 border-t border-gray-100">
+                            <div className="text-gray-500 font-medium">Products:</div>
+                            <div className="text-right text-gray-600 space-y-2">
+                                {order.cart.map((item) => (
+                                    <div key={item._id} className="flex justify-end items-center gap-2">
+                                        <Link to={"/product/" + item._id} className="flex items-center gap-2">
+                                            <span className="truncate max-w-[120px]">{item.name}</span>
+                                            <div className="w-6 h-6 rounded-md overflow-hidden border border-gray-100 shrink-0">
+                                                <img
+                                                    src={`${server}/uploads/${item.images[0]}`}
+                                                    alt={item.name}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>

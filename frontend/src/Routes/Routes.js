@@ -14,7 +14,7 @@ import ProfilePage from "../Pages/ProfilePage";
 import ShopCreatePage from "../Pages/ShopCreatePage.jsx";
 import SellerActivationPage from "../Pages/SellerActivationPage";
 import ShopLoginPage from "../Pages/ShopLoginPage.jsx";
-// import OrderDetailsPage from "../Pages/OrderDetailsPage.jsx";
+import OrderDetailsPage from "../Pages/OrderDetailsPage.jsx";
 // import TrackOrderPage from "../Pages/TrackOrderPage.jsx";
 // import UserInbox from "../Pages/UserInbox.jsx";
 
@@ -35,7 +35,7 @@ export {
     ShopCreatePage,
     SellerActivationPage,
     ShopLoginPage,
-    // OrderDetailsPage,
+    OrderDetailsPage,
     // TrackOrderPage,
     // UserInbox
 };
