@@ -1,18 +1,27 @@
 import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {AiFillHeart, AiOutlineHeart, AiOutlineMessage, AiOutlineShoppingCart} from "react-icons/ai";
+import {
+    AiFillHeart,
+    AiFillStar,
+    AiOutlineHeart,
+    AiOutlineMessage,
+    AiOutlineShoppingCart,
+    AiOutlineStar
+} from "react-icons/ai";
 import styles from "../../Styles/Styles.jsx";
 import {backend_url} from "../../server.jsx";
 import {toast} from "react-toastify";
 import {addToCart} from "../../redux/Actions/cart.js";
 import {useDispatch, useSelector} from "react-redux";
 import {addToWishlist, removeFromWishlist} from "../../redux/Actions/wishlist.js";
+import Ratings from "./Ratings.jsx";
 
-const ProductDetails = ({data, products}) => {
+const ProductDetails = ({data}) => {
     const [count, setCount] = useState(1);
     const [click, setClick] = useState(false);
     const [select, setSelect] = useState(0);
     const {cart} = useSelector((state) => state.cart);
+    const {products} = useSelector((state) => state.products);
     const {wishlist} = useSelector((state) => state.wishlist);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -63,6 +72,22 @@ const ProductDetails = ({data, products}) => {
         setClick(!click);
     };
 
+
+    const totalReviewsLength =
+        products &&
+        products.reduce((acc, product) => acc + product.reviews.length, 0);
+
+    const totalRatings =
+        products &&
+        products.reduce(
+            (acc, product) =>
+                acc + product.reviews.reduce((sum, review) => sum + review.rating, 0),
+            0
+        );
+
+    const avg = totalRatings / totalReviewsLength || 0;
+
+    const averageRating = avg.toFixed(2);
 
     const handleMessageSubmit = () => navigate("/inbox?conversation=12356789");
 
@@ -190,12 +215,12 @@ const ProductDetails = ({data, products}) => {
                                             </h3>
                                         </Link>
                                         <h5 className="pb-3 text-[15px]">
-                                            (4) Ratings
+                                            ({averageRating}) Ratings
                                         </h5>
                                     </div>
                                 </div>
                                 <div
-                                    className={`${styles.button} bg-[#6443d1] mt-4 md:mr-3 !rounded-lg !h-12 !w-44`}
+                                    className={`${styles.button} bg-[#6443d1] mt-4 md:mr-3 !rounded-lg !h-10 !w-38`}
                                     onClick={handleMessageSubmit}
                                 >
                                         <span className="text-white flex items-center">
@@ -206,14 +231,18 @@ const ProductDetails = ({data, products}) => {
                         </div>
                     </div>
 
-                    <ProductDetailsInfo data={data} products={products}/>
+                    <ProductDetailsInfo
+                        data={data} products={products}
+                        totalReviewsLength={totalReviewsLength}
+                        averageRating={averageRating}
+                    />
                 </div>
             ) : null}
         </section>
     );
 };
 
-const ProductDetailsInfo = ({data, products}) => {
+const ProductDetailsInfo = ({data, products, averageRating, totalReviewsLength}) => {
     const [active, setActive] = useState(1);
 
     return (
@@ -239,7 +268,7 @@ const ProductDetailsInfo = ({data, products}) => {
             </div>
 
             {/* Content Sections */}
-            <div className="p-8 bg-gray-50/50">
+            <div className="p-4 bg-gray-50/50">
                 {active === 1 && (
                     <article className="prose prose-lg max-w-none text-gray-600">
                         <div className="space-y-4 leading-relaxed whitespace-pre-line">
@@ -252,10 +281,57 @@ const ProductDetailsInfo = ({data, products}) => {
                 )}
 
                 {active === 2 && (
-                    <div className="space-y-6 max-h-[60vh] overflow-y-auto pr-4">
-                        <p className="text-gray-600">
-                            No reviews available for this product yet. Be the first to review this product.
-                        </p>
+                    <div className="w-full h-[35vh] flex flex-col items-center py-4 overflow-y-scroll">
+                        {data && data.reviews.map((item) => (
+                            <div key={item._id} className="w-full bg-white rounded-lg p-4 shadow-sm mb-3">
+                                <div className="flex items-start gap-3">
+                                    <img
+                                        src={`${backend_url}${item?.user?.avatar}`}
+                                        alt={item.user.name}
+                                        className="w-10 h-10 rounded-full object-cover border-2 border-gray-100"
+                                    />
+                                    <div className="flex-1">
+                                        <div className="flex items-baseline gap-3 mb-1">
+                                            <h3 className="text-gray-900 font-medium">{item.user.name}</h3>
+                                            <span className="text-xs text-gray-500">
+                                                {new Date(item.createdAt).toLocaleDateString()}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <div className="flex items-center">
+                                                {[...Array(5)].map((_, i) => (
+                                                    <AiFillStar
+                                                        key={i}
+                                                        className={`w-5 h-5 ${
+                                                            i < item.rating
+                                                                ? 'text-yellow-400'
+                                                                : 'text-gray-300'
+                                                        }`}
+                                                    />
+                                                ))}
+                                            </div>
+                                            <span className="text-sm font-medium text-gray-700">
+                                {item.rating.toFixed(1)}
+                            </span>
+                                        </div>
+                                        <p className="text-gray-600 text-sm leading-relaxed">
+                                            {item.comment}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+
+                        {data && data.reviews.length === 0 && (
+                            <div className="w-full text-center py-8">
+                                <div className="max-w-md mx-auto text-gray-500">
+                                    <AiOutlineStar className="w-12 h-12 mx-auto text-gray-300 mb-3"/>
+                                    <p className="font-medium">
+                                        No reviews yet. Be the first to share your experience!
+                                    </p>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 )}
 
@@ -273,7 +349,7 @@ const ProductDetailsInfo = ({data, products}) => {
                                         {data.shop.name}
                                     </h3>
                                     <h5 className="pb-2 text-[15px]">
-                                        (4) Ratings
+                                        ({averageRating}) Ratings
                                     </h5>
                                 </div>
                             </div>
@@ -298,7 +374,7 @@ const ProductDetailsInfo = ({data, products}) => {
                             </h5>
                             <h5 className="font-[600] pt-3">
                                 Total Reviews:{" "}
-                                222
+                                {totalReviewsLength}
                             </h5>
                             <Link to={`/shop/preview/${data.shop._id}`}>
                                 <div

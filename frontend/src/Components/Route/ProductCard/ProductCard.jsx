@@ -16,7 +16,8 @@ import {
   addToWishlist,
   removeFromWishlist,
 } from "../../../redux/actions/wishlist";
-import {toast} from "react-toastify"; // Import toast for notifications
+import {toast} from "react-toastify";
+import Ratings from "../../Products/Ratings.jsx"; // Import toast for notifications
 
 const ProductCard = ({data}) => {
     const {cart} = useSelector((state) => state.cart); // Get cart items from Redux store
@@ -131,26 +132,23 @@ const ProductCard = ({data}) => {
 
                 {/* Static Rating */}
                 <div className="flex gap-1 text-sm text-amber-500">
-                    {[...Array(4)].map((_, i) => (
-                        <AiFillStar key={i} size={16}/>
-                    ))}
-                    <AiOutlineStar size={16}/>
+                    <Ratings rating={data?.ratings} />
                 </div>
 
                 {/* Pricing */}
                 <div className="flex justify-between items-center gap-2 text-lg">
                     <div className="flex items-center gap-1">
                         <h5 className="font-bold text-xl text-gray-900">
-                            ${hasDiscount ? data.discountPrice : data.originalPrice}
+                            ${hasDiscount ? data?.discountPrice : data?.originalPrice}
                         </h5>
                         {hasDiscount && (
                             <h3 className="text-sm text-red-400 line-through">
-                                ${data.originalPrice}
+                                ${data?.originalPrice}
                             </h3>
                         )}
                     </div>
                     <span className="text-sm text-red-600 font-medium">
-                        {data.sold_out} sold
+                        {data?.sold_out} sold
                     </span>
                 </div>
             </div>

@@ -14,6 +14,7 @@ import Wishlist from "../Wishlist/Wishlist.jsx";
 
 const Header = ({activeHeading}) => {
     const {isAuthenticated, user} = useSelector((state) => state.user);
+    const {isShop} = useSelector((state) => state.shop);
     const {cart} = useSelector((state) => state.cart);
     const {wishlist} = useSelector((state) => state.wishlist);
     const {allProducts} = useSelector((state) => state.products);
@@ -117,8 +118,8 @@ const Header = ({activeHeading}) => {
                     <div
                         className="hidden md:flex bg-gradient-to-r from-purple-500 to-pink-500 h-[40px] items-center justify-center px-4 rounded-md cursor-pointer">
                         <Link to="/shop-create">
-                            <h1 className="text-white flex items-center text-sm">
-                                Become a Seller <IoIosArrowForward className="ml-1"/>
+                            <h1 className="text-white flex items-center text-md">
+                                {isShop ? "Seller Dashboard" : "Become a Seller"} <IoIosArrowForward className="ml-1"/>
                             </h1>
                         </Link>
                     </div>
@@ -341,7 +342,7 @@ const Header = ({activeHeading}) => {
                                     <Link to="/shop-create" className="w-full text-center"
                                           onClick={() => setIsMobileMenuOpen(false)}>
                         <span className="text-white flex items-center justify-center text-sm">
-                          Become a Seller <IoIosArrowForward className="ml-1"/>
+                          {isShop ? "Seller Dashboard" : "Become a Seller"} <IoIosArrowForward className="ml-1"/>
                         </span>
                                     </Link>
                                 </div>

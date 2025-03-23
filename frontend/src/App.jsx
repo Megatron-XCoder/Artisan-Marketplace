@@ -16,7 +16,8 @@ import {
     ShopCreatePage,
     SellerActivationPage,
     ShopLoginPage,
-    OrderDetailsPage
+    OrderDetailsPage,
+    TrackOrderPage
 
 } from './Routes/Routes';
 import ProtectedRoute from "./ProtectedRoutes/ProtectedRoute.jsx";
@@ -32,7 +33,8 @@ import {
     ShopCreateEvents,
     ShopCreateProduct,
     ShopDashboardPage,
-    ShopHomePage, ShopOrderDetails,
+    ShopHomePage,
+    ShopOrderDetails,
     ShopPreviewPage,
 
 } from "./Routes/ShopRoutes.js";
@@ -62,15 +64,13 @@ function App() {
 
     return (<>
         <Router>
-            {stripeApikey && (
-                <Elements stripe={loadStripe(stripeApikey)}>
+            {stripeApikey && (<Elements stripe={loadStripe(stripeApikey)}>
                     <Routes>
                         <Route path="/payment" element={<ProtectedRoute>
                             <PaymentPage/>
                         </ProtectedRoute>}/>
                     </Routes>
-                </Elements>
-            )}
+                </Elements>)}
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/login" element={<LoginPage/>}/>
@@ -93,9 +93,16 @@ function App() {
                     </ProtectedRoute>}/>
                 <Route
                     path="/user/order/:id"
+                    element={<ProtectedRoute>
+                        <OrderDetailsPage/>
+                    </ProtectedRoute>}
+                />
+
+                <Route
+                    path="/user/track/order/:id"
                     element={
                         <ProtectedRoute>
-                            <OrderDetailsPage/>
+                            <TrackOrderPage />
                         </ProtectedRoute>
                     }
                 />

@@ -8,7 +8,7 @@ import {useSelector} from "react-redux";
 import Loader from "../Components/Layout/Loader.jsx";
 
 const ProductDetailsPage = () => {
-    const {allProducts = [], products} = useSelector((state) => state.products) || {};
+    const {allProducts} = useSelector((state) => state.products);
     const {allEvents} = useSelector((state) => state.events);
     const {id} = useParams();
     const [productData, setProductData] = useState(null);
@@ -37,7 +37,7 @@ const ProductDetailsPage = () => {
     return (
         <div>
             <Header/>
-            {productData ? <ProductDetails data={productData} products={products}/> : <Loader/>}
+            {productData ? <ProductDetails data={productData}/> : <Loader/>}
             {
                 !eventData && productData && (
                     <SuggestedProduct data={productData}/>

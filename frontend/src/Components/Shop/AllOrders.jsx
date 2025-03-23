@@ -43,7 +43,7 @@ const AllOrders = () => {
                     orders?.map((order) => (
                         <div
                             key={order?._id}
-                            className="flex flex-col sm:grid sm:grid-cols-6 mt-3 mx-5 md:mx-0 gap-4 p-5 sm:p-5 text-sm group hover:shadow-md transition-all rounded-xl bg-white shadow-sm border border-gray-100"
+                            className="flex flex-col items-center sm:grid sm:grid-cols-6 mt-3 mx-5 md:mx-0 gap-4 p-5 sm:p-5 text-sm group hover:shadow-md transition-all rounded-xl bg-white shadow-sm border border-gray-100"
                         >
                             {/* Mobile Header */}
                             <div className="sm:hidden flex justify-between items-start mb-3">

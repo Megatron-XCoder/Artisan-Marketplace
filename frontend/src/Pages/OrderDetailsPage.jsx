@@ -1,6 +1,6 @@
 import Header from '../Components/Layout/Header'
 import Footer from '../Components/Layout/Footer'
-import UserOrderDetails from "../Components/UserOrderDetails.jsx";
+import UserOrderDetails from "../Components/Profile/UserOrderDetails.jsx";
 
 const OrderDetailsPage = () => {
     return (
