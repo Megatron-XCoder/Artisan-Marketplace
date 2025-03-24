@@ -1,16 +1,20 @@
 import DashboardHeader from "../../Components/Shop/Layout/DashboardHeader.jsx";
 import DashboardSideBar from "../../Components/Shop/Layout/DashboardSideBar.jsx";
+import DashboardHero from "../../Components/Shop/DashboardHero.jsx";
 
 const ShopDashboardPage = () => {
     return (
-        <>
-            <DashboardHeader/>
-            <div className="flex items-start justify-between w-full">
-                <div className="w-[80px] 800px:w-[330px]">
-                    <DashboardSideBar active={1}/>
+        <div>
+            <DashboardHeader />
+            <div>
+                <DashboardSideBar active={1} />
+            </div>
+            <div className="flex items-center justify-between w-full">
+                <div className="w-full justify-center flex mb-4">
+                    <DashboardHero />
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -303,9 +303,16 @@ const OrderDetails = () => {
                     >
                         {(data?.status === "Processing refund" || data?.status === "Refund Success"
                             ? // Refund status options
-                            ["Processing refund", "Refund Success"]
+                            [
+                                "Processing refund",
+                                "Refund Success"
+                            ]
                                 .slice(
-                                    ["Processing refund", "Refund Success"].indexOf(data?.status)
+                                    [
+                                        "Processing refund",
+                                        "Refund Success"
+                                    ]
+                                        .indexOf(data?.status)
                                 )
                             : // Regular status progression including refund options after Delivered
                             [
@@ -315,9 +322,8 @@ const OrderDetails = () => {
                                 "Received",
                                 "On the way",
                                 "Delivered",
-                                "Processing refund",
-                                "Refund Success"
-                            ].slice(
+                            ]
+                                .slice(
                                 [
                                     "Processing",
                                     "Transferred to delivery partner",
@@ -325,9 +331,8 @@ const OrderDetails = () => {
                                     "Received",
                                     "On the way",
                                     "Delivered",
-                                    "Processing refund",
-                                    "Refund Success"
-                                ].indexOf(data?.status)
+                                ]
+                                    .indexOf(data?.status)
                             ))
                             .map((option, index) => (
                                 <option value={option} key={index}>{option}</option>

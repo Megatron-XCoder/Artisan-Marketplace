@@ -147,8 +147,8 @@ const ProductCard = ({data}) => {
                             </h3>
                         )}
                     </div>
-                    <span className="text-sm text-red-600 font-medium">
-                        {data?.sold_out} sold
+                    <span className="text-sm text-red-600 bg-pink-100 px-3 py-1 rounded-lg shadow-lg font-medium">
+                        {data?.sold_out} units sold
                     </span>
                 </div>
             </div>

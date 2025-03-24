@@ -30,6 +30,7 @@ import {
     ShopAllEvents,
     ShopAllOrders,
     ShopAllProducts,
+    ShopAllRefunds,
     ShopCreateEvents,
     ShopCreateProduct,
     ShopDashboardPage,
@@ -116,6 +117,15 @@ function App() {
                     <ShopHomePage/>
                 </ShopProtectedRoute>}/>
 
+                <Route
+                    path="/settings"
+                    element={
+                        <ShopProtectedRoute>
+                            <ShopSettingsPage />
+                        </ShopProtectedRoute>
+                    }
+                />
+
                 <Route path="/dashboard"
                        element={<ShopProtectedRoute>
                            <ShopDashboardPage/>
@@ -151,6 +161,15 @@ function App() {
                     element={<ShopProtectedRoute>
                         <ShopCreateEvents/>
                     </ShopProtectedRoute>}
+                />
+
+                <Route
+                    path="/dashboard-refunds"
+                    element={
+                        <ShopProtectedRoute>
+                            <ShopAllRefunds />
+                        </ShopProtectedRoute>
+                    }
                 />
 
                 <Route path="/dashboard-events"

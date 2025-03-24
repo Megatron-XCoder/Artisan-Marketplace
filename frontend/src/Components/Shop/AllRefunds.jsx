@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { getAllOrdersOfShop } from "../../redux/Actions/order.js";
+import {getAllOrdersOfShop} from "../../redux/Actions/order.js";
 import {AiOutlineEye, AiOutlineInbox} from "react-icons/ai";
 import {server} from "../../server.jsx";
 
-const AllOrders = () => {
+const AllRefunds = () => {
     const { orders } = useSelector((state) => state.order);
     const { shop } = useSelector((state) => state.shop);
     const dispatch = useDispatch();
@@ -14,10 +14,13 @@ const AllOrders = () => {
         dispatch(getAllOrdersOfShop(shop._id));
     }, [dispatch, shop._id]);
 
+    const refundOrders = orders && orders.filter((item) => item.status === "Processing refund"  || item.status === "Refund Success");
+
+
     return (
         <div className="w-full mb-6 sm:px-8 pt-1 sm:pt-6">
             <h1 className="text-2xl md:text-3xl mb-4 font-bold px-4 bg-gradient-to-b from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Shop Orders
+                Shop Refund Orders
             </h1>
 
             {/* Desktop Header */}
@@ -32,7 +35,7 @@ const AllOrders = () => {
 
             {/* Orders List */}
             <div className="space-y-3">
-                {orders?.length === 0 ? (
+                {refundOrders?.length === 0 ? (
                     <div className="text-center py-12">
                         <div className="inline-block p-6 bg-gray-50 rounded-2xl mb-4">
                             <AiOutlineInbox className="text-4xl text-gray-400" />
@@ -40,7 +43,7 @@ const AllOrders = () => {
                         <h5 className="text-gray-500 font-medium">No orders found</h5>
                     </div>
                 ) : (
-                    orders?.map((order) => (
+                    refundOrders?.map((order) => (
                         <div
                             key={order?._id}
                             className="flex flex-col md:items-center sm:grid sm:grid-cols-6 mt-3 mx-5 md:mx-0 gap-4 p-5 sm:p-5 text-sm group hover:shadow-md transition-all rounded-xl bg-white shadow-sm border border-gray-100"
@@ -153,4 +156,4 @@ const AllOrders = () => {
     );
 };
 
-export default AllOrders;
+export default AllRefunds;
