@@ -19,6 +19,7 @@ import {
 const ProductDetailsCard = ({setOpen, data}) => {
     const {cart} = useSelector((state) => state.cart);
     const { wishlist } = useSelector((state) => state.wishlist);
+    const {products} = useSelector((state) => state.products);
     const dispatch = useDispatch();
     const [count, setCount] = useState(1);
     const [click, setClick] = useState(false);
@@ -39,6 +40,22 @@ const ProductDetailsCard = ({setOpen, data}) => {
             toast.error("Cannot exceed available stock!");
         }
     };
+
+    const totalReviewsLength =
+        products &&
+        products.reduce((acc, product) => acc + product.reviews.length, 0);
+
+    const totalRatings =
+        products &&
+        products.reduce(
+            (acc, product) =>
+                acc + product.reviews.reduce((sum, review) => sum + review.rating, 0),
+            0
+        );
+
+    const avg = totalRatings / totalReviewsLength || 0;
+
+    const averageRating = avg.toFixed(1);
 
     const addToCartHandler = () => {
         if (data.stock < 1) {
@@ -110,12 +127,12 @@ const ProductDetailsCard = ({setOpen, data}) => {
                                                     />
                                                     <div>
                                                         <h3 className="text-lg font-semibold">{data.shop.name}</h3>
-                                                        <h5 className=" text-[15px]">(4) Ratings</h5>
+                                                        <h5 className=" text-[15px]">({averageRating}) Ratings</h5>
                                                     </div>
                                                 </div>
                                             </Link>
                                             <p className=" text-red-600 text-sm font-medium">
-                                                50 sold in last 24 hours
+                                                {data.sold_out} units sold
                                             </p>
                                             <button
                                                 className="w-full bg-blue-600 text-white py-2 mt-4 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors"

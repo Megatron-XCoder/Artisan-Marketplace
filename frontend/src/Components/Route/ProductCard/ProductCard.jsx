@@ -19,7 +19,7 @@ import {
 import {toast} from "react-toastify";
 import Ratings from "../../Products/Ratings.jsx"; // Import toast for notifications
 
-const ProductCard = ({data}) => {
+const ProductCard = ({data, isEvent}) => {
     const {cart} = useSelector((state) => state.cart); // Get cart items from Redux store
     const {wishlist} = useSelector((state) => state.wishlist); // Get wishlist items from Redux store
     const dispatch = useDispatch(); // Initialize dispatch
@@ -109,7 +109,8 @@ const ProductCard = ({data}) => {
             </div>
 
             {/* Product Image */}
-            <Link to={`/product/${data._id}`} className="flex justify-center">
+            <Link to={`${isEvent ? `/product/${data._id}?isEvent=true` : `/product/${data._id}` }`}
+                  className="flex justify-center">
                 <img
                     src={`${backend_url}uploads/${data?.images?.[0]}`}
                     alt={data.name}
@@ -124,7 +125,7 @@ const ProductCard = ({data}) => {
 
             {/* Product Details */}
             <div className="flex flex-col gap-2 flex-grow text-center">
-                <Link to={`/product/${data._id}`}>
+                <Link to={`${isEvent ? `/product/${data._id}?isEvent=true` : `/product/${data._id}` }`}>
                     <h4 className="font-semibold text-start text-gray-900 text-[1rem]">
                         {data.name.length > 35 ? `${data.name.slice(0, 35)}...` : data.name}
                     </h4>
@@ -147,7 +148,7 @@ const ProductCard = ({data}) => {
                             </h3>
                         )}
                     </div>
-                    <span className="text-sm text-red-600 bg-pink-100 px-3 py-1 rounded-lg shadow-lg font-medium">
+                    <span className="text-sm text-red-600 bg-pink-100 px-2 py-1 rounded-lg shadow-lg font-medium">
                         {data?.sold_out} units sold
                     </span>
                 </div>

@@ -14,13 +14,13 @@ import {toast} from "react-toastify";
 import {addToCart} from "../../redux/Actions/cart.js";
 import {useDispatch, useSelector} from "react-redux";
 import {addToWishlist, removeFromWishlist} from "../../redux/Actions/wishlist.js";
-import Ratings from "./Ratings.jsx";
 
 const ProductDetails = ({data}) => {
     const [count, setCount] = useState(1);
     const [click, setClick] = useState(false);
     const [select, setSelect] = useState(0);
     const {cart} = useSelector((state) => state.cart);
+    const {shop} = useSelector((state) => state.shop);
     const {products} = useSelector((state) => state.products);
     const {wishlist} = useSelector((state) => state.wishlist);
     const dispatch = useDispatch();
@@ -235,6 +235,7 @@ const ProductDetails = ({data}) => {
                         data={data} products={products}
                         totalReviewsLength={totalReviewsLength}
                         averageRating={averageRating}
+                        shop={shop}
                     />
                 </div>
             ) : null}
@@ -242,7 +243,7 @@ const ProductDetails = ({data}) => {
     );
 };
 
-const ProductDetailsInfo = ({data, products, averageRating, totalReviewsLength}) => {
+const ProductDetailsInfo = ({data, shop, products, averageRating, totalReviewsLength}) => {
     const [active, setActive] = useState(1);
 
     return (
@@ -355,7 +356,7 @@ const ProductDetailsInfo = ({data, products, averageRating, totalReviewsLength})
                             </div>
                         </Link>
                         <p className="pt-2">
-                            {data.shop.description}
+                            {shop?.description}
                         </p>
                     </div>
                     <div className="w-full 800px:w-[50%] mt-5 800px:mt-0 sm:flex flex-col items-end">

@@ -123,7 +123,7 @@ const ShopInfo = ({isOwner}) => {
 
             {/* Action Buttons */}
             {isOwner && (<div className="space-y-4 pt-4 px-2 md:px-0">
-                <Link to={`/dashboard-settings/${id}`} className="block">
+                <Link to={`/settings`} className="block">
                     <button className="w-full text-sm md:text-base bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white py-2 md:py-3 rounded-lg font-medium
                 transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-purple-200">
                         Edit Shop

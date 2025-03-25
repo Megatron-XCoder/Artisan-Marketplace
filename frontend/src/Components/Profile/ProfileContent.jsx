@@ -46,14 +46,14 @@ const ProfileContent = ({active}) => {
                         <div className="relative flex justify-center">
                             <img
                                 src={`${backend_url}${user?.avatar}`}
-                                className="w-36 h-36 sm:w-48 sm:h-48 mt-6 rounded-full object-cover border-4 border-indigo-500 shadow-lg"
+                                className="w-36 h-36 sm:w-48 sm:h-48 mt-6 rounded-full object-cover border-4 border-white shadow-lg"
                                 alt="User Avatar"
                             />
                             <label
                                 htmlFor="image"
-                                className="absolute bottom-0 right-0 sm:bottom-2 sm:right-2 w-8 h-8 sm:w-10 sm:h-10 bg-indigo-500 text-white flex items-center justify-center rounded-full cursor-pointer shadow-md hover:bg-indigo-600 transition"
+                                className="absolute bottom-0 right-0 sm:bottom-2 sm:right-2 w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 text-white flex items-center justify-center rounded-full cursor-pointer shadow-md transition"
                             >
-                                <AiOutlineCamera className="w-4 h-4 sm:w-5 sm:h-5"/>
+                                <AiOutlineCamera className="w-4 h-4 sm:w-5 text-gray-700 sm:h-5"/>
                             </label>
                             <input type="file" id="image" className="hidden"/>
                         </div>
