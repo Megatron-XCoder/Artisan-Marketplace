@@ -17,7 +17,8 @@ import {
     SellerActivationPage,
     ShopLoginPage,
     OrderDetailsPage,
-    TrackOrderPage
+    TrackOrderPage,
+    UserInbox
 
 } from './Routes/Routes';
 import ProtectedRoute from "./ProtectedRoutes/ProtectedRoute.jsx";
@@ -38,7 +39,8 @@ import {
     ShopOrderDetails,
     ShopPreviewPage,
     ShopSettingsPage,
-    ShopWithDrawMoneyPage
+    ShopWithDrawMoneyPage,
+    ShopInboxPage
 
 } from "./Routes/ShopRoutes.js";
 import ShopProtectedRoute from "./ProtectedRoutes/ShopProtectedRoute.jsx";
@@ -94,6 +96,16 @@ function App() {
                     element={<ProtectedRoute>
                         <ProfilePage/>
                     </ProtectedRoute>}/>
+
+                <Route
+                    path="/inbox"
+                    element={
+                        <ProtectedRoute>
+                            <UserInbox />
+                        </ProtectedRoute>
+                    }
+                />
+
                 <Route
                     path="/user/order/:id"
                     element={<ProtectedRoute>
@@ -193,6 +205,14 @@ function App() {
                     }
                 />
 
+                <Route
+                    path="/dashboard-messages"
+                    element={
+                        <ShopProtectedRoute>
+                            <ShopInboxPage />
+                        </ShopProtectedRoute>
+                    }
+                />
 
             </Routes>
             <ToastContainer

@@ -9,11 +9,12 @@ import {
     AiOutlineStar
 } from "react-icons/ai";
 import styles from "../../Styles/Styles.jsx";
-import {backend_url} from "../../server.jsx";
+import {backend_url, server} from "../../server.jsx";
 import {toast} from "react-toastify";
 import {addToCart} from "../../redux/Actions/cart.js";
 import {useDispatch, useSelector} from "react-redux";
 import {addToWishlist, removeFromWishlist} from "../../redux/Actions/wishlist.js";
+import axios from "axios";
 
 const ProductDetails = ({data}) => {
     const [count, setCount] = useState(1);
@@ -21,6 +22,7 @@ const ProductDetails = ({data}) => {
     const [select, setSelect] = useState(0);
     const {cart} = useSelector((state) => state.cart);
     const {shop} = useSelector((state) => state.shop);
+    const { user, isAuthenticated } = useSelector((state) => state.user);
     const {products} = useSelector((state) => state.products);
     const {wishlist} = useSelector((state) => state.wishlist);
     const dispatch = useDispatch();
@@ -89,8 +91,27 @@ const ProductDetails = ({data}) => {
 
     const averageRating = avg.toFixed(2);
 
-    const handleMessageSubmit = () => navigate("/inbox?conversation=12356789");
-
+    const handleMessageSubmit = async () => {
+        if (isAuthenticated) {
+            const groupTitle = data._id + user._id;
+            const userId = user._id;
+            const shopId = data?.shop._id;
+            await axios
+                .post(`${server}/conversation/create-new-conversation`, {
+                    groupTitle,
+                    userId,
+                    shopId,
+                })
+                .then((res) => {
+                    navigate(`/inbox?${res.data.conversation._id}`);
+                })
+                .catch((error) => {
+                    toast.error(error.response.data.message);
+                });
+        } else {
+            toast.error("Please login to create a conversation");
+        }
+    };
     return (
         <section className="py-8 bg-white md:py-16 antialiased">
             {data ? (

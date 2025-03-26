@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const withdrawSchema = new mongoose.Schema({
-  seller: {
+  shop: {
     type: Object,
     required: true,
   },

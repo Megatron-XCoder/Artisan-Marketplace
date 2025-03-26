@@ -11,7 +11,7 @@ import ShopOrderDetails from "../Pages/Shop/ShopOrderDetails.jsx";
 import ShopAllRefunds from "../Pages/Shop/ShopAllRefunds.jsx";
 import ShopSettingsPage from "../Pages/Shop/ShopSettingsPage.jsx";
 import ShopWithDrawMoneyPage from "../Pages/Shop/ShopWithDrawMoneyPage.jsx";
-// import ShopInboxPage from "../Pages/Shop/ShopInboxPage.jsx";
+import ShopInboxPage from "../Pages/Shop/ShopInboxPage.jsx";
 
 export {
     ShopDashboardPage,
@@ -27,5 +27,5 @@ export {
     ShopAllRefunds,
     ShopSettingsPage,
     ShopWithDrawMoneyPage,
-    // ShopInboxPage
+    ShopInboxPage
 }

@@ -36,7 +36,7 @@ const DashboardSideBar = ({active}) => {
 
             {/* Sidebar for Mobile */}
             {isMenuOpen && (
-                <div className="fixed inset-0 z-50 bg-black/50" onClick={() => setIsMenuOpen(false)}>
+                <div className="fixed inset-0 z-500 bg-black/50" onClick={() => setIsMenuOpen(false)}>
                     <div className="absolute top-0 left-0 md:left-6 w-72 h-full z-50 rounded-lg bg-white shadow-lg"
                          onClick={(e) => e.stopPropagation()}>
                         <div className="flex justify-end items-center p-4">

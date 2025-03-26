@@ -79,9 +79,9 @@ const event = require("./Controller/event");
 const coupon = require("./Controller/couponCode");
 const payment = require("./Controller/payment");
 const order = require("./Controller/order");
-// const conversation = require("./Controller/conversation");
-// const message = require("./Controller/message");
-// const withdraw = require("./Controller/withdraw");
+const conversation = require("./Controller/conversation");
+const message = require("./Controller/message");
+const withdraw = require("./Controller/withdraw");
 //
 app.use("/user", user);
 app.use("/shop", shop);
@@ -90,9 +90,9 @@ app.use("/event", event);
 app.use("/coupon", coupon);
 app.use("/payment", payment);
 app.use("/order", order);
-// app.use("/conversation", conversation);
-// app.use("/message", message);
-// app.use("/withdraw", withdraw);
+app.use("/conversation", conversation);
+app.use("/message", message);
+app.use("/withdraw", withdraw);
 
 
 // it's for ErrorHandling
