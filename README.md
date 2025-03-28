@@ -1,6 +1,6 @@
 # Artisan MarketPlace - Multivendor E-Commerce Platform
 
-Welcome to Artisan MarketPlace, a multi-vendor e-commerce platform that caters to administrators, sellers, and customers. ShopO offers a comprehensive suite of features to facilitate seamless transactions and interactions between various stakeholders.
+Welcome to Artisan MarketPlace, a multi-vendor e-commerce platform that caters to administrators, sellers, and customers. Artisan MarketPlace offers a comprehensive suite of features to facilitate seamless transactions and interactions between various stakeholders.
 
 ## Table of Contents
 
@@ -16,22 +16,22 @@ Welcome to Artisan MarketPlace, a multi-vendor e-commerce platform that caters t
 
 ## Overview
 
-![ShopO Logo](https://cdn.shopify.com/s/files/1/0412/5117/6615/files/The_Artisan_Marketplace_-_Logo_1caa2512-2a37-417f-948e-bb571f16e582.jpg)
+![Artisan MarketPlace Logo](https://cdn.shopify.com/s/files/1/0412/5117/6615/files/The_Artisan_Marketplace_-_Logo_1caa2512-2a37-417f-948e-bb571f16e582.jpg)
 
-ShopO is a comprehensive multi-vendor e-commerce platform designed to provide a seamless shopping experience for users while offering powerful management tools for administrators and sellers. Built with the latest technologies, ShopO facilitates secure transactions, efficient order management, and customizable user experiences.
+Artisan MarketPlace is a comprehensive multi-vendor e-commerce platform designed to provide a seamless shopping experience for users while offering powerful management tools for administrators and sellers. Built with the latest technologies, Artisan MarketPlace facilitates secure transactions, efficient order management, and customizable user experiences.
 
 ### Key Features
 
-- **Multi-Vendor Support**: ShopO accommodates multiple sellers, allowing them to create their stores and manage their inventory.
+- **Multi-Vendor Support**: Artisan MarketPlace accommodates multiple sellers, allowing them to create their stores and manage their inventory.
 - **User-Friendly Interface**: The platform boasts an intuitive interface that enhances user navigation and shopping convenience.
-- **Secure Payments**: ShopO integrates robust payment gateways to ensure safe and secure transactions for buyers and sellers.
+- **Secure Payments**: Artisan MarketPlace integrates robust payment gateways to ensure safe and secure transactions for buyers and sellers.
 - **Customizable Dashboard**: Sellers and administrators have access to customizable dashboards tailored to their specific needs.
-- **Comprehensive Management Tools**: From product management to order fulfillment, ShopO provides comprehensive tools to streamline operations.
-- **Scalable Architecture**: Built on scalable architecture, ShopO can accommodate growth and handle increased traffic seamlessly.
-- **Responsive Design**: ShopO is optimized for various devices, offering a consistent user experience across desktops, tablets, and smartphones.
-- **Community Engagement**: ShopO fosters community engagement through user reviews, ratings, and interactive features.
+- **Comprehensive Management Tools**: From product management to order fulfillment, Artisan MarketPlace provides comprehensive tools to streamline operations.
+- **Scalable Architecture**: Built on scalable architecture, Artisan MarketPlace can accommodate growth and handle increased traffic seamlessly.
+- **Responsive Design**: Artisan MarketPlace is optimized for various devices, offering a consistent user experience across desktops, tablets, and smartphones.
+- **Community Engagement**: Artisan MarketPlace fosters community engagement through user reviews, ratings, and interactive features.
 
-With its robust features and user-centric design, ShopO aims to revolutionize the e-commerce landscape, empowering sellers to grow their businesses and providing customers with a delightful shopping experience.
+With its robust features and user-centric design, Artisan MarketPlace aims to revolutionize the e-commerce landscape, empowering sellers to grow their businesses and providing customers with a delightful shopping experience.
 
 ## Screen Shots
 
@@ -71,7 +71,7 @@ Here are some of the screenshot of how the website looks like
 
 - **Product Browsing**: Customers can explore a diverse range of products offered by different sellers.
 - **Shopping Cart**: Users can add products to their cart and proceed to checkout for payment.
-- **Secure Payments**: ShopO ensures secure payment processing for customer transactions.
+- **Secure Payments**: Artisan MarketPlace ensures secure payment processing for customer transactions.
 - **Order Tracking**: Customers can track the status of their orders from purchase to delivery.
 - **User Authentication**: Customers can create accounts, log in, and manage their profiles.
 - **Reviews and Ratings**: Customers can leave reviews and ratings for products and sellers.
@@ -82,7 +82,7 @@ Here are some of the screenshot of how the website looks like
 - **Product Management**: Sellers can add new products, update existing ones, and remove products from their inventory.
 - **Order Management**: Sellers can view and fulfill orders placed by customers.
 - **Earnings Tracking**: Sellers can track their earnings and view transaction histories.
-- **Communication**: Sellers can communicate with customers regarding orders and product inquiries.
+- **Communication**: Sellers can communicate with custArtisan MarketPlaceomers regarding orders and product inquiries.
 
 ### For Administrators
 
@@ -104,7 +104,7 @@ Here are some of the screenshot of how the website looks like
 
 ## Installation
 
-To set up the ShopO e-commerce platform locally on your machine, follow these steps:
+To set up the Artisan MarketPlace e-commerce platform locally on your machine, follow these steps:
 
 1. Clone the repository:
 
