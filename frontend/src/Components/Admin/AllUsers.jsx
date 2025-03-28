@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllUsers } from "../../redux/actions/user";
+import { getAllUsers } from "../../redux/Actions/user";
 import {AiOutlineDelete, AiOutlineArrowRight, AiOutlineInbox} from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
 import axios from "axios";
