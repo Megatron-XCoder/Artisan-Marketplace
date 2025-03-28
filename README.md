@@ -59,7 +59,7 @@ Here are some of the screenshot of how the website looks like
 
 #### 6. Withdrawal Details
 
-![withdrawal details](frontend/public/withdrawl email.png) <!-- Add a screenshot of your portfolio -->
+![withdrawal details](frontend/public/withdrawl%20email.png) <!-- Add a screenshot of your portfolio -->
 
 #### 7. Footer
 
