@@ -1,6 +1,6 @@
 import {useState} from "react";
 import Header from "../Components/Layout/Header";
-import Loader from "../components/Layout/Loader";
+import Loader from "../Components/Layout/Loader";
 import ProfileSideBar from "../Components/Profile/ProfileSidebar";
 import ProfileContent from "../Components/Profile/ProfileContent";
 import { useSelector } from "react-redux";

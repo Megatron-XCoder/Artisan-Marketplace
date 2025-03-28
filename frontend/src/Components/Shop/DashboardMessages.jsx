@@ -9,7 +9,7 @@ import { RxCross1 } from "react-icons/rx";
 import socketIO from "socket.io-client";
 import { format } from "timeago.js";
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://artisan-marketplace-1.onrender.com";
 const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
 const DashboardMessages = () => {

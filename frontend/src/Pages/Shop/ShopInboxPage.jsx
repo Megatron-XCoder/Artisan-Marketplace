@@ -1,5 +1,4 @@
 import DashboardHeader from '../../Components/Shop/Layout/DashboardHeader'
-import DashboardSideBar from '../../Components/Shop/Layout/DashboardSideBar'
 import DashboardMessages from "../../Components/Shop/DashboardMessages.jsx";
 
 const ShopInboxPage = () => {

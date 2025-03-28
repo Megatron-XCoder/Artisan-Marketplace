@@ -8,8 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineSend } from "react-icons/ai";
 import {RxCross1} from "react-icons/rx";
 import Header from "../Components/Layout/Header.jsx";
-import Footer from "../Components/Layout/Footer.jsx";
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://artisan-marketplace-1.onrender.com";
 const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
 const UserInbox = () => {
