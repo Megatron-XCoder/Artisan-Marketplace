@@ -4,7 +4,7 @@ import jsPDF from 'jspdf';
 import {autoTable} from 'jspdf-autotable';
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getAllOrdersOfShop} from "../../redux/actions/order";
+import {getAllOrdersOfShop} from "../../redux/Actions/order";
 import {server} from "../../server";
 import axios from "axios";
 import {toast} from "react-toastify";

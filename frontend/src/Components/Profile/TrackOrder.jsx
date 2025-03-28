@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getAllOrdersOfUser } from "../../redux/actions/order";
+import { getAllOrdersOfUser } from "../../redux/Actions/order";
 import { GiCheckMark } from "react-icons/gi";
 import { MdLocalShipping, MdOutlineAssignmentReturn } from "react-icons/md";
 import { RiLoader2Line, RiTruckLine } from "react-icons/ri";

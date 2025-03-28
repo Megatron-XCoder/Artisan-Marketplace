@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {backend_url, server} from "../../server";
 import { AiOutlineCamera } from "react-icons/ai";
 import axios from "axios";
-import { loadShop } from "../../redux/actions/user";
+import { loadShop } from "../../redux/Actions/user";
 import { toast } from "react-toastify";
 
 const ShopSettings = () => {
