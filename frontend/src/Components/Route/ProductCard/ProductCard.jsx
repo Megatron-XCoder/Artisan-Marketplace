@@ -11,11 +11,11 @@ import {Link} from "react-router-dom";
 import ProductDetailsCard from "../ProductDetailsCard/ProductDetailsCard";
 import {backend_url} from "../../../server.jsx";
 import {useSelector, useDispatch} from "react-redux"; // Import useDispatch
-import {addToCart} from "../../../redux/actions/cart.js"; // Import addToCart action
+import {addToCart} from "../../../redux/Actions/cart.js"; // Import addToCart action
 import {
   addToWishlist,
   removeFromWishlist,
-} from "../../../redux/actions/wishlist";
+} from "../../../redux/Actions/wishlist";
 import {toast} from "react-toastify";
 import Ratings from "../../Products/Ratings.jsx"; // Import toast for notifications
 

@@ -10,11 +10,11 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {toast} from "react-toastify";
 import {backend_url} from "../../../server.jsx";
-import {addToCart} from "../../../redux/actions/cart.js";
+import {addToCart} from "../../../redux/Actions/cart.js";
 import {
   addToWishlist,
   removeFromWishlist,
-} from "../../../redux/actions/wishlist";
+} from "../../../redux/Actions/wishlist";
 
 const ProductDetailsCard = ({setOpen, data}) => {
     const {cart} = useSelector((state) => state.cart);
