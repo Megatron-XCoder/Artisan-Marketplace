@@ -1,5 +1,5 @@
 import DashboardHeader from '../../Components/Shop/Layout/DashboardHeader'
-import ShopSettings from "../../components/Shop/ShopSettings.jsx";
+import ShopSettings from "../../Components/Shop/ShopSettings.jsx";
 
 const ShopSettingsPage = () => {
     return (
