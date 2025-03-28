@@ -152,7 +152,7 @@ const DashboardMessages = () => {
     }, [messages]);
 
     return (
-        <div className="w-full h-[82vh] sm:h-[84vh] md:mx-auto md:max-w-[97%] md:rounded-2xl md:shadow-lg overflow-hidden flex flex-col bg-white">
+        <div className="w-full h-[89vh] sm:h-[88vh] md:mt-3 md:mx-auto md:max-w-[97%] md:rounded-2xl md:shadow-lg overflow-hidden flex flex-col bg-white">
             {!open && (
                 <div className="border-b border-gray-100">
                     <h1 className="text-2xl md:text-3xl font-bold text-white p-6 md:px-8 border-b border-gray-100 bg-gradient-to-tr from-purple-500 to-blue-500">

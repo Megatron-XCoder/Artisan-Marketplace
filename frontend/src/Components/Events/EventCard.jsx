@@ -75,11 +75,11 @@ const EventCard = ({ active, data }) => {
                         <div className="flex flex-row items-start md:items-center justify-between mb-6 gap-3">
                             <div className="flex items-baseline gap-3">
                 <span
-                    className="text-3xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-                  ${data.discountPrice}
+                    className="text-3xl font-bold font-sans bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                  ₹{data.discountPrice}
                 </span>
-                                <span className="text-xl line-through font-medium text-red-400">
-                  ${data.originalPrice}
+                                <span className=" font-sans text-xl line-through font-medium text-red-400">
+                  ₹{data.originalPrice}
                 </span>
                             </div>
                             <span

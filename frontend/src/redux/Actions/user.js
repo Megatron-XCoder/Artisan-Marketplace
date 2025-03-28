@@ -146,25 +146,49 @@ export const deleteUserAddress = (id) => async (dispatch) => {
     }
 };
 
-// // get all users --- admin
-// export const getAllUsers = () => async (dispatch) => {
-//   try {
-//     dispatch({
-//       type: "getAllUsersRequest",
-//     });
-//
-//     const { data } = await axios.get(`${server}/user/admin-all-users`, {
-//       withCredentials: true,
-//     });
-//
-//     dispatch({
-//       type: "getAllUsersSuccess",
-//       payload: data.users,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: "getAllUsersFailed",
-//       payload: error.response.data.message,
-//     });
-//   }
-// };
+// get all users --- admin
+export const getAllUsers = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: "getAllUsersRequest",
+    });
+
+    const { data } = await axios.get(`${server}/user/admin-all-users`, {
+      withCredentials: true,
+    });
+
+    dispatch({
+      type: "getAllUsersSuccess",
+      payload: data.users,
+    });
+  } catch (error) {
+    dispatch({
+      type: "getAllUsersFailed",
+      payload: error.response.data.message,
+    });
+  }
+};
+
+
+// get all sellers --- admin
+export const getAllShops = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: "getAllShopsRequest",
+        });
+
+        const { data } = await axios.get(`${server}/shop/admin-all-sellers`, {
+            withCredentials: true,
+        });
+
+        dispatch({
+            type: "getAllShopsSuccess",
+            payload: data.shops,
+        });
+    } catch (error) {
+        dispatch({
+            type: "getAllShopFailed",
+            payload: error.response.data.message,
+        });
+    }
+};

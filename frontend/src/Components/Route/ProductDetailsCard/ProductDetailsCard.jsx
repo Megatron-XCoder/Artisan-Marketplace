@@ -154,12 +154,12 @@ const ProductDetailsCard = ({setOpen, data}) => {
 
                                             {/* Pricing Section */}
                                             <div className="flex items-center mb-6">
-                                                <span className="text-2xl font-bold text-black">
-                                                  ${data.discountPrice}
+                                                <span className="font-sans text-2xl font-bold text-black">
+                                                  ₹{data.discountPrice}
                                                 </span>
                                                 {data.originalPrice && (
-                                                    <span className="ml-3 text-red-500 line-through">
-                                                        ${data.originalPrice}
+                                                    <span className="font-sans ml-3 text-red-500 line-through">
+                                                        ₹{data.originalPrice}
                                                     </span>
                                                 )}
                                             </div>

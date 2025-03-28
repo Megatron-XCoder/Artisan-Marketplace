@@ -56,6 +56,8 @@ const ProductDetails = ({data}) => {
     };
 
     useEffect(() => {
+        window.scroll(0, 0);
+
         if (wishlist && wishlist.find((i) => i._id === data._id)) {
             setClick(true);
         } else {
@@ -155,12 +157,12 @@ const ProductDetails = ({data}) => {
                             <p className="text-gray-600 mb-4">{data.description}</p>
                             {/* Price Section */}
                             <div className="flex items-baseline mb-6">
-                                <h4 className="text-3xl font-bold text-gray-900">
-                                    ${data.discountPrice}
+                                <h4 className="text-3xl font-sans font-bold text-gray-900">
+                                    ₹{data.discountPrice}
                                 </h4>
                                 {data.originalPrice && (
-                                    <h3 className="ml-3 text-xl text-red-400 line-through">
-                                        {data.originalPrice ? "$" + data.originalPrice : null}
+                                    <h3 className="ml-3 text-xl font-sans text-red-400 line-through">
+                                        {data.originalPrice ? "₹" + data.originalPrice : null}
                                     </h3>
                                 )}
                             </div>
@@ -256,7 +258,6 @@ const ProductDetails = ({data}) => {
                         data={data} products={products}
                         totalReviewsLength={totalReviewsLength}
                         averageRating={averageRating}
-                        shop={shop}
                     />
                 </div>
             ) : null}
@@ -264,7 +265,7 @@ const ProductDetails = ({data}) => {
     );
 };
 
-const ProductDetailsInfo = ({data, shop, products, averageRating, totalReviewsLength}) => {
+const ProductDetailsInfo = ({data, products, averageRating, totalReviewsLength}) => {
     const [active, setActive] = useState(1);
 
     return (
@@ -376,9 +377,6 @@ const ProductDetailsInfo = ({data, shop, products, averageRating, totalReviewsLe
                                 </div>
                             </div>
                         </Link>
-                        <p className="pt-2">
-                            {shop?.description}
-                        </p>
                     </div>
                     <div className="w-full 800px:w-[50%] mt-5 800px:mt-0 sm:flex flex-col items-end">
                         <div className="text-left">

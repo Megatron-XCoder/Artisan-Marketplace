@@ -1,5 +1,5 @@
 const express = require("express");
-const {isShop, isAuthenticated} = require("../Middleware/auth");
+const {isShop, isAuthenticated, isAdmin} = require("../Middleware/auth");
 const catchAsyncErrors = require("../Middleware/catchAsyncErrors");
 const router = express.Router();
 const Event = require("../Model/event");
@@ -117,39 +117,24 @@ router.get("/get-all-events", async (req, res, next) => {
     }
 });
 
+// all events --- for admin
 router.get(
-    `/:id`,
-    catchAsyncErrors(async (req, res, next) => {
-        try {
-            const event = await Event.findById(req.params.id);
-            res.status(200).json({
-                success: true,
-                event,
-            });
-        } catch (error) {
-            return next(new ErrorHandler(error.message, 500));
-        }
-    })
+  "/admin-all-events",
+  isAuthenticated,
+  isAdmin("admin"),
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const events = await Event.find().sort({
+        createdAt: -1,
+      });
+      res.status(201).json({
+        success: true,
+        events,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
 );
-//
-// // all events --- for admin
-// router.get(
-//   "/admin-all-events",
-//   isAuthenticated,
-//   isAdmin("Admin"),
-//   catchAsyncErrors(async (req, res, next) => {
-//     try {
-//       const events = await Event.find().sort({
-//         createdAt: -1,
-//       });
-//       res.status(201).json({
-//         success: true,
-//         events,
-//       });
-//     } catch (error) {
-//       return next(new ErrorHandler(error.message, 500));
-//     }
-//   })
-// );
 
 module.exports = router;

@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 const catchAsyncErrors = require("../Middleware/catchAsyncErrors");
 const sendMail = require("../Utils/sendMail");
 const sendShopToken = require("../Utils/shopToken");
-const {isShop} = require("../Middleware/auth");
+const {isShop, isAuthenticated, isAdmin} = require("../Middleware/auth");
 
 // create shop
 router.post("/create-shop", upload.single("avatar"), async (req, res, next) => {
@@ -326,53 +326,53 @@ router.put(
         }
     })
 );
-//
-// // all sellers --- for admin
-// router.get(
-//     "/admin-all-sellers",
-//     isAuthenticated,
-//     isAdmin("Admin"),
-//     catchAsyncErrors(async (req, res, next) => {
-//         try {
-//             const sellers = await Shop.find().sort({
-//                 createdAt: -1,
-//             });
-//             res.status(201).json({
-//                 success: true,
-//                 sellers,
-//             });
-//         } catch (error) {
-//             return next(new ErrorHandler(error.message, 500));
-//         }
-//     })
-// );
-//
-// // delete seller ---admin
-// router.delete(
-//     "/delete-seller/:id",
-//     isAuthenticated,
-//     isAdmin("Admin"),
-//     catchAsyncErrors(async (req, res, next) => {
-//         try {
-//             const seller = await Shop.findById(req.params.id);
-//
-//             if (!seller) {
-//                 return next(
-//                     new ErrorHandler("Seller is not available with this id", 400)
-//                 );
-//             }
-//
-//             await Shop.findByIdAndDelete(req.params.id);
-//
-//             res.status(201).json({
-//                 success: true,
-//                 message: "Seller deleted successfully!",
-//             });
-//         } catch (error) {
-//             return next(new ErrorHandler(error.message, 500));
-//         }
-//     })
-// );
+
+// all sellers --- for admin
+router.get(
+    "/admin-all-sellers",
+    isAuthenticated,
+    isAdmin("admin"),
+    catchAsyncErrors(async (req, res, next) => {
+        try {
+            const shops = await Shop.find().sort({
+                createdAt: -1,
+            });
+            res.status(201).json({
+                success: true,
+                shops,
+            });
+        } catch (error) {
+            return next(new ErrorHandler(error.message, 500));
+        }
+    })
+);
+
+// delete seller ---admin
+router.delete(
+    "/delete-seller/:id",
+    isAuthenticated,
+    isAdmin("admin"),
+    catchAsyncErrors(async (req, res, next) => {
+        try {
+            const shop = await Shop.findById(req.params.id);
+
+            if (!shop) {
+                return next(
+                    new ErrorHandler("Seller is not available with this id", 400)
+                );
+            }
+
+            await Shop.findByIdAndDelete(req.params.id);
+
+            res.status(201).json({
+                success: true,
+                message: "Seller deleted successfully!",
+            });
+        } catch (error) {
+            return next(new ErrorHandler(error.message, 500));
+        }
+    })
+);
 //
 // update seller withdraw methods --- sellers
 router.put(

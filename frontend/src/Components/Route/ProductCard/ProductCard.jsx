@@ -139,12 +139,12 @@ const ProductCard = ({data, isEvent}) => {
                 {/* Pricing */}
                 <div className="flex justify-between items-center gap-2 text-lg">
                     <div className="flex items-center gap-1">
-                        <h5 className="font-bold text-xl text-gray-900">
-                            ${hasDiscount ? data?.discountPrice : data?.originalPrice}
+                        <h5 className="font-bold font-sans text-xl text-gray-900">
+                            ₹{hasDiscount ? data?.discountPrice : data?.originalPrice}
                         </h5>
                         {hasDiscount && (
-                            <h3 className="text-sm text-red-400 line-through">
-                                ${data?.originalPrice}
+                            <h3 className="text-sm font-sans text-red-400 line-through">
+                                ₹{data?.originalPrice}
                             </h3>
                         )}
                     </div>

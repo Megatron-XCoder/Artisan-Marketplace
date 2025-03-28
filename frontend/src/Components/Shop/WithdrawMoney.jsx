@@ -115,8 +115,8 @@ const WithdrawMoney = () => {
             <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 text-center">
                 <div className="mb-6">
                     <h2 className="text-2xl font-bold text-gray-800 mb-2">Available Balance</h2>
-                    <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                        ${availableBalance}
+                    <div className="text-4xl font-sans font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        ₹ {availableBalance}
                     </div>
                 </div>
 
@@ -187,7 +187,7 @@ const WithdrawMoney = () => {
 
                                         <div>
                                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                SWIFT Code <span className="text-red-500">*</span>
+                                                IFSC Code <span className="text-red-500">*</span>
                                             </label>
                                             <input
                                                 type="text"
@@ -259,7 +259,7 @@ const WithdrawMoney = () => {
                                                         Country: {shop.withdrawMethod.bankCountry}
                                                     </p>
                                                     <p className="text-gray-600">
-                                                        SWIFT: {shop.withdrawMethod.bankSwiftCode}
+                                                        IFSC: {shop.withdrawMethod.bankSwiftCode}
                                                     </p>
                                                 </div>
                                             </div>
@@ -270,7 +270,7 @@ const WithdrawMoney = () => {
                                                         Withdrawal Amount
                                                     </label>
                                                     <div className="relative">
-                                                        <span className="absolute left-4 top-3 text-gray-500">$</span>
+                                                        <span className="absolute font-sans left-4 top-3 text-gray-500">₹</span>
                                                         <input
                                                             type="number"
                                                             value={withdrawAmount}
@@ -280,8 +280,8 @@ const WithdrawMoney = () => {
                                                             max={Number(availableBalance)}
                                                         />
                                                     </div>
-                                                    <p className="text-sm text-gray-500 mt-2">
-                                                        Minimum withdrawal: $50
+                                                    <p className="text-sm font-sans text-gray-500 mt-2">
+                                                        Minimum withdrawal: ₹ 50
                                                     </p>
                                                 </div>
 

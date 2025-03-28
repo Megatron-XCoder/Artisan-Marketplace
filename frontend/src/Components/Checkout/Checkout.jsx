@@ -203,7 +203,7 @@ const Checkout = () => {
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                                    Zip Code <span className="text-red-500">*</span>
+                                    Pincode <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     type="number"
@@ -291,22 +291,22 @@ const Checkout = () => {
                     <div className="space-y-4">
                         <div className="flex justify-between">
                             <span className="text-gray-600">Subtotal:</span>
-                            <span className="font-medium">${subTotalPrice.toFixed(2)}</span>
+                            <span className="font-medium font-sans">₹{subTotalPrice.toFixed(2)}</span>
                         </div>
                         <div className="flex justify-between">
                             <span className="text-gray-600">Shipping:</span>
-                            <span className="font-medium">${shipping.toFixed(2)}</span>
+                            <span className="font-medium font-sans">₹{shipping.toFixed(2)}</span>
                         </div>
                         {discountPrice > 0 && (
                             <div className="flex justify-between text-red-600">
                                 <span className={"bg-red-100 px-2 rounded-sm"}>Coupon-Code Discount:</span>
-                                <span>-${discountPrice.toFixed(2)}</span>
+                                <span className={"font-sans"}>-₹{discountPrice.toFixed(2)}</span>
                             </div>
                         )}
                         <hr className="my-4"/>
                         <div className="flex justify-between text-lg font-bold">
                             <span>Total:</span>
-                            <span>${totalPrice}</span>
+                            <span className={"font-sans"}>₹{totalPrice}</span>
                         </div>
                     </div>
 

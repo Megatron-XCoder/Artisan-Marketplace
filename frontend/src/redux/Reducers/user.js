@@ -5,6 +5,7 @@ const initialState = {
     addressLoading: true,
     isAuthenticated: false,
     user: null,
+    users: [],
     error: null,
     successMessage: null,
 };
@@ -67,6 +68,19 @@ export const userReducer = createReducer(initialState, (builder) => {
             state.error = action.payload;
         })
 
+        // get all users ----------Admin
+        .addCase("getAllUsersRequest", (state) => {
+            state.usersLoading = true;
+        })
+        .addCase("getAllUsersSuccess", (state, action) => {
+            state.usersLoading = false;
+            state.users = action.payload; // Changed from user to users
+        })
+        .addCase("getAllUsersFailed", (state, action) => {
+            state.usersLoading = false;
+            state.error = action.payload;
+        })
+
 
         .addCase("clearMessages", (state) => {
             state.successMessage = null;
@@ -77,17 +91,4 @@ export const userReducer = createReducer(initialState, (builder) => {
 });
 
 
-//
-// // get all users --- admin
-// getAllUsersRequest: (state) => {
-//   state.usersLoading = true;
-// },
-// getAllUsersSuccess: (state,action) => {
-//   state.usersLoading = false;
-//   state.users = action.payload;
-// },
-// getAllUsersFailed: (state,action) => {
-//   state.usersLoading = false;
-//   state.error = action.payload;
-// },
 

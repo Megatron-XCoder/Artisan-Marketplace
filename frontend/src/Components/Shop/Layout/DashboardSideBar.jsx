@@ -19,7 +19,7 @@ const DashboardSideBar = ({active}) => {
         <div className="relative">
             {/* Menu Button for Mobile & Desktop */}
             <button
-                className="block p-2 m-2 text-gray-700 md:hidden"
+                className="block text-gray-700 md:hidden"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
                 {isMenuOpen ? <RxCross1 size={30} className="text-purple-600"/> :
@@ -130,7 +130,7 @@ const DashboardSideBar = ({active}) => {
             {/* Sidebar for Desktop */}
             {isDesktopSidebarOpen && (
                 <div
-                    className="hidden fixed top-15 left-0  w-80 h-[93%] md:block bg-white shadow-lg rounded-lg p-4 overflow-y-auto"
+                    className="hidden fixed top-0 left-0  w-80 h-full md:block bg-white shadow-lg rounded-lg p-4 overflow-y-auto"
                     onClick={() => setIsDesktopSidebarOpen(false)}
                 >
                     <div className="flex justify-end items-center p-4">

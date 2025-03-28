@@ -46,10 +46,21 @@ import {
 import ShopProtectedRoute from "./ProtectedRoutes/ShopProtectedRoute.jsx";
 import {getAllProducts} from "./redux/Actions/product.js";
 import {getAllEvents} from "./redux/Actions/event.js";
+import {
+    AdminDashboardPage,
+    AdminDashboardSellers,
+    AdminDashboardUsers,
+    AdminDashboardOrders,
+    AdminDashboardProducts,
+    AdminDashboardEvents,
+    AdminDashboardWithdraw
+
+} from "./Routes/AdminRoutes.js";
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js";
 import {server} from "./server.jsx";
 import axios from "axios";
+import AdminProtectedRoute from "./ProtectedRoutes/AdminProtectedRoute.jsx";
 
 function App() {
     const [stripeApikey, setStripeApikey] = useState("");
@@ -70,12 +81,12 @@ function App() {
     return (<>
         <Router>
             {stripeApikey && (<Elements stripe={loadStripe(stripeApikey)}>
-                    <Routes>
-                        <Route path="/payment" element={<ProtectedRoute>
-                            <PaymentPage/>
-                        </ProtectedRoute>}/>
-                    </Routes>
-                </Elements>)}
+                <Routes>
+                    <Route path="/payment" element={<ProtectedRoute>
+                        <PaymentPage/>
+                    </ProtectedRoute>}/>
+                </Routes>
+            </Elements>)}
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/login" element={<LoginPage/>}/>
@@ -101,7 +112,7 @@ function App() {
                     path="/inbox"
                     element={
                         <ProtectedRoute>
-                            <UserInbox />
+                            <UserInbox/>
                         </ProtectedRoute>
                     }
                 />
@@ -117,14 +128,15 @@ function App() {
                     path="/user/track/order/:id"
                     element={
                         <ProtectedRoute>
-                            <TrackOrderPage />
+                            <TrackOrderPage/>
                         </ProtectedRoute>
                     }
                 />
 
                 <Route path="/shop/preview/:id" element={<ShopPreviewPage/>}/>
 
-                {/* shop Routes */}
+                {/* _________________________shop Routes_______________________ */}
+
                 <Route path="/shop-create" element={<ShopCreatePage/>}/>
                 <Route path="/shop-login" element={<ShopLoginPage/>}/>
                 <Route path="/shop/:id" element={<ShopProtectedRoute>
@@ -135,7 +147,7 @@ function App() {
                     path="/settings"
                     element={
                         <ShopProtectedRoute>
-                            <ShopSettingsPage />
+                            <ShopSettingsPage/>
                         </ShopProtectedRoute>
                     }
                 />
@@ -181,7 +193,7 @@ function App() {
                     path="/dashboard-refunds"
                     element={
                         <ShopProtectedRoute>
-                            <ShopAllRefunds />
+                            <ShopAllRefunds/>
                         </ShopProtectedRoute>
                     }
                 />
@@ -200,7 +212,7 @@ function App() {
                     path="/dashboard-withdraw-money"
                     element={
                         <ShopProtectedRoute>
-                            <ShopWithDrawMoneyPage />
+                            <ShopWithDrawMoneyPage/>
                         </ShopProtectedRoute>
                     }
                 />
@@ -209,8 +221,72 @@ function App() {
                     path="/dashboard-messages"
                     element={
                         <ShopProtectedRoute>
-                            <ShopInboxPage />
+                            <ShopInboxPage/>
                         </ShopProtectedRoute>
+                    }
+                />
+
+                {/* _____________________Admin Routes________________________ */}
+                <Route
+                    path="/admin/dashboard"
+                    element={
+                        <AdminProtectedRoute>
+                            <AdminDashboardPage/>
+                        </AdminProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin-users"
+                    element={
+                        <AdminProtectedRoute>
+                            <AdminDashboardUsers/>
+                        </AdminProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin-sellers"
+                    element={
+                        <AdminProtectedRoute>
+                            <AdminDashboardSellers/>
+                        </AdminProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin-orders"
+                    element={
+                        <AdminProtectedRoute>
+                            <AdminDashboardOrders/>
+                        </AdminProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin-products"
+                    element={
+                        <AdminProtectedRoute>
+                            <AdminDashboardProducts/>
+                        </AdminProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin-events"
+                    element={
+                        <AdminProtectedRoute>
+                            <AdminDashboardEvents/>
+                        </AdminProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin-withdraw-request"
+                    element={
+                        <AdminProtectedRoute>
+                            <AdminDashboardWithdraw/>
+                        </AdminProtectedRoute>
                     }
                 />
 

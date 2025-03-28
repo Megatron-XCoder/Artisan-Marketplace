@@ -81,9 +81,9 @@ const AllEvents = () => {
                                 <div className="text-gray-500">Stock</div>
                                 <div className="text-gray-500">Sold</div>
                             </div>
-                            <div className="space-y-3 text-right">
+                            <div className="space-y-3 text-right font-sans">
                                 <div className="text-green-600 font-semibold">
-                                    US$ {item.discountPrice}
+                                    INR₹{item.discountPrice}
                                 </div>
                                 <div>
                                     <span
@@ -99,8 +99,8 @@ const AllEvents = () => {
                         </div>
 
                         {/* Desktop Price */}
-                        <div className="hidden sm:block sm:min-w-[100px] text-green-600 font-semibold">
-                            $ {item.discountPrice}
+                        <div className=" font-sans hidden sm:block sm:min-w-[100px] text-green-600 font-semibold">
+                            ₹ {item.discountPrice}
                         </div>
 
                         {/* Desktop Stock */}
@@ -124,7 +124,7 @@ const AllEvents = () => {
                             {/* Preview */}
                             <div className="sm:min-w-[100px]">
                                 <Link
-                                    to={`/events/${item._id}`}
+                                    to={`/product/${item._id}?isEvent=true`}
                                     className="inline-flex items-center hover:bg-gray-100 rounded-full p-2 transition-colors group-hover:bg-gray-100"
                                 >
                                     <AiOutlineEye className="text-gray-600 hover:text-blue-500 text-xl"/>

@@ -125,7 +125,7 @@ const TrackOrder = () => {
                             </div>
                             <div>
                                 <p className="text-gray-600">Total Amount</p>
-                                <p className="font-medium">${data?.totalPrice}</p>
+                                <p className="font-medium font-sans">₹ {data?.totalPrice}</p>
                             </div>
                             <div>
                                 <p className="text-gray-600">Delivery Address</p>

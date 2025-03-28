@@ -140,14 +140,14 @@ const CreateProduct = () => {
 
                 {/* Price Inputs Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    <div className="space-y-2">
+                    <div className="space-y-2 font-sans">
                         <label className="block text-sm font-medium text-gray-700">
                             Original Price
                         </label>
                         <div>
                             <input
                                 type="number"
-                                placeholder={"$"}
+                                placeholder={"₹"}
                                 className="w-full pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                 name="originalPrice"
                                 onChange={(e) => setOriginalPrice(e.target.value)}
@@ -155,14 +155,14 @@ const CreateProduct = () => {
                             />
                         </div>
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-2 font-sans">
                         <label className="block text-sm font-medium text-gray-700">
-                            Price (After Discount) <span className="text-red-500">*</span>
+                            Price (After Discount) <span className="text-red-500 ">*</span>
                         </label>
                         <div>
                             <input
                                 type="number"
-                                placeholder={"$"}
+                                placeholder={"₹"}
                                 className="w-full pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                 name="discountPrice"
                                 onChange={(e) => setDiscountPrice(e.target.value)}

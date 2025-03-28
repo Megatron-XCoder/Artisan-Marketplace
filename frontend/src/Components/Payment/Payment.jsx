@@ -204,8 +204,8 @@ const PaymentInfo = ({ orderData, paymentHandler, user, createOrder, open, setOp
                             </div>
                             <button
                                 type="submit"
-                                className="w-full bg-gradient-to-br from-purple-600 to-blue-500 text-white py-3 rounded-lg hover:opacity-90 transition-opacity font-medium">
-                                Pay $ {orderData?.totalPrice}
+                                className="w-full bg-gradient-to-br font-sans from-purple-600 to-blue-500 text-white py-3 rounded-lg hover:opacity-90 transition-opacity font-medium">
+                                Pay ₹ {orderData?.totalPrice}
                             </button>
                         </form>
                     )}
@@ -225,8 +225,8 @@ const PaymentInfo = ({ orderData, paymentHandler, user, createOrder, open, setOp
                         <div className="border-t border-gray-300 pt-4 space-y-4">
                             <button
                                 onClick={() => setOpen(true)}
-                                className="w-full bg-gradient-to-tr from-purple-600 to-blue-500 text-white py-3 rounded-lg hover:opacity-90 transition-opacity font-medium">
-                                Pay $ {orderData?.totalPrice} with PayPal
+                                className="w-full bg-gradient-to-tr font-sans from-purple-600 to-blue-500 text-white py-3 rounded-lg hover:opacity-90 transition-opacity font-medium">
+                                Pay ₹ {orderData?.totalPrice} with PayPal
                             </button>
 
                             {open && (
@@ -265,8 +265,8 @@ const PaymentInfo = ({ orderData, paymentHandler, user, createOrder, open, setOp
                         <div className="border-t border-gray-300 pt-4">
                             <button
                                 onClick={cashOnDeliveryHandler}
-                                className="w-full bg-gradient-to-tr from-purple-600 to-blue-500 text-white py-3 rounded-lg hover:opacity-90 transition-opacity font-medium">
-                                Confirm Order
+                                className="w-full bg-gradient-to-tr font-sans from-purple-600 to-blue-500 text-white py-3 rounded-lg hover:opacity-90 transition-opacity font-medium">
+                                Pay ₹ {orderData?.totalPrice} in Cash
                             </button>
                         </div>
                     )}
@@ -282,23 +282,23 @@ const CartData = ({ orderData }) => (
         <div className="space-y-3">
             <div className="flex justify-between">
                 <span className="text-gray-600">Subtotal ({orderData?.cart?.length} items):</span>
-                <span className="font-medium">${orderData?.subTotalPrice}</span>
+                <span className="font-medium font-sans">₹{orderData?.subTotalPrice}</span>
             </div>
             <div className="flex justify-between">
                 <span className="text-gray-600">Shipping:</span>
-                <span className="font-medium">${orderData?.shipping}</span>
+                <span className="font-medium font-sans">₹{orderData?.shipping}</span>
             </div>
             {orderData?.discountPrice > 0 && (
                 <div className="flex justify-between text-red-600">
                     <span className={"bg-red-100 px-2 rounded-sm"}>Coupon-Code Discount:</span>
-                    <span>-${orderData?.discountPrice.toFixed(2)}</span>
+                    <span className={"font-sans"}>-₹{orderData?.discountPrice.toFixed(2)}</span>
                 </div>
             )}
         </div>
         <div className="border-t mt-4 pt-4">
             <div className="flex justify-between items-center">
                 <span className="text-lg font-bold text-gray-800">Total</span>
-                <span className="text-xl font-bold text-gray-800">${orderData?.totalPrice}</span>
+                <span className="font-sans text-xl font-bold text-gray-800">₹{orderData?.totalPrice}</span>
             </div>
         </div>
     </div>

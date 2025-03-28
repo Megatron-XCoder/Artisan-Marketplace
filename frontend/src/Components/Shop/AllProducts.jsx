@@ -79,9 +79,9 @@ const AllProducts = () => {
                                 <div className="text-gray-500">Stock</div>
                                 <div className="text-gray-500">Sold</div>
                             </div>
-                            <div className="space-y-3 text-right">
+                            <div className="space-y-3 font-sans text-right">
                                 <div className="text-green-600 font-semibold">
-                                    US$ {item.discountPrice}
+                                    ₹ {item.discountPrice}
                                 </div>
                                 <div>
                                     <span
@@ -97,8 +97,8 @@ const AllProducts = () => {
                         </div>
 
                         {/* Desktop Price */}
-                        <div className="hidden sm:block sm:min-w-[100px] text-green-600 font-semibold">
-                            $ {item.discountPrice}
+                        <div className="hidden font-sans sm:block sm:min-w-[100px] text-green-600 font-semibold">
+                            ₹ {item.discountPrice}
                         </div>
 
                         {/* Desktop Stock */}

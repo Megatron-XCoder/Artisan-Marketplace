@@ -270,9 +270,9 @@ const AllOrders = () => {
                         </div>
 
                         {/* Total */}
-                        <div className="sm:min-w-[90px] text-gray-900 font-medium">
+                        <div className="sm:min-w-[90px] font-sans text-gray-900 font-medium">
                             <span className="sm:hidden mr-2 text-gray-600 font-medium">Total:</span>
-                            US$ {order?.totalPrice}
+                            INR₹ {order?.totalPrice}
                         </div>
 
                         {/* Download Receipt */}
@@ -424,9 +424,9 @@ const AllRefundOrders = () => {
                         </div>
 
                         {/* Total */}
-                        <div className="sm:min-w-[90px] text-gray-900 font-medium">
+                        <div className="sm:min-w-[90px] font-sans text-gray-900 font-medium">
                             <span className="sm:hidden mr-2 text-gray-600 font-medium">Total:</span>
-                            US$ {order?.totalPrice}
+                            INR₹ {order?.totalPrice}
                         </div>
 
                         {/* Download Receipt */}
@@ -576,9 +576,9 @@ const TrackOrders = () => {
                         </div>
 
                         {/* Total */}
-                        <div className="sm:min-w-[90px] text-gray-900 font-medium">
+                        <div className="sm:min-w-[90px] font-sans text-gray-900 font-medium">
                             <span className="sm:hidden mr-2 text-gray-600 font-medium">Total:</span>
-                            US$ {order?.totalPrice}
+                            INR₹ {order?.totalPrice}
                         </div>
 
                         {/* Download Receipt */}
@@ -910,7 +910,7 @@ const Address = () => {
                             {/* Zip Code Field */}
                             <div className="w-full pb-4">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    ZIP/Postal Code
+                                    Pincode
                                 </label>
                                 <input
                                     type="number"
@@ -963,10 +963,10 @@ const Address = () => {
                     </h1>
                 </div>
                 <button
-                    className="flex items-center bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                    className="flex font-medium items-center bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-2 py-1 lg:py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                     onClick={() => setOpen(true)}
                 >
-                    <AiOutlinePlusCircle className="mr-2 text-lg"/>
+                    <AiOutlinePlusCircle className="md:mr-2 text-lg" size={25}/>
                     Add New Address
                 </button>
             </div>

@@ -66,7 +66,7 @@ io.on("connection", (socket) => {
       messages[receiverId].push(message);
     }
 
-    // send the message to the recevier
+    // send the message to the receiver
     io.to(user?.socketId).emit("getMessage", message);
   });
 
@@ -109,5 +109,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(process.env.PORT || 4000, () => {
-  console.log(`server is running on port ${process.env.PORT || 4000}`);
+  console.log(`Socket server is running on port ${process.env.PORT || 4000}`);
 });

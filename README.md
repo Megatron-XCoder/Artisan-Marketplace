@@ -1,11 +1,10 @@
-# ShopO E-Commerce Platform
+# Artisan MarketPlace - Multivendor E-Commerce Platform
 
-Welcome to ShopO, a multi-vendor e-commerce platform that caters to administrators, sellers, and customers. ShopO offers a comprehensive suite of features to facilitate seamless transactions and interactions between various stakeholders.
+Welcome to Artisan MarketPlace, a multi-vendor e-commerce platform that caters to administrators, sellers, and customers. ShopO offers a comprehensive suite of features to facilitate seamless transactions and interactions between various stakeholders.
 
 ## Table of Contents
 
 - [Overview](#overview)
-- [Demo](#demo)
 - [Screen Shots of the System](#screen-shots)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
@@ -17,7 +16,7 @@ Welcome to ShopO, a multi-vendor e-commerce platform that caters to administrato
 
 ## Overview
 
-![ShopO Logo](/client/src/assets/images/svg/logo.svg)
+![ShopO Logo](https://cdn.shopify.com/s/files/1/0412/5117/6615/files/The_Artisan_Marketplace_-_Logo_1caa2512-2a37-417f-948e-bb571f16e582.jpg)
 
 ShopO is a comprehensive multi-vendor e-commerce platform designed to provide a seamless shopping experience for users while offering powerful management tools for administrators and sellers. Built with the latest technologies, ShopO facilitates secure transactions, efficient order management, and customizable user experiences.
 
@@ -34,41 +33,37 @@ ShopO is a comprehensive multi-vendor e-commerce platform designed to provide a 
 
 With its robust features and user-centric design, ShopO aims to revolutionize the e-commerce landscape, empowering sellers to grow their businesses and providing customers with a delightful shopping experience.
 
-## Demo
-
-Click this link to view a Live Demo of the website [Live Demo](https://shop0-bice.vercel.app/) <!-- Add your live demo link -->
-
 ## Screen Shots
 
 Here are some of the screenshot of how the website looks like
 
 #### 1. Home Page
 
-![Home Page](/client/src/assets/images/shopScreenShots/homepage.png)
+![Home Page](/frontend/public/homepage.png)
 
 #### 2. Seller Dashboard
 
-![Seller Dashboard](/client/src/assets/images/shopScreenShots/sellerDashboard.png) <!-- Add a screenshot of your portfolio -->
+![Seller Dashboard](frontend/public/sellerDashboard.png)) <!-- Add a screenshot of your portfolio -->
 
 #### 3. Admin Dashboard
 
-![Admin Dashboard](/client/src/assets/images/shopScreenShots/AdminDashboard.png) <!-- Add a screenshot of your portfolio -->
+![Admin Dashboard](frontend/public/AdminDashboard.png) <!-- Add a screenshot of your portfolio -->
 
 #### 4.Products Page
 
-![products page img](/client/src/assets/images/shopScreenShots/AdminDashbard.png) <!-- Add a screenshot of your portfolio -->
+![products page img](frontend/public/Productspage.png)) <!-- Add a screenshot of your portfolio -->
 
-#### 5. Invoice
+#### 5. Products Details
 
-![Invoice img](/client/src/assets/images/shopScreenShots/invoice.png) <!-- Add a screenshot of your portfolio -->
+![Invoice img](frontend/public/ProductDetail.png) <!-- Add a screenshot of your portfolio -->
 
 #### 6. Withdrawal Details
 
-![withdrawal details](/client/src/assets/images/shopScreenShots/withdrawalinfo.png) <!-- Add a screenshot of your portfolio -->
+![withdrawal details](frontend/public/withdrawl email.png) <!-- Add a screenshot of your portfolio -->
 
 #### 7. Footer
 
-![footerimg](/client/src/assets/images/shopScreenShots/footer.png) <!-- Add a screenshot of your portfolio -->
+![footerimg](frontend/public/footer.png) <!-- Add a screenshot of your portfolio -->
 
 ## Features
 

@@ -133,8 +133,8 @@ const Wishlist = ({ setOpenWishList }) => {
                                                                     className="h-full w-full object-cover"
                                                                 />
                                                             </div>
-                                                            <p className="mt-2 pl-2 text-lg font-medium text-gray-900">
-                                                                ${item.discountPrice}
+                                                            <p className="font-sans mt-2 pl-2 text-lg font-medium text-gray-900">
+                                                                ₹{item.discountPrice}
                                                             </p>
                                                         </div>
 
@@ -175,9 +175,9 @@ const Wishlist = ({ setOpenWishList }) => {
                                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                                     <button
                                         onClick={addAllToCartHandler}
-                                        className="flex w-full cursor-pointer items-center justify-center rounded-md bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                                        className="flex w-full font-sans cursor-pointer items-center justify-center rounded-md bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                                     >
-                                        Add All to Cart ($ {totalPrice})
+                                        Add All to Cart (₹ {totalPrice})
                                     </button>
                                     <div className="mt-3 text-center text-sm text-gray-500">
                                         <Link to={"/products"}>

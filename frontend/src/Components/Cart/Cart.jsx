@@ -106,7 +106,7 @@ const Cart = ({setOpenCart}) => {
                                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                         <p>Subtotal</p>
-                                        <p>$ {totalPrice}</p>
+                                        <p className={"font-sans"}>₹ {totalPrice}</p>
                                     </div>
                                     <p className="mt-0.5 text-sm text-gray-500">
                                         Shipping and taxes calculated at checkout.
@@ -114,9 +114,9 @@ const Cart = ({setOpenCart}) => {
                                     <div className="mt-4">
                                         <Link
                                             to="/checkout"
-                                            className="flex items-center justify-center rounded-md bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                                            className="flex items-center font-sans justify-center rounded-md bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                                         >
-                                            Checkout Now (USD $ {totalPrice})
+                                            Checkout Now (₹ {totalPrice})
                                         </Link>
                                     </div>
                                     <div className="mt-3 flex justify-center text-center text-sm text-gray-500">
@@ -180,7 +180,7 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
                 <div>
                     <div className="flex justify-between text-base font-medium text-gray-900">
                         <h3>{data.name}</h3>
-                        <p className="ml-4">${data.discountPrice}</p>
+                        <p className="ml-4 font-sans">₹{data.discountPrice}</p>
                     </div>
                     <p className="mt-1 text-sm text-gray-500">{data.description.length > 25 ? `${data.description.slice(0, 25)}...` : data.description}</p>
                 </div>

@@ -231,12 +231,12 @@ const OrderDetails = () => {
                                 <Link to={`/product/${item._id}`}>
                                     <h3 className="font-medium text-gray-900 hover:underline">{item.name}</h3>
                                 </Link>
-                                <p className="text-gray-500 text-sm mt-1">{item.qty} x US${item.discountPrice}</p>
+                                <p className="text-gray-500 font-sans text-sm mt-1">{item.qty} x INR₹ {item.discountPrice}</p>
                             </div>
 
                             {/* Price */}
                             <div className="text-right w-full sm:w-auto">
-                                <p className="font-medium text-gray-900">US${(item.qty * item.discountPrice).toFixed(2)}</p>
+                                <p className="font-medium font-sans text-gray-900">INR₹ {(item.qty * item.discountPrice).toFixed(2)}</p>
                             </div>
                         </div>
                     ))}
@@ -246,7 +246,7 @@ const OrderDetails = () => {
                     <div className="flex justify-end">
                         <div className="text-right">
                             <p className="text-gray-600">Subtotal:</p>
-                            <p className="text-2xl font-bold text-gray-900">US${data?.totalPrice}</p>
+                            <p className="text-2xl font-sans font-bold text-gray-900">INR₹ {data?.totalPrice}</p>
                         </div>
                     </div>
                 </div>

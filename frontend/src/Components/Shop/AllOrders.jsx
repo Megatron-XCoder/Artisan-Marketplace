@@ -109,9 +109,9 @@ const AllOrders = () => {
                             </div>
 
                             {/* Total */}
-                            <div className="sm:min-w-[90px] text-gray-900 font-medium">
+                            <div className="sm:min-w-[90px] font-sans text-gray-900 font-medium">
                                 <span className="sm:hidden mr-2 text-gray-600 font-medium">Total:</span>
-                                US$ {order?.totalPrice}
+                                INR₹ {order?.totalPrice}
                             </div>
 
                             {/* Actions */}
