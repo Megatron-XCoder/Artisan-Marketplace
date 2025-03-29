@@ -15,6 +15,8 @@ import {
   addToWishlist,
   removeFromWishlist,
 } from "../../../redux/Actions/wishlist";
+import axios from "axios";
+
 
 const ProductDetailsCard = ({setOpen, data}) => {
     const {cart} = useSelector((state) => state.cart);
