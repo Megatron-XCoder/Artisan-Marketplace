@@ -6,7 +6,7 @@ import {
     AiOutlineShoppingCart,
 } from "react-icons/ai";
 import {RxCross1} from "react-icons/rx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {toast} from "react-toastify";
 import {backend_url} from "../../../server.jsx";
@@ -20,11 +20,32 @@ const ProductDetailsCard = ({setOpen, data}) => {
     const {cart} = useSelector((state) => state.cart);
     const { wishlist } = useSelector((state) => state.wishlist);
     const {products} = useSelector((state) => state.products);
+    const { user, isAuthenticated } = useSelector((state) => state.user);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [count, setCount] = useState(1);
     const [click, setClick] = useState(false);
 
-    const handleMessageSubmit = () => {
+    const handleMessageSubmit = async () => {
+        if (isAuthenticated) {
+            const groupTitle = data._id + user._id;
+            const userId = user._id;
+            const shopId = data?.shop._id;
+            await axios
+                .post(`${server}/conversation/create-new-conversation`, {
+                    groupTitle,
+                    userId,
+                    shopId,
+                })
+                .then((res) => {
+                    navigate(`/inbox?${res.data.conversation._id}`);
+                })
+                .catch((error) => {
+                    toast.error(error.response.data.message);
+                });
+        } else {
+            toast.error("Please login to create a conversation");
+        }
     };
 
     const decrementCount = () => {
