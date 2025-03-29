@@ -9,7 +9,7 @@ import {RxCross1} from "react-icons/rx";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {toast} from "react-toastify";
-import {backend_url} from "../../../server.jsx";
+import {backend_url, server} from "../../../server.jsx";
 import {addToCart} from "../../../redux/Actions/cart.js";
 import {
   addToWishlist,
